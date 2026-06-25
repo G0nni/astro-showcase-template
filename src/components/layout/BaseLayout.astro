@@ -1,0 +1,66 @@
+---
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import "../../styles/global.css";
+import { siteConfig } from "../../config/site";
+
+const {
+  seo,
+  global
+} = siteConfig;
+
+const {
+  title,
+  description,
+  image = "/images/og.jpg",
+  pathname = ""
+} = Astro.props;
+
+const finalTitle = title
+  ? `${title} | ${global.name}`
+  : seo.defaultTitle;
+
+const finalDescription = description || seo.defaultDescription;
+
+const url = global.url + pathname;
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <!-- BASIC SEO -->
+    <title>{finalTitle}</title>
+    <meta name="description" content={finalDescription} />
+
+    <!-- CANONICAL -->
+    <link rel="canonical" href={url} />
+
+    <!-- FAVICON -->
+    <link rel="icon" href="/favicon.svg" />
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content={finalTitle} />
+    <meta property="og:description" content={finalDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content={global.url + image} />
+
+    <!-- TWITTER -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={finalTitle} />
+    <meta name="twitter:description" content={finalDescription} />
+    <meta name="twitter:image" content={global.url + image} />
+  </head>
+
+  <body class="bg-white text-gray-900 antialiased">
+    <Header />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

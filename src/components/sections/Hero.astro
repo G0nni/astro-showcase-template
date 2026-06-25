@@ -1,0 +1,24 @@
+---
+import { siteConfig } from "../../config/site";
+const { hero } = siteConfig;
+---
+
+<section class="py-20 text-center max-w-4xl mx-auto">
+  <h2 class="text-4xl font-bold mb-4">
+    {hero.title}
+  </h2>
+
+  <p class="text-lg text-gray-600 mb-8">
+    {hero.subtitle}
+  </p>
+
+  <div class="flex gap-4 justify-center">
+    <a class="px-6 py-3 bg-black text-white rounded-xl" href={hero.ctaPrimary.href}>
+      {hero.ctaPrimary.label}
+    </a>
+
+    <a class="px-6 py-3 border rounded-xl" href={hero.ctaSecondary.href}>
+      {hero.ctaSecondary.label}
+    </a>
+  </div>
+</section>
