@@ -11,6 +11,10 @@
   border-radius: var(--radius-card, 1rem);
 }
 
+/* i18n — hide content not matching current language */
+html:not([data-lang="en"]) [lang="en"] { display: none; }
+html[data-lang="en"]       [lang="fr"] { display: none; }
+
 /* Fade-in animation on scroll — triggered by IntersectionObserver */
 [data-animate="fade"] {
   opacity: 0;

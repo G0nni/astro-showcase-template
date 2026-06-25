@@ -345,17 +345,30 @@ const reviewsDemo: SectionBlock = {
         Astro Showcase Template
       </h1>
       <p class="text-xl text-gray-500 leading-relaxed mb-6">
-        Un générateur de site vitrine <strong class="text-gray-700">data-driven</strong> — composez vos pages section par section, tout depuis un seul fichier TypeScript.
+        <span lang="fr">Un générateur de site vitrine <strong class="text-gray-700">data-driven</strong> — composez vos pages section par section, tout depuis un seul fichier TypeScript.</span>
+        <span lang="en">A <strong class="text-gray-700">data-driven</strong> website builder — compose your pages section by section, all from a single TypeScript file.</span>
       </p>
       <div class="grid sm:grid-cols-3 gap-4">
-        {[
-          { title: '10 sections', desc: 'Hero, Features, Stats, CTA, Text, Testimonials, ImageText, FAQ, ContactInfo, Logos' },
-          { title: '1 fichier', desc: 'Tout le contenu — textes, pages, styles — dans site.ts' },
-          { title: '0 CMS', desc: "Pas de base de données, pas d'interface d'admin" },
-        ].map(card => (
+        {([
+          {
+            title: '21 sections',
+            descFr: 'Hero, Features, Stats, CTA, Text, Testimonials, ImageText, FAQ, Reviews, Gallery et plus',
+            descEn: 'Hero, Features, Stats, CTA, Text, Testimonials, ImageText, FAQ, Reviews, Gallery and more',
+          },
+          {
+            title: '1 file',
+            descFr: 'Tout le contenu — textes, pages, styles — dans site.ts',
+            descEn: 'All content — text, pages, styles — in site.ts',
+          },
+          {
+            title: '0 CMS',
+            descFr: "Pas de base de données, pas d'interface d'admin",
+            descEn: 'No database, no admin panel',
+          },
+        ] as const).map(card => (
           <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
             <p class="font-semibold text-gray-900 text-sm mb-1">{card.title}</p>
-            <p class="text-xs text-gray-500">{card.desc}</p>
+            <p class="text-xs text-gray-500"><span lang="fr">{card.descFr}</span><span lang="en">{card.descEn}</span></p>
           </div>
         ))}
       </div>
@@ -365,35 +378,45 @@ const reviewsDemo: SectionBlock = {
 
     <!-- PRÉREQUIS -->
     <section id="prerequis" class="mb-16 scroll-mt-20">
-      <h2 class="text-2xl font-bold text-gray-900 mb-2">Prérequis</h2>
-      <p class="text-gray-500 mb-6">Ce qu'il faut avoir installé sur votre machine avant de commencer.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">
+        <span lang="fr">Prérequis</span><span lang="en">Prerequisites</span>
+      </h2>
+      <p class="text-gray-500 mb-6">
+        <span lang="fr">Ce qu'il faut avoir installé sur votre machine avant de commencer.</span>
+        <span lang="en">What you need installed on your machine before you start.</span>
+      </p>
       <div class="space-y-4">
         <div class="flex gap-4 p-4 rounded-xl border border-gray-100">
           <div class="shrink-0 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-700 font-bold text-sm">N</div>
           <div class="min-w-0">
-            <p class="font-semibold text-gray-900 text-sm">Node.js <span class="font-normal text-gray-400">v18 ou supérieur</span></p>
+            <p class="font-semibold text-gray-900 text-sm">Node.js <span class="font-normal text-gray-400"><span lang="fr">v18 ou supérieur</span><span lang="en">v18 or higher</span></span></p>
             <p class="text-sm text-gray-500 mt-0.5 mb-3">
-              Téléchargez sur <a href="https://nodejs.org" class="text-blue-600 hover:underline" target="_blank">nodejs.org</a> (version LTS recommandée).
-              Sur macOS/Linux, <a href="https://github.com/nvm-sh/nvm" class="text-blue-600 hover:underline" target="_blank">nvm</a> permet de gérer plusieurs versions facilement.
+              <span lang="fr">Téléchargez sur <a href="https://nodejs.org" class="text-blue-600 hover:underline" target="_blank">nodejs.org</a> (version LTS recommandée). Sur macOS/Linux, <a href="https://github.com/nvm-sh/nvm" class="text-blue-600 hover:underline" target="_blank">nvm</a> permet de gérer plusieurs versions facilement.</span>
+              <span lang="en">Download from <a href="https://nodejs.org" class="text-blue-600 hover:underline" target="_blank">nodejs.org</a> (LTS version recommended). On macOS/Linux, <a href="https://github.com/nvm-sh/nvm" class="text-blue-600 hover:underline" target="_blank">nvm</a> makes it easy to manage multiple versions.</span>
             </p>
-            <Code code={`node --version   # doit afficher v18.x.x ou supérieur\nnpm --version    # npm est inclus avec Node`} lang="bash" theme="github-light" class="rounded-lg overflow-hidden text-xs" />
+            <Code code={`node --version   # should show v18.x.x or higher\nnpm --version    # npm is bundled with Node`} lang="bash" theme="github-light" class="rounded-lg overflow-hidden text-xs" />
           </div>
         </div>
         <div class="flex gap-4 p-4 rounded-xl border border-gray-100">
           <div class="shrink-0 w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-orange-700 font-bold text-sm">G</div>
           <div class="min-w-0">
             <p class="font-semibold text-gray-900 text-sm">Git</p>
-            <p class="text-sm text-gray-500 mt-0.5 mb-3">Pour cloner le projet. Téléchargez sur <a href="https://git-scm.com" class="text-blue-600 hover:underline" target="_blank">git-scm.com</a>.</p>
-            <Code code={`git --version    # doit afficher git version 2.x.x`} lang="bash" theme="github-light" class="rounded-lg overflow-hidden text-xs" />
+            <p class="text-sm text-gray-500 mt-0.5 mb-3">
+              <span lang="fr">Pour cloner le projet. Téléchargez sur <a href="https://git-scm.com" class="text-blue-600 hover:underline" target="_blank">git-scm.com</a>.</span>
+              <span lang="en">To clone the project. Download from <a href="https://git-scm.com" class="text-blue-600 hover:underline" target="_blank">git-scm.com</a>.</span>
+            </p>
+            <Code code={`git --version    # should show git version 2.x.x`} lang="bash" theme="github-light" class="rounded-lg overflow-hidden text-xs" />
           </div>
         </div>
         <div class="flex gap-4 p-4 rounded-xl border border-gray-100">
           <div class="shrink-0 w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm">✎</div>
           <div>
-            <p class="font-semibold text-gray-900 text-sm">Un éditeur de code</p>
+            <p class="font-semibold text-gray-900 text-sm">
+              <span lang="fr">Un éditeur de code</span><span lang="en">A code editor</span>
+            </p>
             <p class="text-sm text-gray-500 mt-0.5">
-              <a href="https://code.visualstudio.com" class="text-blue-600 hover:underline" target="_blank">VS Code</a> est recommandé, avec l'extension
-              <a href="https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode" class="text-blue-600 hover:underline" target="_blank">Astro</a> pour la coloration syntaxique.
+              <span lang="fr"><a href="https://code.visualstudio.com" class="text-blue-600 hover:underline" target="_blank">VS Code</a> est recommandé, avec l'extension <a href="https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode" class="text-blue-600 hover:underline" target="_blank">Astro</a> pour la coloration syntaxique.</span>
+              <span lang="en"><a href="https://code.visualstudio.com" class="text-blue-600 hover:underline" target="_blank">VS Code</a> is recommended, with the <a href="https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode" class="text-blue-600 hover:underline" target="_blank">Astro extension</a> for syntax highlighting.</span>
             </p>
           </div>
         </div>
@@ -405,20 +428,26 @@ const reviewsDemo: SectionBlock = {
     <!-- INSTALLATION -->
     <section id="installation" class="mb-16 scroll-mt-20">
       <h2 class="text-2xl font-bold text-gray-900 mb-2">Installation</h2>
-      <p class="text-gray-500 mb-6">Trois commandes pour avoir le site en local.</p>
+      <p class="text-gray-500 mb-6">
+        <span lang="fr">Trois commandes pour avoir le site en local.</span>
+        <span lang="en">Three commands to run the site locally.</span>
+      </p>
       <div class="space-y-5">
         <div>
-          <p class="text-sm font-semibold text-gray-700 mb-2">1 — Cloner le repo</p>
-          <Code code={`git clone https://github.com/G0nni/astro-showcase-template.git mon-site\ncd mon-site`} lang="bash" theme="github-dark" class="rounded-xl overflow-hidden" />
+          <p class="text-sm font-semibold text-gray-700 mb-2">1 — <span lang="fr">Cloner le repo</span><span lang="en">Clone the repo</span></p>
+          <Code code={`git clone https://github.com/G0nni/astro-showcase-template.git my-site\ncd my-site`} lang="bash" theme="github-dark" class="rounded-xl overflow-hidden" />
         </div>
         <div>
-          <p class="text-sm font-semibold text-gray-700 mb-2">2 — Installer les dépendances</p>
+          <p class="text-sm font-semibold text-gray-700 mb-2">2 — <span lang="fr">Installer les dépendances</span><span lang="en">Install dependencies</span></p>
           <Code code={`npm install`} lang="bash" theme="github-dark" class="rounded-xl overflow-hidden" />
         </div>
         <div>
-          <p class="text-sm font-semibold text-gray-700 mb-2">3 — Lancer le serveur de développement</p>
+          <p class="text-sm font-semibold text-gray-700 mb-2">3 — <span lang="fr">Lancer le serveur de développement</span><span lang="en">Start the dev server</span></p>
           <Code code={`npm run dev`} lang="bash" theme="github-dark" class="rounded-xl overflow-hidden" />
-          <p class="text-sm text-gray-500 mt-2">Ouvrez <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">http://localhost:4321</code> dans votre navigateur.</p>
+          <p class="text-sm text-gray-500 mt-2">
+            <span lang="fr">Ouvrez <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">http://localhost:4321</code> dans votre navigateur.</span>
+            <span lang="en">Open <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">http://localhost:4321</code> in your browser.</span>
+          </p>
         </div>
       </div>
     </section>
@@ -522,7 +551,7 @@ const reviewsDemo: SectionBlock = {
     <!-- hero -->
     <section id="section-hero" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">hero</code>
-      <p class="text-gray-500 text-sm mb-4">Bannière principale avec titre, sous-titre et un ou deux boutons CTA.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Bannière principale avec titre, sous-titre et un ou deux boutons CTA.</span><span lang="en">Main banner with title, subtitle and one or two CTA buttons.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={heroDemo} /></div>
       <Code code={`{\n  type: "hero",\n  props: {\n    title: "Un titre accrocheur",\n    subtitle: "Un sous-titre clair.",\n    ctaPrimary: { label: "Commencer", href: "/contact" },\n    ctaSecondary: { label: "En savoir plus", href: "/about" }, // optionnel\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -530,7 +559,7 @@ const reviewsDemo: SectionBlock = {
     <!-- features -->
     <section id="section-features" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">features</code>
-      <p class="text-gray-500 text-sm mb-4">Grille de cartes pour présenter des services, avantages ou fonctionnalités. Compatible avec tous les fonds.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Grille de cartes pour présenter des services, avantages ou fonctionnalités. Compatible avec tous les fonds.</span><span lang="en">Card grid for showcasing services, benefits or features. Works with all backgrounds.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={featuresDemo} /></div>
       <Code code={`{\n  type: "features",\n  style: { background: "white" }, // ou "light", "dark", "primary", "gradient"\n  props: {\n    title: "Ce que nous proposons",\n    items: [\n      { title: "Performance", description: "..." },\n      { title: "Simplicité",  description: "..." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -538,7 +567,7 @@ const reviewsDemo: SectionBlock = {
     <!-- stats -->
     <section id="section-stats" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">stats</code>
-      <p class="text-gray-500 text-sm mb-4">Chiffres clés en grande typographie. 3 à 4 métriques recommandées.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Chiffres clés en grande typographie. 3 à 4 métriques recommandées.</span><span lang="en">Key metrics in large typography. 3 to 4 items recommended.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={statsDemo} /></div>
       <Code code={`{\n  type: "stats",\n  style: { background: "light" },\n  props: {\n    title: "En quelques chiffres", // optionnel\n    items: [\n      { value: "98",   label: "Score Lighthouse" },\n      { value: "< 1s", label: "Chargement" },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -546,7 +575,7 @@ const reviewsDemo: SectionBlock = {
     <!-- cta -->
     <section id="section-cta" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">cta</code>
-      <p class="text-gray-500 text-sm mb-4">Appel à l'action. Fond sombre par défaut — essayez aussi <code class="bg-gray-100 px-1 rounded text-xs">gradient</code> ou <code class="bg-gray-100 px-1 rounded text-xs">primary</code>.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Appel à l'action. Fond sombre par défaut — essayez aussi <code class="bg-gray-100 px-1 rounded text-xs">gradient</code> ou <code class="bg-gray-100 px-1 rounded text-xs">primary</code>.</span><span lang="en">Call to action. Dark background by default — also try <code class="bg-gray-100 px-1 rounded text-xs">gradient</code> or <code class="bg-gray-100 px-1 rounded text-xs">primary</code>.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-3"><SectionRenderer block={ctaDarkDemo} /></div>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={ctaGradientDemo} /></div>
       <Code code={`{\n  type: "cta",\n  style: { background: "dark" }, // "dark" par défaut si omis\n  props: {\n    title: "Prêt à démarrer ?",\n    subtitle: "Contactez-nous.",\n    cta: { label: "Nous contacter", href: "/contact" },\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
@@ -555,7 +584,7 @@ const reviewsDemo: SectionBlock = {
     <!-- text -->
     <section id="section-text" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">text</code>
-      <p class="text-gray-500 text-sm mb-4">Bloc de texte libre. Idéal pour les pages À propos, mentions légales.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Bloc de texte libre. Idéal pour les pages À propos, mentions légales.</span><span lang="en">Free text block. Ideal for About pages, legal notices.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={textDemo} /></div>
       <Code code={`{\n  type: "text",\n  style: { background: "white" },\n  props: {\n    title: "À propos de nous",\n    paragraphs: [\n      "Premier paragraphe...",\n      "Deuxième paragraphe...",\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -563,7 +592,7 @@ const reviewsDemo: SectionBlock = {
     <!-- testimonials -->
     <section id="section-testimonials" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">testimonials</code>
-      <p class="text-gray-500 text-sm mb-4">Grille de citations clients. 3 témoignages est le format idéal.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Grille de citations clients. 3 témoignages est le format idéal.</span><span lang="en">Customer quote grid. 3 testimonials is the ideal format.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={testimonialsDemo} /></div>
       <Code code={`{\n  type: "testimonials",\n  style: { background: "light" },\n  props: {\n    title: "Ce que disent nos clients", // optionnel\n    items: [\n      { quote: "Super expérience.", author: "Sophie M.", role: "Directrice" },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -571,7 +600,7 @@ const reviewsDemo: SectionBlock = {
     <!-- imageText -->
     <section id="section-imagetext" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">imageText</code>
-      <p class="text-gray-500 text-sm mb-4">Deux colonnes image + texte. Alternez <code class="bg-gray-100 px-1 rounded text-xs">imagePosition</code> entre sections pour un rythme visuel.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Deux colonnes image + texte. Alternez <code class="bg-gray-100 px-1 rounded text-xs">imagePosition</code> entre sections pour un rythme visuel.</span><span lang="en">Two-column image + text. Alternate <code class="bg-gray-100 px-1 rounded text-xs">imagePosition</code> between sections for visual rhythm.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-3"><SectionRenderer block={imageTextRightDemo} /></div>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={imageTextLeftDemo} /></div>
       <Code code={`{\n  type: "imageText",\n  style: { background: "white" },\n  props: {\n    title: "Votre titre",\n    paragraphs: ["Texte..."],\n    imageUrl: "https://example.com/image.jpg",\n    imageAlt: "Description",\n    imagePosition: "right", // ou "left" — défaut: "right"\n    cta: { label: "En savoir plus", href: "/about" }, // optionnel\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
@@ -580,7 +609,7 @@ const reviewsDemo: SectionBlock = {
     <!-- faq -->
     <section id="section-faq" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">faq</code>
-      <p class="text-gray-500 text-sm mb-4">Liste de questions-réponses. À placer avant un CTA sur une page services.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Liste de questions-réponses. À placer avant un CTA sur une page services.</span><span lang="en">Question &amp; answer list. Best placed before a CTA on a services page.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={faqDemo} /></div>
       <Code code={`{\n  type: "faq",\n  style: { background: "light" },\n  props: {\n    title: "Questions fréquentes", // optionnel\n    items: [\n      { question: "Question ?", answer: "Réponse." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -588,7 +617,7 @@ const reviewsDemo: SectionBlock = {
     <!-- contactInfo -->
     <section id="section-contactinfo" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">contactInfo</code>
-      <p class="text-gray-500 text-sm mb-4">Coordonnées de contact. Tous les champs (email, LinkedIn, localisation) sont optionnels.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Coordonnées de contact. Tous les champs (email, LinkedIn, localisation) sont optionnels.</span><span lang="en">Contact details. All fields (email, LinkedIn, location) are optional.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={contactInfoDemo} /></div>
       <Code code={`{\n  type: "contactInfo",\n  style: { background: "white" },\n  props: {\n    title: "Contactez-nous",\n    subtitle: "Pour toute demande.",       // optionnel\n    email: "contact@monsite.fr",           // optionnel\n    linkedin: { label: "Mon LinkedIn", href: "https://..." }, // optionnel\n    location: "France",                    // optionnel\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -596,7 +625,7 @@ const reviewsDemo: SectionBlock = {
     <!-- logos -->
     <section id="section-logos" class="mb-16 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">logos</code>
-      <p class="text-gray-500 text-sm mb-4">Rangée de logos clients ou partenaires. Discret avec un effet hover couleur.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Rangée de logos clients ou partenaires. Discret avec un effet hover couleur.</span><span lang="en">Row of client or partner logos. Subtle with a color hover effect.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={logosDemo} /></div>
       <Code code={`{\n  type: "logos",\n  style: { background: "light", padding: "sm" },\n  props: {\n    title: "Ils nous font confiance", // optionnel\n    items: [\n      { name: "Partenaire A", imageUrl: "https://..." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -604,7 +633,7 @@ const reviewsDemo: SectionBlock = {
     <!-- pricing -->
     <section id="section-pricing" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">pricing</code>
-      <p class="text-gray-500 text-sm mb-4">Tableau de tarifs. Marquez un plan avec <code class="bg-gray-100 px-1 rounded text-xs">highlighted: true</code> pour le mettre en avant.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Tableau de tarifs. Marquez un plan avec <code class="bg-gray-100 px-1 rounded text-xs">highlighted: true</code> pour le mettre en avant.</span><span lang="en">Pricing table. Mark a plan with <code class="bg-gray-100 px-1 rounded text-xs">highlighted: true</code> to feature it.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={pricingDemo} /></div>
       <Code code={`{\n  type: "pricing",\n  style: { background: "light" },\n  props: {\n    title: "Nos tarifs",\n    plans: [\n      {\n        name: "Starter",\n        price: "490€",\n        features: ["1 page", "Design responsive", "SEO"],\n        cta: { label: "Choisir", href: "/contact" },\n      },\n      {\n        name: "Pro",\n        price: "990€",\n        features: ["5 pages", "Premium", "Maintenance"],\n        cta: { label: "Choisir Pro", href: "/contact" },\n        highlighted: true, // ← badge "Recommandé"\n      },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -612,7 +641,7 @@ const reviewsDemo: SectionBlock = {
     <!-- steps -->
     <section id="section-steps" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">steps</code>
-      <p class="text-gray-500 text-sm mb-4">Processus en étapes numérotées. Idéal pour expliquer "Comment ça marche".</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Processus en étapes numérotées. Idéal pour expliquer "Comment ça marche".</span><span lang="en">Numbered process steps. Ideal for explaining "How it works".</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={stepsDemo} /></div>
       <Code code={`{\n  type: "steps",\n  style: { background: "white" },\n  props: {\n    title: "Comment ça marche",\n    items: [\n      { title: "Étape 1", description: "Description..." },\n      { title: "Étape 2", description: "Description...", number: "02" }, // numéro personnalisable\n      { title: "Étape 3", description: "Description..." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -620,7 +649,7 @@ const reviewsDemo: SectionBlock = {
     <!-- team -->
     <section id="section-team" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">team</code>
-      <p class="text-gray-500 text-sm mb-4">Grille de membres avec photo ronde (optionnelle), nom, rôle et lien. Idéal sur une page À propos.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Grille de membres avec photo ronde (optionnelle), nom, rôle et lien. Idéal sur une page À propos.</span><span lang="en">Member grid with optional round photo, name, role and link. Ideal for an About page.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={teamDemo} /></div>
       <Code code={`{\n  type: "team",\n  style: { background: "light" },\n  props: {\n    title: "Notre équipe", // optionnel\n    items: [\n      {\n        name: "Alice Martin",\n        role: "Directrice",\n        imageUrl: "https://example.com/photo.jpg", // optionnel — initiale affichée si absent\n        link: "https://linkedin.com/in/...",        // optionnel\n      },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -628,7 +657,7 @@ const reviewsDemo: SectionBlock = {
     <!-- timeline -->
     <section id="section-timeline" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">timeline</code>
-      <p class="text-gray-500 text-sm mb-4">Historique en frise chronologique. Items alternés gauche/droite sur desktop.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Historique en frise chronologique. Items alternés gauche/droite sur desktop.</span><span lang="en">Chronological timeline. Items alternate left/right on desktop.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={timelineDemo} /></div>
       <Code code={`{\n  type: "timeline",\n  style: { background: "white" },\n  props: {\n    title: "Notre histoire", // optionnel\n    items: [\n      { date: "2020", title: "Création", description: "Lancement de l'agence." },\n      { date: "2022", title: "10 clients", description: "Premier cap." },\n      { date: "2024", title: "50 projets", description: "Satisfaction 4.9/5." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -636,7 +665,7 @@ const reviewsDemo: SectionBlock = {
     <!-- video -->
     <section id="section-video" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">video</code>
-      <p class="text-gray-500 text-sm mb-4">Embed YouTube ou Vimeo en 16/9, chargement lazy. Utilisez l'URL d'embed (pas l'URL de la page).</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Embed YouTube ou Vimeo en 16/9, chargement lazy. Utilisez l'URL d'embed (pas l'URL de la page).</span><span lang="en">YouTube or Vimeo embed in 16:9, lazy loaded. Use the embed URL (not the regular page URL).</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={videoDemo} /></div>
       <Code code={`{\n  type: "video",\n  style: { background: "light" },\n  props: {\n    title: "Présentation", // optionnel\n    videoUrl: "https://www.youtube.com/embed/ID_VIDEO",\n    // YouTube : remplacez watch?v=XXX par embed/XXX\n    // Vimeo   : https://player.vimeo.com/video/ID_VIDEO\n    caption: "Légende optionnelle sous la vidéo",\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -644,7 +673,7 @@ const reviewsDemo: SectionBlock = {
     <!-- gallery -->
     <section id="section-gallery" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">gallery</code>
-      <p class="text-gray-500 text-sm mb-4">Grille d'images avec hover. Configurable en 2, 3 ou 4 colonnes. Idéal pour un portfolio ou des réalisations.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Grille d'images avec hover. Configurable en 2, 3 ou 4 colonnes. Idéal pour un portfolio ou des réalisations.</span><span lang="en">Image grid with hover effect. Configurable in 2, 3 or 4 columns. Ideal for a portfolio or showcase.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={galleryDemo} /></div>
       <Code code={`{\n  type: "gallery",\n  style: { background: "white" },\n  props: {\n    title: "Nos réalisations", // optionnel\n    columns: 3,               // 2 | 3 | 4 — défaut: 3\n    items: [\n      { imageUrl: "https://...", alt: "Description", caption: "Légende" }, // caption optionnel\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -652,7 +681,7 @@ const reviewsDemo: SectionBlock = {
     <!-- newsletter -->
     <section id="section-newsletter" class="mb-16 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">newsletter</code>
-      <p class="text-gray-500 text-sm mb-4">Formulaire d'inscription email. Pointez <code class="bg-gray-100 px-1 rounded text-xs">formAction</code> vers votre URL Mailchimp ou ConvertKit. Zéro JavaScript.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Formulaire d'inscription email. Pointez <code class="bg-gray-100 px-1 rounded text-xs">formAction</code> vers votre URL Mailchimp ou ConvertKit. Zéro JavaScript.</span><span lang="en">Email signup form. Point <code class="bg-gray-100 px-1 rounded text-xs">formAction</code> to your Mailchimp or ConvertKit URL. Zero JavaScript.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={newsletterDemo} /></div>
       <Code code={`{\n  type: "newsletter",\n  style: { background: "dark" },\n  props: {\n    title: "Restez informé",\n    subtitle: "Recevez nos conseils par email.",  // optionnel\n    placeholder: "votre@email.fr",               // optionnel\n    buttonLabel: "S'inscrire",                   // optionnel\n    // Mailchimp : Dashboard → Audience → Signup forms → URL du formulaire\n    formAction: "https://moncompte.us1.list-manage.com/subscribe/post?u=XXX&id=XXX",\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -660,7 +689,7 @@ const reviewsDemo: SectionBlock = {
     <!-- comparison -->
     <section id="section-comparison" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">comparison</code>
-      <p class="text-gray-500 text-sm mb-4">Tableau comparatif "Nous vs Concurrents". <code class="bg-gray-100 px-1 rounded text-xs">true</code> → ✓ vert, <code class="bg-gray-100 px-1 rounded text-xs">false</code> → ✗ rouge, chaîne → texte libre. La colonne centrale est mise en avant.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Tableau comparatif "Nous vs Concurrents". <code class="bg-gray-100 px-1 rounded text-xs">true</code> → ✓ vert, <code class="bg-gray-100 px-1 rounded text-xs">false</code> → ✗ rouge, chaîne → texte libre. La colonne centrale est mise en avant.</span><span lang="en">Comparison table "Us vs Competitors". <code class="bg-gray-100 px-1 rounded text-xs">true</code> → green ✓, <code class="bg-gray-100 px-1 rounded text-xs">false</code> → red ✗, string → plain text. The middle column is highlighted.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={comparisonDemo} /></div>
       <Code code={`{\n  type: "comparison",\n  style: { background: "white" },\n  props: {\n    title: "Nous vs la concurrence",\n    options: ["Concurrent", "Notre solution", "DIY"], // colonnes\n    rows: [\n      { feature: "Délai", values: ["6 semaines", "2 semaines", "∞"] },\n      { feature: "SEO intégré", values: [false, true, "Variable"] },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -668,7 +697,7 @@ const reviewsDemo: SectionBlock = {
     <!-- download -->
     <section id="section-download" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">download</code>
-      <p class="text-gray-500 text-sm mb-4">Carte de téléchargement avec icône de type de fichier. L'attribut <code class="bg-gray-100 px-1 rounded text-xs">download</code> natif déclenche le téléchargement directement.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Carte de téléchargement avec icône de type de fichier. L'attribut <code class="bg-gray-100 px-1 rounded text-xs">download</code> natif déclenche le téléchargement directement.</span><span lang="en">Download card with file type icon. The native <code class="bg-gray-100 px-1 rounded text-xs">download</code> attribute triggers the download directly.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={downloadDemo} /></div>
       <Code code={`{\n  type: "download",\n  style: { background: "light" },\n  props: {\n    title: "Téléchargez notre brochure",\n    subtitle: "Toutes nos prestations en PDF.",  // optionnel\n    fileUrl: "/brochure.pdf",\n    fileName: "brochure-mon-site.pdf",\n    fileSize: "1.2 Mo",                         // optionnel\n    icon: "pdf",    // "pdf" | "zip" | "doc" | "generic"\n    buttonLabel: "Télécharger",                 // optionnel\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -676,7 +705,7 @@ const reviewsDemo: SectionBlock = {
     <!-- map -->
     <section id="section-map" class="mb-14 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">map</code>
-      <p class="text-gray-500 text-sm mb-4">Carte embarquée Google Maps ou OpenStreetMap. Copiez l'URL d'embed depuis <strong>Google Maps → Partager → Intégrer</strong>.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Carte embarquée Google Maps ou OpenStreetMap. Copiez l'URL d'embed depuis <strong>Google Maps → Partager → Intégrer</strong>.</span><span lang="en">Embedded Google Maps or OpenStreetMap. Copy the embed URL from <strong>Google Maps → Share → Embed a map</strong>.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={mapDemo} /></div>
       <Code code={`{\n  type: "map",\n  style: { background: "white" },\n  props: {\n    title: "Où nous trouver",    // optionnel\n    // Google Maps : Partager → Intégrer → copier le src de l'iframe\n    embedUrl: "https://www.google.com/maps/embed?pb=...",\n    height: "md",               // "sm" | "md" | "lg"\n    address: "Paris, France",   // affiché sous la carte (optionnel)\n    addressLink: "https://maps.google.com/?q=...", // optionnel\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -684,7 +713,7 @@ const reviewsDemo: SectionBlock = {
     <!-- reviews -->
     <section id="section-reviews" class="mb-16 scroll-mt-20">
       <code class="text-lg font-mono font-bold text-blue-600 block mb-1">reviews</code>
-      <p class="text-gray-500 text-sm mb-4">Badges de notation (Google, Trustpilot, Capterra…). Différent de <code class="bg-gray-100 px-1 rounded text-xs">testimonials</code> : ici c'est de la preuve sociale chiffrée, pas des citations.</p>
+      <p class="text-gray-500 text-sm mb-4"><span lang="fr">Badges de notation (Google, Trustpilot, Capterra…). Différent de <code class="bg-gray-100 px-1 rounded text-xs">testimonials</code> : ici c'est de la preuve sociale chiffrée, pas des citations.</span><span lang="en">Rating badges (Google, Trustpilot, Capterra…). Different from <code class="bg-gray-100 px-1 rounded text-xs">testimonials</code>: this is quantified social proof, not quotes.</span></p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={reviewsDemo} /></div>
       <Code code={`{\n  type: "reviews",\n  style: { background: "light" },\n  props: {\n    title: "Noté 5 étoiles", // optionnel\n    items: [\n      {\n        source: "Google",\n        rating: 4.9,\n        maxRating: 5,          // défaut: 5\n        reviewCount: 68,       // optionnel\n        logoUrl: "https://...", // optionnel — sinon nom texte\n        link: "https://g.page/...", // optionnel\n      },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
@@ -729,10 +758,12 @@ const reviewsDemo: SectionBlock = {
 
     <!-- TEMPLATES -->
     <section id="templates" class="mb-16 scroll-mt-20">
-      <h2 class="text-2xl font-bold text-gray-900 mb-2">Templates de départ</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">
+        <span lang="fr">Templates de départ</span><span lang="en">Starter templates</span>
+      </h2>
       <p class="text-gray-500 mb-6">
-        Des configurations complètes prêtes à l'emploi dans <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">src/config/templates/</code>.
-        Copiez le contenu du template choisi dans votre <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code> et personnalisez.
+        <span lang="fr">Des configurations complètes prêtes à l'emploi dans <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">src/config/templates/</code>. Copiez le contenu du template choisi dans votre <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code> et personnalisez.</span>
+        <span lang="en">Complete ready-to-use configurations in <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">src/config/templates/</code>. Copy the chosen template into your <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code> and customize.</span>
       </p>
       <div class="grid sm:grid-cols-2 gap-4">
         {[
@@ -761,27 +792,44 @@ const reviewsDemo: SectionBlock = {
 
     <!-- IA -->
     <section id="ia" class="mb-16 scroll-mt-20">
-      <h2 class="text-2xl font-bold text-gray-900 mb-2">Utiliser avec une IA</h2>
-      <p class="text-gray-500 mb-5">Grâce à la structure de <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code>, les assistants IA (Claude, GPT…) peuvent modifier votre site directement.</p>
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">
+        <span lang="fr">Utiliser avec une IA</span><span lang="en">Use with AI</span>
+      </h2>
+      <p class="text-gray-500 mb-5">
+        <span lang="fr">Grâce à la structure de <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code>, les assistants IA (Claude, GPT…) peuvent modifier votre site directement.</span>
+        <span lang="en">Thanks to the <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code> structure, AI assistants (Claude, GPT…) can modify your site directly.</span>
+      </p>
       <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 mb-4">
-        <p class="text-sm font-semibold text-blue-800 mb-3">Exemples de prompts</p>
+        <p class="text-sm font-semibold text-blue-800 mb-3">
+          <span lang="fr">Exemples de prompts</span><span lang="en">Example prompts</span>
+        </p>
         <ul class="space-y-2 text-sm text-blue-700 list-disc list-inside">
-          <li>Rends le titre du héro plus accrocheur pour une agence de design</li>
-          <li>Ajoute 3 témoignages fictifs sur la page d'accueil après les features</li>
-          <li>Crée une page /services avec text + features + faq + cta gradient</li>
-          <li>Change tous les CTA pour utiliser le fond gradient</li>
+          <li lang="fr">Rends le titre du héro plus accrocheur pour une agence de design</li>
+          <li lang="en">Make the hero title more compelling for a design agency</li>
+          <li lang="fr">Ajoute 3 témoignages fictifs sur la page d'accueil après les features</li>
+          <li lang="en">Add 3 fictional testimonials on the homepage after the features section</li>
+          <li lang="fr">Crée une page /services avec text + features + faq + cta gradient</li>
+          <li lang="en">Create a /services page with text + features + faq + gradient cta</li>
+          <li lang="fr">Change tous les CTA pour utiliser le fond gradient</li>
+          <li lang="en">Change all CTA sections to use the gradient background</li>
         </ul>
       </div>
-      <p class="text-sm text-gray-500">Donnez le contenu de <code class="bg-gray-100 px-1 rounded text-xs">site.ts</code> à l'IA et décrivez ce que vous voulez. L'IA modifie uniquement ce fichier — le design reste intact.</p>
+      <p class="text-sm text-gray-500">
+        <span lang="fr">Donnez le contenu de <code class="bg-gray-100 px-1 rounded text-xs">site.ts</code> à l'IA et décrivez ce que vous voulez. L'IA modifie uniquement ce fichier — le design reste intact.</span>
+        <span lang="en">Give the contents of <code class="bg-gray-100 px-1 rounded text-xs">site.ts</code> to the AI and describe what you want. The AI only touches this file — the design stays intact.</span>
+      </p>
     </section>
 
     <hr class="border-gray-100 mb-16" />
 
     <!-- DÉPLOIEMENT -->
     <section id="deploiement" class="mb-20 scroll-mt-20">
-      <h2 class="text-2xl font-bold text-gray-900 mb-2">Déploiement</h2>
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">
+        <span lang="fr">Déploiement</span><span lang="en">Deployment</span>
+      </h2>
       <p class="text-gray-500 mb-8">
-        <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">npm run build</code> génère un dossier <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">dist/</code> statique compatible avec tous les hébergeurs.
+        <span lang="fr"><code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">npm run build</code> génère un dossier <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">dist/</code> statique compatible avec tous les hébergeurs.</span>
+        <span lang="en"><code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">npm run build</code> generates a static <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">dist/</code> folder compatible with any hosting provider.</span>
       </p>
 
       <!-- GitHub Pages -->
@@ -790,7 +838,10 @@ const reviewsDemo: SectionBlock = {
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
           GitHub Pages
         </h3>
-        <p class="text-sm text-gray-500 mb-4">Hébergement gratuit depuis votre repo. URL : <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">username.github.io/nom-du-repo</code></p>
+        <p class="text-sm text-gray-500 mb-4">
+          <span lang="fr">Hébergement gratuit depuis votre repo. URL : <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">username.github.io/nom-du-repo</code></span>
+          <span lang="en">Free hosting from your repo. URL: <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">username.github.io/repo-name</code></span>
+        </p>
         <div class="space-y-4">
           <div>
             <p class="text-sm font-semibold text-gray-700 mb-2">1 — Configurer <code class="font-normal font-mono text-blue-600">astro.config.mjs</code></p>
@@ -798,7 +849,10 @@ const reviewsDemo: SectionBlock = {
           </div>
           <div>
             <p class="text-sm font-semibold text-gray-700 mb-2">2 — Activer GitHub Pages</p>
-            <p class="text-sm text-gray-500">Dans votre repo → <strong>Settings → Pages → Source → GitHub Actions</strong>. Le workflow est déjà inclus dans <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.github/workflows/deploy.yml</code>.</p>
+            <p class="text-sm text-gray-500">
+              <span lang="fr">Dans votre repo → <strong>Settings → Pages → Source → GitHub Actions</strong>. Le workflow est déjà inclus dans <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.github/workflows/deploy.yml</code>.</span>
+              <span lang="en">In your repo → <strong>Settings → Pages → Source → GitHub Actions</strong>. The workflow is already included in <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.github/workflows/deploy.yml</code>.</span>
+            </p>
           </div>
           <div>
             <p class="text-sm font-semibold text-gray-700 mb-2">3 — Pousser sur main</p>
@@ -810,9 +864,13 @@ const reviewsDemo: SectionBlock = {
       <!-- Vercel -->
       <div class="mb-10">
         <h3 class="text-lg font-semibold text-gray-900 mb-2">Vercel / Netlify</h3>
-        <p class="text-sm text-gray-500 mb-3">Déploiement zéro-config — connectez votre repo et c'est tout. Chaque push déclenche un déploiement.</p>
+        <p class="text-sm text-gray-500 mb-3">
+          <span lang="fr">Déploiement zéro-config — connectez votre repo et c'est tout. Chaque push déclenche un déploiement.</span>
+          <span lang="en">Zero-config deployment — connect your repo and you're done. Every push triggers a deployment.</span>
+        </p>
         <div class="bg-amber-50 border border-amber-100 rounded-xl p-4 text-sm text-amber-800 mb-3">
-          <strong>Important :</strong> retirez <code class="bg-white/60 px-1 rounded">base</code> de <code class="bg-white/60 px-1 rounded">astro.config.mjs</code> — Vercel/Netlify déploient à la racine, pas dans un sous-chemin.
+          <span lang="fr"><strong>Important :</strong> retirez <code class="bg-white/60 px-1 rounded">base</code> de <code class="bg-white/60 px-1 rounded">astro.config.mjs</code> — Vercel/Netlify déploient à la racine, pas dans un sous-chemin.</span>
+          <span lang="en"><strong>Important:</strong> remove <code class="bg-white/60 px-1 rounded">base</code> from <code class="bg-white/60 px-1 rounded">astro.config.mjs</code> — Vercel/Netlify deploy to the root, not a sub-path.</span>
         </div>
         <Code code={`// astro.config.mjs pour Vercel ou Netlify\nexport default defineConfig({\n  site: 'https://www.monsite.fr',  // votre domaine\n  // base: retirer cette ligne\n  vite: { plugins: [tailwindcss()] }\n});\n\n// Pour Netlify, configurez aussi :\n// Build command : npm run build\n// Publish dir   : dist`} lang="js" theme="github-dark" class="rounded-xl overflow-hidden" />
       </div>
@@ -826,7 +884,7 @@ const reviewsDemo: SectionBlock = {
 
     <!-- Footer -->
     <div class="border-t border-gray-100 pt-8 pb-16 flex items-center justify-between text-sm text-gray-400">
-      <span>Astro Showcase Template</span>
+      <span>Astro Showcase Template — <span lang="fr">MIT License, contributions bienvenues</span><span lang="en">MIT License, contributions welcome</span></span>
       <a href="https://github.com/G0nni/astro-showcase-template" target="_blank" class="hover:text-gray-600 transition-colors">GitHub →</a>
     </div>
 

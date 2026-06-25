@@ -57,7 +57,16 @@ const { title = 'Documentation', nav } = Astro.props;
       <span class="hidden sm:inline text-sm text-gray-500">docs</span>
     </div>
 
-    <div class="ml-auto flex items-center gap-4">
+    <div class="ml-auto flex items-center gap-3">
+      <!-- Language toggle -->
+      <button
+        id="lang-toggle"
+        class="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors px-2 py-1 rounded-lg hover:bg-gray-100"
+        aria-label="Toggle language"
+      >
+        <span id="lang-label" class="font-medium">EN</span>
+      </button>
+
       <a
         href="https://github.com/G0nni/astro-showcase-template"
         target="_blank"
@@ -142,6 +151,25 @@ const { title = 'Documentation', nav } = Astro.props;
       link.addEventListener('click', () => {
         if (window.innerWidth < 1024) closeSidebar();
       });
+    });
+
+    // Language toggle
+    const langToggle = document.getElementById('lang-toggle');
+    const langLabel  = document.getElementById('lang-label');
+
+    function applyLang(lang: string) {
+      document.documentElement.setAttribute('data-lang', lang);
+      localStorage.setItem('docs-lang', lang);
+      if (langLabel) langLabel.textContent = lang === 'fr' ? 'EN' : 'FR';
+    }
+
+    // Restore saved preference
+    const saved = localStorage.getItem('docs-lang') ?? 'fr';
+    applyLang(saved);
+
+    langToggle?.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-lang') ?? 'fr';
+      applyLang(current === 'fr' ? 'en' : 'fr');
     });
   </script>
 
