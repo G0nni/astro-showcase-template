@@ -2,21 +2,22 @@
 import { siteConfig } from '../../config/site';
 
 const currentPath = Astro.url.pathname;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
   <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
 
-    <a href="/" class="font-bold text-lg text-gray-900 tracking-tight">
+    <a href={base + '/'} class="font-bold text-lg text-gray-900 tracking-tight">
       {siteConfig.global.name}
     </a>
 
     <nav class="hidden md:flex items-center gap-8">
       {siteConfig.navigation.map((item) => (
         <a
-          href={item.href}
+          href={base + item.href}
           class={`text-sm font-medium transition-colors ${
-            currentPath === item.href
+            currentPath === base + item.href
               ? 'text-gray-900'
               : 'text-gray-500 hover:text-gray-900'
           }`}
@@ -41,7 +42,7 @@ const currentPath = Astro.url.pathname;
   <div id="mobile-menu" class="hidden md:hidden border-t border-gray-100 bg-white">
     <nav class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
       {siteConfig.navigation.map((item) => (
-        <a href={item.href} class="text-sm font-medium text-gray-700 hover:text-gray-900">
+        <a href={base + item.href} class="text-sm font-medium text-gray-700 hover:text-gray-900">
           {item.label}
         </a>
       ))}

@@ -1,0 +1,31 @@
+---
+import type { StatsBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = StatsBlock['props'] & { style?: SectionStyle };
+
+const { title, items, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass = isDark ? 'text-white' : 'text-gray-900';
+const valueClass = isDark ? 'text-white' : 'text-gray-900';
+const labelClass = isDark ? 'text-white/60' : 'text-gray-500';
+const dividerClass = isDark ? 'border-white/10' : 'border-gray-100';
+---
+
+<SectionWrapper style={style}>
+  {title && (
+    <h2 class={`text-3xl md:text-4xl font-bold text-center ${headingClass} mb-16`}>
+      {title}
+    </h2>
+  )}
+
+  <div class={`grid grid-cols-2 md:grid-cols-${Math.min(items.length, 4)} gap-8 divide-x ${dividerClass}`}>
+    {items.map((item: { value: string; label: string }) => (
+      <div class="text-center px-4">
+        <p class={`text-4xl md:text-5xl font-extrabold ${valueClass} mb-2`}>{item.value}</p>
+        <p class={`text-sm ${labelClass} uppercase tracking-widest`}>{item.label}</p>
+      </div>
+    ))}
+  </div>
+</SectionWrapper>

@@ -1,0 +1,31 @@
+---
+import type { FaqBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = FaqBlock['props'] & { style?: SectionStyle };
+
+const { title, items, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass = isDark ? 'text-white' : 'text-gray-900';
+const questionClass = isDark ? 'text-white font-semibold text-lg' : 'text-gray-900 font-semibold text-lg';
+const answerClass = isDark ? 'text-white/70 leading-relaxed mt-2' : 'text-gray-600 leading-relaxed mt-2';
+const dividerClass = isDark ? 'border-white/10' : 'border-gray-100';
+---
+
+<SectionWrapper style={style}>
+  {title && (
+    <h2 class={`text-3xl md:text-4xl font-bold text-center ${headingClass} mb-16`}>
+      {title}
+    </h2>
+  )}
+
+  <div class="max-w-3xl mx-auto divide-y" class:list={[dividerClass]}>
+    {items.map((item: { question: string; answer: string }) => (
+      <div class="py-6">
+        <p class={questionClass}>{item.question}</p>
+        <p class={answerClass}>{item.answer}</p>
+      </div>
+    ))}
+  </div>
+</SectionWrapper>

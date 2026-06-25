@@ -1,0 +1,31 @@
+---
+import type { LogosBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = LogosBlock['props'] & { style?: SectionStyle };
+
+const { title, items, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass = isDark ? 'text-white/60' : 'text-gray-400';
+const imgClass = isDark ? 'opacity-50 hover:opacity-80 transition-opacity' : 'opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0';
+---
+
+<SectionWrapper style={style ?? { background: 'light', padding: 'sm' }}>
+  {title && (
+    <p class={`text-sm font-semibold uppercase tracking-widest text-center ${headingClass} mb-8`}>
+      {title}
+    </p>
+  )}
+
+  <div class="flex flex-wrap justify-center items-center gap-10">
+    {items.map((item: { name: string; imageUrl: string }) => (
+      <img
+        src={item.imageUrl}
+        alt={item.name}
+        class={`h-8 w-auto ${imgClass}`}
+        loading="lazy"
+      />
+    ))}
+  </div>
+</SectionWrapper>

@@ -1,0 +1,37 @@
+---
+import type { TestimonialsBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = TestimonialsBlock['props'] & { style?: SectionStyle };
+
+const { title, items, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass = isDark ? 'text-white' : 'text-gray-900';
+const cardClass = isDark
+  ? 'p-8 rounded-2xl bg-white/5 border border-white/10'
+  : 'p-8 rounded-2xl bg-white border border-gray-100 shadow-sm';
+const quoteClass = isDark ? 'text-white/80' : 'text-gray-600';
+const authorClass = isDark ? 'text-white' : 'text-gray-900';
+const roleClass = isDark ? 'text-white/50' : 'text-gray-400';
+---
+
+<SectionWrapper style={style}>
+  {title && (
+    <h2 class={`text-3xl md:text-4xl font-bold text-center ${headingClass} mb-16`}>
+      {title}
+    </h2>
+  )}
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {items.map((item: { quote: string; author: string; role?: string }) => (
+      <div class={cardClass}>
+        <p class={`text-lg ${quoteClass} leading-relaxed mb-6`}>"{item.quote}"</p>
+        <div>
+          <p class={`font-semibold ${authorClass}`}>{item.author}</p>
+          {item.role && <p class={`text-sm ${roleClass} mt-1`}>{item.role}</p>}
+        </div>
+      </div>
+    ))}
+  </div>
+</SectionWrapper>

@@ -1,23 +1,25 @@
 ---
-import type { TextBlock } from '../../types/site';
+import type { TextBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
 
-type Props = TextBlock['props'];
+type Props = TextBlock['props'] & { style?: SectionStyle };
 
-const { title, paragraphs } = Astro.props;
+const { title, paragraphs, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass = isDark ? 'text-white' : 'text-gray-900';
+const paraClass = isDark ? 'text-white/70' : 'text-gray-600';
 ---
 
-<section class="py-24 bg-white">
-  <div class="max-w-3xl mx-auto px-6">
-
-    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-12 leading-tight">
+<SectionWrapper style={style}>
+  <div class="max-w-3xl mx-auto">
+    <h1 class={`text-4xl md:text-5xl font-bold ${headingClass} mb-12 leading-tight`}>
       {title}
     </h1>
-
     <div class="space-y-6">
-      {paragraphs.map((paragraph) => (
-        <p class="text-lg text-gray-600 leading-relaxed">{paragraph}</p>
+      {paragraphs.map((paragraph: string) => (
+        <p class={`text-lg ${paraClass} leading-relaxed`}>{paragraph}</p>
       ))}
     </div>
-
   </div>
-</section>
+</SectionWrapper>

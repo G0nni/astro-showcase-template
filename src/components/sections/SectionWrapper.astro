@@ -1,0 +1,42 @@
+---
+import type { SectionStyle } from '../../types/site';
+
+interface Props {
+  style?: SectionStyle;
+}
+
+const { style = {} } = Astro.props;
+
+const bgMap: Record<string, string> = {
+  white: 'bg-white',
+  light: 'bg-gray-50',
+  dark: 'bg-gray-900',
+  primary: 'bg-blue-600',
+  gradient: 'bg-gradient-to-br from-blue-600 to-purple-700',
+};
+
+const paddingMap: Record<string, string> = {
+  sm: 'py-8',
+  md: 'py-16',
+  lg: 'py-24',
+};
+
+const textMap: Record<string, string> = {
+  white: 'text-gray-900',
+  light: 'text-gray-900',
+  dark: 'text-white',
+  primary: 'text-white',
+  gradient: 'text-white',
+};
+
+const bg = style.background ?? 'white';
+const bgClass = bgMap[bg] ?? 'bg-white';
+const textClass = textMap[bg] ?? 'text-gray-900';
+const paddingClass = paddingMap[style.padding ?? 'md'] ?? 'py-16';
+---
+
+<section class={`${bgClass} ${textClass} ${paddingClass}`}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    <slot />
+  </div>
+</section>

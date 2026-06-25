@@ -1,0 +1,473 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import SectionRenderer from '../components/SectionRenderer.astro';
+import type { SectionBlock } from '../types/site';
+
+const sectionTypes: {
+  id: string;
+  label: string;
+  description: string;
+  styleOptions: string;
+  demos: SectionBlock[];
+  code: string;
+}[] = [
+  {
+    id: 'hero',
+    label: 'hero',
+    description: 'Bannière principale avec titre, sous-titre et un ou deux boutons CTA.',
+    styleOptions: 'white · light · dark · primary · gradient',
+    demos: [
+      {
+        type: 'hero',
+        props: {
+          title: 'Un titre accrocheur pour votre site',
+          subtitle: 'Un sous-titre qui donne envie d\'en savoir plus sur ce que vous proposez.',
+          ctaPrimary: { label: 'Commencer', href: '/contact' },
+          ctaSecondary: { label: 'En savoir plus', href: '/about' },
+        },
+      },
+    ],
+    code: `{
+  type: "hero",
+  props: {
+    title: "Un titre accrocheur pour votre site",
+    subtitle: "Un sous-titre qui donne envie d'en savoir plus.",
+    ctaPrimary: { label: "Commencer", href: "/contact" },
+    ctaSecondary: { label: "En savoir plus", href: "/about" }, // optionnel
+  },
+}`,
+  },
+  {
+    id: 'features',
+    label: 'features',
+    description: 'Grille de cartes pour présenter des services, avantages ou fonctionnalités.',
+    styleOptions: 'white · light · dark · primary · gradient',
+    demos: [
+      {
+        type: 'features',
+        style: { background: 'white' },
+        props: {
+          title: 'Ce que nous proposons',
+          items: [
+            { title: 'Performance', description: 'Sites ultra-rapides avec un score Lighthouse élevé.' },
+            { title: 'Simplicité', description: 'Tout se configure depuis un seul fichier TypeScript.' },
+            { title: 'Design', description: 'Composants modernes, responsives et personnalisables.' },
+          ],
+        },
+      },
+      {
+        type: 'features',
+        style: { background: 'dark' },
+        props: {
+          title: 'Même section, fond sombre',
+          items: [
+            { title: 'Performant', description: 'Les cartes s\'adaptent automatiquement au fond.' },
+            { title: 'Flexible', description: 'Ajoutez autant d\'items que vous souhaitez.' },
+            { title: 'Cohérent', description: 'Le style reste harmonieux quelle que soit la couleur.' },
+          ],
+        },
+      },
+    ],
+    code: `{
+  type: "features",
+  style: { background: "white" }, // ou "light", "dark", "primary", "gradient"
+  props: {
+    title: "Ce que nous proposons",
+    items: [
+      { title: "Performance", description: "Sites ultra-rapides." },
+      { title: "Simplicité", description: "Un seul fichier à modifier." },
+      { title: "Design", description: "Composants modernes." },
+    ],
+  },
+}`,
+  },
+  {
+    id: 'stats',
+    label: 'stats',
+    description: 'Chiffres clés affichés en grande typographie sur une rangée.',
+    styleOptions: 'white · light · dark · primary · gradient',
+    demos: [
+      {
+        type: 'stats',
+        style: { background: 'light' },
+        props: {
+          title: 'En quelques chiffres',
+          items: [
+            { value: '98', label: 'Score Lighthouse' },
+            { value: '< 1s', label: 'Temps de chargement' },
+            { value: '50+', label: 'Sites livrés' },
+            { value: '4.9/5', label: 'Satisfaction' },
+          ],
+        },
+      },
+      {
+        type: 'stats',
+        style: { background: 'primary' },
+        props: {
+          items: [
+            { value: '10', label: 'Types de sections' },
+            { value: '1', label: 'Fichier à modifier' },
+            { value: '0', label: 'CMS requis' },
+          ],
+        },
+      },
+    ],
+    code: `{
+  type: "stats",
+  style: { background: "light" }, // fonctionne aussi avec "primary", "dark"...
+  props: {
+    title: "En quelques chiffres", // optionnel
+    items: [
+      { value: "98", label: "Score Lighthouse" },
+      { value: "< 1s", label: "Temps de chargement" },
+      { value: "50+", label: "Sites livrés" },
+    ],
+  },
+}`,
+  },
+  {
+    id: 'cta',
+    label: 'cta',
+    description: 'Section d\'appel à l\'action avec titre, sous-titre et bouton. Fond sombre par défaut.',
+    styleOptions: 'dark (défaut) · primary · gradient · white · light',
+    demos: [
+      {
+        type: 'cta',
+        props: {
+          title: 'Prêt à lancer votre projet ?',
+          subtitle: 'Contactez-nous dès aujourd\'hui pour en discuter.',
+          cta: { label: 'Démarrer maintenant', href: '/contact' },
+        },
+      },
+      {
+        type: 'cta',
+        style: { background: 'gradient' },
+        props: {
+          title: 'Même section avec fond dégradé',
+          subtitle: 'Le bouton et les couleurs s\'adaptent automatiquement.',
+          cta: { label: 'Nous contacter', href: '/contact' },
+        },
+      },
+    ],
+    code: `{
+  type: "cta",
+  style: { background: "dark" }, // défaut si omis — essayez "gradient" ou "primary"
+  props: {
+    title: "Prêt à lancer votre projet ?",
+    subtitle: "Contactez-nous dès aujourd'hui.",
+    cta: { label: "Démarrer", href: "/contact" },
+  },
+}`,
+  },
+  {
+    id: 'text',
+    label: 'text',
+    description: 'Bloc de texte avec titre et paragraphes. Idéal pour les pages À propos, mentions légales, etc.',
+    styleOptions: 'white · light · dark · primary · gradient',
+    demos: [
+      {
+        type: 'text',
+        style: { background: 'white' },
+        props: {
+          title: 'À propos de notre démarche',
+          paragraphs: [
+            'Nous croyons que les meilleurs outils sont ceux qu\'on n\'a pas besoin d\'expliquer. C\'est pourquoi nous avons conçu ce template autour d\'un seul fichier de configuration.',
+            'Pas de base de données, pas de CMS complexe, pas d\'interface d\'administration. Juste un fichier TypeScript que vous editez avec votre éditeur habituel.',
+          ],
+        },
+      },
+    ],
+    code: `{
+  type: "text",
+  style: { background: "white" },
+  props: {
+    title: "À propos de notre démarche",
+    paragraphs: [
+      "Premier paragraphe...",
+      "Deuxième paragraphe...",
+    ],
+  },
+}`,
+  },
+  {
+    id: 'testimonials',
+    label: 'testimonials',
+    description: 'Grille de citations clients avec nom et rôle optionnel.',
+    styleOptions: 'white · light · dark · gradient',
+    demos: [
+      {
+        type: 'testimonials',
+        style: { background: 'light' },
+        props: {
+          title: 'Ce que disent nos clients',
+          items: [
+            { quote: 'Un site livré en temps record, exactement ce que je voulais. Simple à modifier.', author: 'Sophie Martin', role: 'Directrice, Cabinet Martin' },
+            { quote: 'La performance est impressionnante. Instantané là où mon ancien site mettait 5 secondes.', author: 'Thomas Leclerc', role: 'Fondateur, TL Consulting' },
+            { quote: 'J\'ai pu modifier tout le contenu moi-même. Vraiment intuitif.', author: 'Camille Roux', role: 'Avocate indépendante' },
+          ],
+        },
+      },
+    ],
+    code: `{
+  type: "testimonials",
+  style: { background: "light" },
+  props: {
+    title: "Ce que disent nos clients", // optionnel
+    items: [
+      {
+        quote: "Super expérience, je recommande.",
+        author: "Sophie Martin",
+        role: "Directrice, Cabinet Martin", // optionnel
+      },
+    ],
+  },
+}`,
+  },
+  {
+    id: 'imageText',
+    label: 'imageText',
+    description: 'Deux colonnes image + texte côte à côte. Inverser imagePosition pour alterner les dispositions.',
+    styleOptions: 'white · light · dark · primary · gradient',
+    demos: [
+      {
+        type: 'imageText',
+        style: { background: 'white' },
+        props: {
+          title: 'Image à droite (défaut)',
+          paragraphs: [
+            'Utilisez cette section pour présenter un service, une méthode de travail ou une réalisation avec une image illustrative.',
+            'L\'image et le texte s\'empilent automatiquement sur mobile.',
+          ],
+          imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format',
+          imageAlt: 'Équipe de travail',
+          imagePosition: 'right',
+          cta: { label: 'En savoir plus', href: '/about' },
+        },
+      },
+      {
+        type: 'imageText',
+        style: { background: 'light' },
+        props: {
+          title: 'Image à gauche avec imagePosition: "left"',
+          paragraphs: [
+            'En alternant imagePosition entre "left" et "right" sur plusieurs sections consécutives, vous créez un rythme visuel dynamique.',
+          ],
+          imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format',
+          imageAlt: 'Code sur écran',
+          imagePosition: 'left',
+        },
+      },
+    ],
+    code: `{
+  type: "imageText",
+  style: { background: "white" },
+  props: {
+    title: "Votre titre",
+    paragraphs: ["Premier paragraphe...", "Deuxième..."],
+    imageUrl: "https://example.com/image.jpg",
+    imageAlt: "Description de l'image",
+    imagePosition: "right", // ou "left" — défaut: "right"
+    cta: { label: "En savoir plus", href: "/about" }, // optionnel
+  },
+}`,
+  },
+  {
+    id: 'faq',
+    label: 'faq',
+    description: 'Liste de questions-réponses. Idéal pour une page services ou contact.',
+    styleOptions: 'white · light · dark · gradient',
+    demos: [
+      {
+        type: 'faq',
+        style: { background: 'light' },
+        props: {
+          title: 'Questions fréquentes',
+          items: [
+            { question: 'Combien de temps prend la création d\'un site ?', answer: 'Un site vitrine standard est livré en 1 à 3 semaines selon la complexité.' },
+            { question: 'Puis-je modifier le contenu moi-même ?', answer: 'Oui — tout le contenu se gère depuis un seul fichier de configuration, sans développeur.' },
+            { question: 'Le site sera-t-il bien référencé sur Google ?', answer: 'Nos sites sont optimisés SEO dès la base : balises meta, performance, structure sémantique.' },
+          ],
+        },
+      },
+    ],
+    code: `{
+  type: "faq",
+  style: { background: "light" },
+  props: {
+    title: "Questions fréquentes", // optionnel
+    items: [
+      {
+        question: "Combien de temps prend la création d'un site ?",
+        answer: "1 à 3 semaines selon la complexité.",
+      },
+    ],
+  },
+}`,
+  },
+  {
+    id: 'contactInfo',
+    label: 'contactInfo',
+    description: 'Coordonnées de contact : email cliquable, lien LinkedIn, localisation.',
+    styleOptions: 'white · light · dark · gradient',
+    demos: [
+      {
+        type: 'contactInfo',
+        style: { background: 'white' },
+        props: {
+          title: 'Contactez-nous',
+          subtitle: 'Pour toute demande de projet ou collaboration.',
+          email: 'contact@monsite.fr',
+          linkedin: { label: 'Voir le profil LinkedIn', href: '#' },
+          location: 'France',
+        },
+      },
+    ],
+    code: `{
+  type: "contactInfo",
+  style: { background: "white" },
+  props: {
+    title: "Contactez-nous",
+    subtitle: "Pour toute demande.", // optionnel
+    email: "contact@monsite.fr",     // optionnel
+    linkedin: { label: "Mon profil LinkedIn", href: "https://linkedin.com/in/..." }, // optionnel
+    location: "France",              // optionnel
+  },
+}`,
+  },
+  {
+    id: 'logos',
+    label: 'logos',
+    description: 'Rangée de logos de clients ou partenaires. Fond clair discret par défaut.',
+    styleOptions: 'white · light · dark',
+    demos: [
+      {
+        type: 'logos',
+        style: { background: 'light', padding: 'sm' },
+        props: {
+          title: 'Ils nous font confiance',
+          items: [
+            { name: 'Vercel', imageUrl: 'https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png' },
+            { name: 'Astro', imageUrl: 'https://astro.build/favicon.svg' },
+            { name: 'Tailwind CSS', imageUrl: 'https://tailwindcss.com/favicons/favicon-32x32.png' },
+          ],
+        },
+      },
+    ],
+    code: `{
+  type: "logos",
+  style: { background: "light", padding: "sm" },
+  props: {
+    title: "Ils nous font confiance", // optionnel
+    items: [
+      { name: "Partenaire A", imageUrl: "https://example.com/logo-a.svg" },
+      { name: "Partenaire B", imageUrl: "https://example.com/logo-b.svg" },
+    ],
+  },
+}`,
+  },
+];
+---
+
+<BaseLayout
+  title="Catalogue des sections"
+  description="Toutes les sections disponibles avec exemples visuels et code"
+  pathname="/showcase"
+>
+  <!-- Hero intro -->
+  <div class="bg-gray-900 text-white py-16 px-6">
+    <div class="max-w-4xl mx-auto">
+      <p class="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Template</p>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Catalogue des sections</h1>
+      <p class="text-gray-400 text-lg max-w-2xl">
+        10 types de sections disponibles. Chacune s'ajoute en quelques lignes dans <code class="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">site.ts</code>.
+        Tous les fonds sont personnalisables avec <code class="text-white bg-white/10 px-1.5 py-0.5 rounded text-sm">style.background</code>.
+      </p>
+    </div>
+  </div>
+
+  <!-- Style options legend -->
+  <div class="bg-gray-800 border-b border-white/10 px-6 py-4">
+    <div class="max-w-4xl mx-auto flex flex-wrap gap-3 items-center">
+      <span class="text-xs text-gray-500 uppercase tracking-widest mr-2">style.background :</span>
+      {['white', 'light', 'dark', 'primary', 'gradient'].map(bg => (
+        <span class={`text-xs px-2.5 py-1 rounded-full font-mono font-medium ${
+          bg === 'white' ? 'bg-white text-gray-900' :
+          bg === 'light' ? 'bg-gray-100 text-gray-700' :
+          bg === 'dark' ? 'bg-gray-700 text-white' :
+          bg === 'primary' ? 'bg-blue-600 text-white' :
+          'bg-gradient-to-r from-blue-600 to-purple-600 text-white'
+        }`}>{bg}</span>
+      ))}
+    </div>
+  </div>
+
+  <!-- Section type quick nav -->
+  <nav class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-gray-200 overflow-x-auto">
+    <div class="max-w-6xl mx-auto px-4 flex gap-1 py-3">
+      {sectionTypes.map(s => (
+        <a
+          href={`#${s.id}`}
+          class="shrink-0 text-xs font-mono px-3 py-1.5 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors"
+        >
+          {s.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+
+  <!-- Section demos -->
+  {sectionTypes.map(section => (
+    <div>
+      <!-- Label bar -->
+      <div id={section.id} class="bg-gray-50 border-y border-gray-200 px-6 py-4 scroll-mt-12">
+        <div class="max-w-6xl mx-auto flex flex-wrap items-start gap-x-6 gap-y-2">
+          <div class="flex items-center gap-3">
+            <code class="text-sm font-mono font-bold bg-white border border-gray-200 px-2.5 py-1 rounded-lg text-blue-600 shadow-sm">
+              {`type: "${section.label}"`}
+            </code>
+          </div>
+          <p class="text-sm text-gray-600 flex-1 min-w-0">{section.description}</p>
+          <p class="text-xs text-gray-400 font-mono shrink-0">{section.styleOptions}</p>
+        </div>
+      </div>
+
+      <!-- Live demos -->
+      {section.demos.map(demo => (
+        <SectionRenderer block={demo} />
+      ))}
+
+      <!-- Code snippet -->
+      <div class="bg-gray-900 border-t border-white/5">
+        <div class="max-w-4xl mx-auto px-6 py-6">
+          <p class="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-3">site.ts — exemple</p>
+          <pre class="text-sm text-gray-300 font-mono leading-relaxed overflow-x-auto whitespace-pre">{section.code}</pre>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  <!-- Footer recap -->
+  <div class="bg-white border-t border-gray-100 py-16 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">Composer votre page</h2>
+      <p class="text-gray-500 mb-8">
+        Combinez ces sections dans l'ordre que vous voulez, sur autant de pages que nécessaire.
+        Tout se passe dans <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm text-gray-800">src/config/site.ts</code>.
+      </p>
+      <div class="text-left bg-gray-900 rounded-2xl p-6 text-sm font-mono text-gray-300 leading-relaxed overflow-x-auto">
+        <pre>{`pages: {
+  home: {
+    seo: { title: "Accueil", description: "..." },
+    sections: [
+      { type: "hero",         props: { ... } },
+      { type: "stats",        style: { background: "light" }, props: { ... } },
+      { type: "features",     props: { ... } },
+      { type: "testimonials", style: { background: "light" }, props: { ... } },
+      { type: "cta",          style: { background: "gradient" }, props: { ... } },
+    ],
+  },
+}`}</pre>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

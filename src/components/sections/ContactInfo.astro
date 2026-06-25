@@ -1,52 +1,59 @@
 ---
-import type { ContactInfoBlock } from '../../types/site';
+import type { ContactInfoBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
 
-type Props = ContactInfoBlock['props'];
+type Props = ContactInfoBlock['props'] & { style?: SectionStyle };
 
-const { title, subtitle, email, linkedin, location } = Astro.props;
+const { title, subtitle, email, linkedin, location, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass = isDark ? 'text-white' : 'text-gray-900';
+const subtitleClass = isDark ? 'text-white/70' : 'text-gray-500';
+const cardClass = isDark
+  ? 'p-6 border border-white/10 rounded-2xl bg-white/5'
+  : 'p-6 border border-gray-100 rounded-2xl hover:shadow-md transition-all duration-200';
+const labelClass = isDark ? 'text-white/40' : 'text-gray-400';
+const valueClass = isDark ? 'text-white hover:underline' : 'text-gray-900 hover:underline';
+const staticValueClass = isDark ? 'text-white' : 'text-gray-900';
 ---
 
-<section class="py-24 bg-white">
-  <div class="max-w-2xl mx-auto px-6 text-center">
-
-    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+<SectionWrapper style={style}>
+  <div class="max-w-2xl mx-auto text-center">
+    <h1 class={`text-4xl md:text-5xl font-bold ${headingClass} mb-4`}>
       {title}
     </h1>
 
     {subtitle && (
-      <p class="text-gray-500 text-lg leading-relaxed mb-12">
+      <p class={`${subtitleClass} text-lg leading-relaxed mb-12`}>
         {subtitle}
       </p>
     )}
 
     <div class="space-y-4 text-left">
-
       {email && (
-        <div class="p-6 border border-gray-100 rounded-2xl hover:shadow-md transition-all duration-200">
-          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Email</p>
-          <a href={`mailto:${email}`} class="text-lg font-semibold text-gray-900 hover:underline">
+        <div class={cardClass}>
+          <p class={`text-xs ${labelClass} uppercase tracking-widest mb-2`}>Email</p>
+          <a href={`mailto:${email}`} class={`text-lg font-semibold ${valueClass}`}>
             {email}
           </a>
         </div>
       )}
 
       {linkedin && (
-        <div class="p-6 border border-gray-100 rounded-2xl hover:shadow-md transition-all duration-200">
-          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">LinkedIn</p>
-          <a href={linkedin.href} class="text-lg font-semibold text-gray-900 hover:underline">
+        <div class={cardClass}>
+          <p class={`text-xs ${labelClass} uppercase tracking-widest mb-2`}>LinkedIn</p>
+          <a href={linkedin.href} class={`text-lg font-semibold ${valueClass}`}>
             {linkedin.label}
           </a>
         </div>
       )}
 
       {location && (
-        <div class="p-6 border border-gray-100 rounded-2xl">
-          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Localisation</p>
-          <p class="text-lg font-semibold text-gray-900">{location}</p>
+        <div class={cardClass}>
+          <p class={`text-xs ${labelClass} uppercase tracking-widest mb-2`}>Localisation</p>
+          <p class={`text-lg font-semibold ${staticValueClass}`}>{location}</p>
         </div>
       )}
-
     </div>
-
   </div>
-</section>
+</SectionWrapper>

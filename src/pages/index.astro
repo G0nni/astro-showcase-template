@@ -1,17 +1,525 @@
 ---
-import BaseLayout from '../components/layout/BaseLayout.astro';
+import DocsLayout from '../layouts/DocsLayout.astro';
+import { Code } from 'astro:components';
 import SectionRenderer from '../components/SectionRenderer.astro';
-import { siteConfig } from '../config/site';
+import type { SectionBlock } from '../types/site';
 
-const page = siteConfig.pages.home;
+const nav = [
+  {
+    title: 'Démarrage',
+    items: [
+      { label: 'Introduction', href: '#introduction' },
+      { label: 'Prérequis', href: '#prerequis' },
+      { label: 'Installation', href: '#installation' },
+    ],
+  },
+  {
+    title: 'Modifier votre site',
+    items: [
+      { label: 'Structure du projet', href: '#structure' },
+      { label: 'Éditer site.ts', href: '#editer' },
+      { label: 'Créer une page', href: '#nouvelle-page' },
+      { label: 'Styles', href: '#styles' },
+    ],
+  },
+  {
+    title: 'Sections disponibles',
+    items: [
+      { label: 'hero', href: '#section-hero', code: true },
+      { label: 'features', href: '#section-features', code: true },
+      { label: 'stats', href: '#section-stats', code: true },
+      { label: 'cta', href: '#section-cta', code: true },
+      { label: 'text', href: '#section-text', code: true },
+      { label: 'testimonials', href: '#section-testimonials', code: true },
+      { label: 'imageText', href: '#section-imagetext', code: true },
+      { label: 'faq', href: '#section-faq', code: true },
+      { label: 'contactInfo', href: '#section-contactinfo', code: true },
+      { label: 'logos', href: '#section-logos', code: true },
+    ],
+  },
+  {
+    title: 'Avancé',
+    items: [
+      { label: 'Utiliser avec une IA', href: '#ia' },
+      { label: 'Déploiement', href: '#deploiement' },
+    ],
+  },
+];
+
+// Section demos
+const heroDemo: SectionBlock = {
+  type: 'hero',
+  props: {
+    title: 'Un titre accrocheur pour votre site',
+    subtitle: 'Un sous-titre clair qui explique ce que vous proposez.',
+    ctaPrimary: { label: 'Commencer', href: '#' },
+    ctaSecondary: { label: 'En savoir plus', href: '#' },
+  },
+};
+const featuresDemo: SectionBlock = {
+  type: 'features',
+  style: { background: 'white', padding: 'md' },
+  props: {
+    title: 'Ce que nous proposons',
+    items: [
+      { title: 'Performant', description: 'Score Lighthouse élevé, chargement instantané.' },
+      { title: 'Simple', description: 'Un seul fichier à modifier — aucun CMS requis.' },
+      { title: 'Flexible', description: 'Composez vos pages section par section.' },
+    ],
+  },
+};
+const statsDemo: SectionBlock = {
+  type: 'stats',
+  style: { background: 'light', padding: 'md' },
+  props: {
+    items: [
+      { value: '98', label: 'Score Lighthouse' },
+      { value: '< 1s', label: 'Chargement' },
+      { value: '10', label: 'Types de sections' },
+      { value: '1', label: 'Fichier à modifier' },
+    ],
+  },
+};
+const ctaDarkDemo: SectionBlock = {
+  type: 'cta',
+  style: { background: 'dark', padding: 'md' },
+  props: {
+    title: 'Prêt à lancer votre projet ?',
+    subtitle: 'Contactez-nous pour démarrer.',
+    cta: { label: 'Nous contacter', href: '#' },
+  },
+};
+const ctaGradientDemo: SectionBlock = {
+  type: 'cta',
+  style: { background: 'gradient', padding: 'md' },
+  props: {
+    title: 'Avec style: "gradient"',
+    subtitle: 'La même section avec un autre fond.',
+    cta: { label: 'Démarrer', href: '#' },
+  },
+};
+const textDemo: SectionBlock = {
+  type: 'text',
+  style: { background: 'white', padding: 'md' },
+  props: {
+    title: 'À propos de nous',
+    paragraphs: [
+      'Nous créons des sites web modernes, rapides et optimisés.',
+      'Notre approche repose sur la simplicité : tout le contenu est géré depuis un seul fichier.',
+    ],
+  },
+};
+const testimonialsDemo: SectionBlock = {
+  type: 'testimonials',
+  style: { background: 'light', padding: 'md' },
+  props: {
+    title: 'Ce que disent nos clients',
+    items: [
+      { quote: 'Site livré en temps record. Simple à modifier.', author: 'Sophie M.', role: 'Directrice' },
+      { quote: 'Performance impressionnante. Chargement instantané.', author: 'Thomas L.', role: 'Fondateur' },
+      { quote: "J'ai tout modifié moi-même depuis le fichier config.", author: 'Camille R.', role: 'Avocate' },
+    ],
+  },
+};
+const imageTextRightDemo: SectionBlock = {
+  type: 'imageText',
+  style: { background: 'white', padding: 'md' },
+  props: {
+    title: 'Image à droite (défaut)',
+    paragraphs: [
+      'Combinez texte et image pour présenter un service ou une réalisation.',
+      "Sur mobile, l'image se place automatiquement sous le texte.",
+    ],
+    imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format',
+    imageAlt: 'Équipe de travail',
+    imagePosition: 'right',
+    cta: { label: 'En savoir plus', href: '#' },
+  },
+};
+const imageTextLeftDemo: SectionBlock = {
+  type: 'imageText',
+  style: { background: 'light', padding: 'md' },
+  props: {
+    title: 'Image à gauche avec imagePosition: "left"',
+    paragraphs: ['Alternez les dispositions pour créer un rythme visuel dynamique.'],
+    imageUrl: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format',
+    imageAlt: 'Code sur écran',
+    imagePosition: 'left',
+  },
+};
+const faqDemo: SectionBlock = {
+  type: 'faq',
+  style: { background: 'light', padding: 'md' },
+  props: {
+    title: 'Questions fréquentes',
+    items: [
+      { question: "Combien de temps prend la création d'un site ?", answer: '1 à 3 semaines selon la complexité.' },
+      { question: 'Puis-je modifier le contenu moi-même ?', answer: 'Oui — tout se gère depuis un seul fichier de configuration.' },
+      { question: 'Le site est-il bien référencé sur Google ?', answer: 'Oui, optimisé SEO dès la base : balises meta, performance, structure sémantique.' },
+    ],
+  },
+};
+const contactInfoDemo: SectionBlock = {
+  type: 'contactInfo',
+  style: { background: 'white', padding: 'md' },
+  props: {
+    title: 'Contactez-nous',
+    subtitle: 'Pour toute demande de projet.',
+    email: 'contact@monsite.fr',
+    linkedin: { label: 'Voir le profil LinkedIn', href: '#' },
+    location: 'France',
+  },
+};
+const logosDemo: SectionBlock = {
+  type: 'logos',
+  style: { background: 'light', padding: 'sm' },
+  props: {
+    title: 'Ils nous font confiance',
+    items: [
+      { name: 'Vercel', imageUrl: 'https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png' },
+      { name: 'Astro', imageUrl: 'https://astro.build/favicon.svg' },
+      { name: 'Tailwind', imageUrl: 'https://tailwindcss.com/favicons/favicon-32x32.png' },
+    ],
+  },
+};
 ---
 
-<BaseLayout
-  title={page.seo.title}
-  description={page.seo.description}
-  pathname="/"
->
-  {page.sections.map((block) => (
-    <SectionRenderer block={block} />
-  ))}
-</BaseLayout>
+<DocsLayout title="Docs" nav={nav}>
+  <div class="max-w-3xl mx-auto px-6 py-12">
+
+    <!-- INTRODUCTION -->
+    <section id="introduction" class="mb-16 scroll-mt-20">
+      <div class="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-xs font-semibold px-3 py-1 rounded-full mb-4">
+        Astro + Tailwind CSS
+      </div>
+      <h1 class="text-4xl font-extrabold text-gray-900 mb-4 leading-tight">
+        Astro Showcase Template
+      </h1>
+      <p class="text-xl text-gray-500 leading-relaxed mb-6">
+        Un générateur de site vitrine <strong class="text-gray-700">data-driven</strong> — composez vos pages section par section, tout depuis un seul fichier TypeScript.
+      </p>
+      <div class="grid sm:grid-cols-3 gap-4">
+        {[
+          { title: '10 sections', desc: 'Hero, Features, Stats, CTA, Text, Testimonials, ImageText, FAQ, ContactInfo, Logos' },
+          { title: '1 fichier', desc: 'Tout le contenu — textes, pages, styles — dans site.ts' },
+          { title: '0 CMS', desc: "Pas de base de données, pas d'interface d'admin" },
+        ].map(card => (
+          <div class="p-4 rounded-xl bg-gray-50 border border-gray-100">
+            <p class="font-semibold text-gray-900 text-sm mb-1">{card.title}</p>
+            <p class="text-xs text-gray-500">{card.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- PRÉREQUIS -->
+    <section id="prerequis" class="mb-16 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Prérequis</h2>
+      <p class="text-gray-500 mb-6">Ce qu'il faut avoir installé sur votre machine avant de commencer.</p>
+      <div class="space-y-4">
+        <div class="flex gap-4 p-4 rounded-xl border border-gray-100">
+          <div class="shrink-0 w-8 h-8 rounded-lg bg-green-100 flex items-center justify-center text-green-700 font-bold text-sm">N</div>
+          <div class="min-w-0">
+            <p class="font-semibold text-gray-900 text-sm">Node.js <span class="font-normal text-gray-400">v18 ou supérieur</span></p>
+            <p class="text-sm text-gray-500 mt-0.5 mb-3">
+              Téléchargez sur <a href="https://nodejs.org" class="text-blue-600 hover:underline" target="_blank">nodejs.org</a> (version LTS recommandée).
+              Sur macOS/Linux, <a href="https://github.com/nvm-sh/nvm" class="text-blue-600 hover:underline" target="_blank">nvm</a> permet de gérer plusieurs versions facilement.
+            </p>
+            <Code code={`node --version   # doit afficher v18.x.x ou supérieur\nnpm --version    # npm est inclus avec Node`} lang="bash" theme="github-light" class="rounded-lg overflow-hidden text-xs" />
+          </div>
+        </div>
+        <div class="flex gap-4 p-4 rounded-xl border border-gray-100">
+          <div class="shrink-0 w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center text-orange-700 font-bold text-sm">G</div>
+          <div class="min-w-0">
+            <p class="font-semibold text-gray-900 text-sm">Git</p>
+            <p class="text-sm text-gray-500 mt-0.5 mb-3">Pour cloner le projet. Téléchargez sur <a href="https://git-scm.com" class="text-blue-600 hover:underline" target="_blank">git-scm.com</a>.</p>
+            <Code code={`git --version    # doit afficher git version 2.x.x`} lang="bash" theme="github-light" class="rounded-lg overflow-hidden text-xs" />
+          </div>
+        </div>
+        <div class="flex gap-4 p-4 rounded-xl border border-gray-100">
+          <div class="shrink-0 w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-700 font-bold text-sm">✎</div>
+          <div>
+            <p class="font-semibold text-gray-900 text-sm">Un éditeur de code</p>
+            <p class="text-sm text-gray-500 mt-0.5">
+              <a href="https://code.visualstudio.com" class="text-blue-600 hover:underline" target="_blank">VS Code</a> est recommandé, avec l'extension
+              <a href="https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode" class="text-blue-600 hover:underline" target="_blank">Astro</a> pour la coloration syntaxique.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- INSTALLATION -->
+    <section id="installation" class="mb-16 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Installation</h2>
+      <p class="text-gray-500 mb-6">Trois commandes pour avoir le site en local.</p>
+      <div class="space-y-5">
+        <div>
+          <p class="text-sm font-semibold text-gray-700 mb-2">1 — Cloner le repo</p>
+          <Code code={`git clone https://github.com/G0nni/astro-showcase-template.git mon-site\ncd mon-site`} lang="bash" theme="github-dark" class="rounded-xl overflow-hidden" />
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-gray-700 mb-2">2 — Installer les dépendances</p>
+          <Code code={`npm install`} lang="bash" theme="github-dark" class="rounded-xl overflow-hidden" />
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-gray-700 mb-2">3 — Lancer le serveur de développement</p>
+          <Code code={`npm run dev`} lang="bash" theme="github-dark" class="rounded-xl overflow-hidden" />
+          <p class="text-sm text-gray-500 mt-2">Ouvrez <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">http://localhost:4321</code> dans votre navigateur.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- STRUCTURE -->
+    <section id="structure" class="mb-16 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Structure du projet</h2>
+      <p class="text-gray-500 mb-6">Les seuls dossiers que vous aurez besoin de toucher.</p>
+      <Code
+        code={`mon-site/\n├── src/\n│   ├── config/\n│   │   └── site.ts        ← ⭐ Le seul fichier à modifier\n│   ├── pages/\n│   │   ├── index.astro    ← Cette page de docs\n│   │   ├── about.astro    ← Page À propos\n│   │   ├── contact.astro  ← Page Contact\n│   │   └── services.astro ← Page Services\n│   └── components/        ← Ne pas modifier\n├── public/\n│   └── favicon.svg        ← Remplacez par votre favicon\n└── astro.config.mjs       ← À modifier pour le déploiement`}
+        lang="bash"
+        theme="github-dark"
+        class="rounded-xl overflow-hidden"
+      />
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- ÉDITER SITE.TS -->
+    <section id="editer" class="mb-16 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Éditer <code class="font-mono text-blue-600">site.ts</code></h2>
+      <p class="text-gray-500 mb-6">
+        Chaque page est une liste de sections. Chaque section a un <code class="bg-gray-100 px-1 rounded text-xs">type</code>, des <code class="bg-gray-100 px-1 rounded text-xs">props</code> et un <code class="bg-gray-100 px-1 rounded text-xs">style</code> optionnel.
+      </p>
+      <Code
+        code={`// src/config/site.ts\nexport const siteConfig = {\n  global: {\n    name: "Mon Site",\n    url: "https://monsite.fr",\n  },\n  navigation: [\n    { label: "Accueil", href: "/" },\n    { label: "Contact", href: "/contact" },\n  ],\n  pages: {\n    home: {\n      seo: { title: "Accueil", description: "..." },\n      sections: [\n        {\n          type: "hero",\n          props: {\n            title: "Mon titre",\n            subtitle: "Mon sous-titre",\n            ctaPrimary: { label: "Contact", href: "/contact" },\n          },\n        },\n        {\n          type: "features",\n          style: { background: "light" },\n          props: { title: "Nos services", items: [...] },\n        },\n        {\n          type: "cta",\n          style: { background: "gradient" },\n          props: { title: "Démarrer ?", cta: { label: "Oui", href: "/contact" } },\n        },\n      ],\n    },\n  },\n};`}
+        lang="ts"
+        theme="github-dark"
+        class="rounded-xl overflow-hidden"
+      />
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- CRÉER UNE PAGE -->
+    <section id="nouvelle-page" class="mb-16 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Créer une nouvelle page</h2>
+      <p class="text-gray-500 mb-6">Deux étapes : déclarer la page dans <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code>, créer le fichier <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">.astro</code>.</p>
+      <div class="space-y-5">
+        <div>
+          <p class="text-sm font-semibold text-gray-700 mb-2">1 — Ajouter dans site.ts</p>
+          <Code
+            code={`pages: {\n  // ... pages existantes ...\n  services: {\n    seo: { title: "Services", description: "Nos prestations" },\n    sections: [\n      { type: "text",     props: { title: "Nos services", paragraphs: ["..."] } },\n      { type: "features", props: { title: "Ce que l'on fait", items: [...] } },\n      { type: "faq",      props: { items: [...] } },\n      { type: "cta",      style: { background: "dark" }, props: { ... } },\n    ],\n  },\n}`}
+            lang="ts"
+            theme="github-dark"
+            class="rounded-xl overflow-hidden"
+          />
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-gray-700 mb-2">2 — Créer src/pages/services.astro</p>
+          <Code
+            code={`---\nimport BaseLayout from '../components/layout/BaseLayout.astro';\nimport SectionRenderer from '../components/SectionRenderer.astro';\nimport { siteConfig } from '../config/site';\n\nconst page = siteConfig.pages.services;\n---\n\n<BaseLayout title={page.seo.title} description={page.seo.description} pathname="/services">\n  {page.sections.map(block => <SectionRenderer block={block} />)}\n</BaseLayout>`}
+            lang="astro"
+            theme="github-dark"
+            class="rounded-xl overflow-hidden"
+          />
+          <p class="text-sm text-gray-500 mt-2">La page est accessible à <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">/services</code>.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- STYLES -->
+    <section id="styles" class="mb-16 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Personnaliser les styles</h2>
+      <p class="text-gray-500 mb-5">Chaque section accepte un champ <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">style</code> optionnel. Les couleurs internes s'adaptent automatiquement.</p>
+      <Code
+        code={`{\n  type: "features",\n  style: {\n    background: "dark",  // "white" | "light" | "dark" | "primary" | "gradient"\n    padding: "lg",       // "sm" | "md" | "lg" — défaut: "md"\n  },\n  props: { ... },\n}`}
+        lang="ts"
+        theme="github-dark"
+        class="rounded-xl overflow-hidden mb-5"
+      />
+      <div class="grid grid-cols-5 gap-2 text-center text-xs">
+        {[
+          { name: 'white', bg: 'bg-white border border-gray-200', text: 'text-gray-700' },
+          { name: 'light', bg: 'bg-gray-100', text: 'text-gray-700' },
+          { name: 'dark', bg: 'bg-gray-900', text: 'text-white' },
+          { name: 'primary', bg: 'bg-blue-600', text: 'text-white' },
+          { name: 'gradient', bg: 'bg-gradient-to-br from-blue-600 to-purple-700', text: 'text-white' },
+        ].map(s => (
+          <div class={`${s.bg} rounded-xl py-4 px-2`}>
+            <span class={`font-mono font-semibold ${s.text}`}>{s.name}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- SECTIONS DISPONIBLES -->
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Sections disponibles</h2>
+    <p class="text-gray-500 mb-12">10 types de sections avec aperçu live et code prêt à copier.</p>
+
+    <!-- hero -->
+    <section id="section-hero" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">hero</code>
+      <p class="text-gray-500 text-sm mb-4">Bannière principale avec titre, sous-titre et un ou deux boutons CTA.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={heroDemo} /></div>
+      <Code code={`{\n  type: "hero",\n  props: {\n    title: "Un titre accrocheur",\n    subtitle: "Un sous-titre clair.",\n    ctaPrimary: { label: "Commencer", href: "/contact" },\n    ctaSecondary: { label: "En savoir plus", href: "/about" }, // optionnel\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- features -->
+    <section id="section-features" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">features</code>
+      <p class="text-gray-500 text-sm mb-4">Grille de cartes pour présenter des services, avantages ou fonctionnalités. Compatible avec tous les fonds.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={featuresDemo} /></div>
+      <Code code={`{\n  type: "features",\n  style: { background: "white" }, // ou "light", "dark", "primary", "gradient"\n  props: {\n    title: "Ce que nous proposons",\n    items: [\n      { title: "Performance", description: "..." },\n      { title: "Simplicité",  description: "..." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- stats -->
+    <section id="section-stats" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">stats</code>
+      <p class="text-gray-500 text-sm mb-4">Chiffres clés en grande typographie. 3 à 4 métriques recommandées.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={statsDemo} /></div>
+      <Code code={`{\n  type: "stats",\n  style: { background: "light" },\n  props: {\n    title: "En quelques chiffres", // optionnel\n    items: [\n      { value: "98",   label: "Score Lighthouse" },\n      { value: "< 1s", label: "Chargement" },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- cta -->
+    <section id="section-cta" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">cta</code>
+      <p class="text-gray-500 text-sm mb-4">Appel à l'action. Fond sombre par défaut — essayez aussi <code class="bg-gray-100 px-1 rounded text-xs">gradient</code> ou <code class="bg-gray-100 px-1 rounded text-xs">primary</code>.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-3"><SectionRenderer block={ctaDarkDemo} /></div>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={ctaGradientDemo} /></div>
+      <Code code={`{\n  type: "cta",\n  style: { background: "dark" }, // "dark" par défaut si omis\n  props: {\n    title: "Prêt à démarrer ?",\n    subtitle: "Contactez-nous.",\n    cta: { label: "Nous contacter", href: "/contact" },\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- text -->
+    <section id="section-text" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">text</code>
+      <p class="text-gray-500 text-sm mb-4">Bloc de texte libre. Idéal pour les pages À propos, mentions légales.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={textDemo} /></div>
+      <Code code={`{\n  type: "text",\n  style: { background: "white" },\n  props: {\n    title: "À propos de nous",\n    paragraphs: [\n      "Premier paragraphe...",\n      "Deuxième paragraphe...",\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- testimonials -->
+    <section id="section-testimonials" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">testimonials</code>
+      <p class="text-gray-500 text-sm mb-4">Grille de citations clients. 3 témoignages est le format idéal.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={testimonialsDemo} /></div>
+      <Code code={`{\n  type: "testimonials",\n  style: { background: "light" },\n  props: {\n    title: "Ce que disent nos clients", // optionnel\n    items: [\n      { quote: "Super expérience.", author: "Sophie M.", role: "Directrice" },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- imageText -->
+    <section id="section-imagetext" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">imageText</code>
+      <p class="text-gray-500 text-sm mb-4">Deux colonnes image + texte. Alternez <code class="bg-gray-100 px-1 rounded text-xs">imagePosition</code> entre sections pour un rythme visuel.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-3"><SectionRenderer block={imageTextRightDemo} /></div>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={imageTextLeftDemo} /></div>
+      <Code code={`{\n  type: "imageText",\n  style: { background: "white" },\n  props: {\n    title: "Votre titre",\n    paragraphs: ["Texte..."],\n    imageUrl: "https://example.com/image.jpg",\n    imageAlt: "Description",\n    imagePosition: "right", // ou "left" — défaut: "right"\n    cta: { label: "En savoir plus", href: "/about" }, // optionnel\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- faq -->
+    <section id="section-faq" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">faq</code>
+      <p class="text-gray-500 text-sm mb-4">Liste de questions-réponses. À placer avant un CTA sur une page services.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={faqDemo} /></div>
+      <Code code={`{\n  type: "faq",\n  style: { background: "light" },\n  props: {\n    title: "Questions fréquentes", // optionnel\n    items: [\n      { question: "Question ?", answer: "Réponse." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- contactInfo -->
+    <section id="section-contactinfo" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">contactInfo</code>
+      <p class="text-gray-500 text-sm mb-4">Coordonnées de contact. Tous les champs (email, LinkedIn, localisation) sont optionnels.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={contactInfoDemo} /></div>
+      <Code code={`{\n  type: "contactInfo",\n  style: { background: "white" },\n  props: {\n    title: "Contactez-nous",\n    subtitle: "Pour toute demande.",       // optionnel\n    email: "contact@monsite.fr",           // optionnel\n    linkedin: { label: "Mon LinkedIn", href: "https://..." }, // optionnel\n    location: "France",                    // optionnel\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- logos -->
+    <section id="section-logos" class="mb-16 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">logos</code>
+      <p class="text-gray-500 text-sm mb-4">Rangée de logos clients ou partenaires. Discret avec un effet hover couleur.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={logosDemo} /></div>
+      <Code code={`{\n  type: "logos",\n  style: { background: "light", padding: "sm" },\n  props: {\n    title: "Ils nous font confiance", // optionnel\n    items: [\n      { name: "Partenaire A", imageUrl: "https://..." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- IA -->
+    <section id="ia" class="mb-16 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Utiliser avec une IA</h2>
+      <p class="text-gray-500 mb-5">Grâce à la structure de <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code>, les assistants IA (Claude, GPT…) peuvent modifier votre site directement.</p>
+      <div class="bg-blue-50 border border-blue-100 rounded-xl p-5 mb-4">
+        <p class="text-sm font-semibold text-blue-800 mb-3">Exemples de prompts</p>
+        <ul class="space-y-2 text-sm text-blue-700 list-disc list-inside">
+          <li>Rends le titre du héro plus accrocheur pour une agence de design</li>
+          <li>Ajoute 3 témoignages fictifs sur la page d'accueil après les features</li>
+          <li>Crée une page /services avec text + features + faq + cta gradient</li>
+          <li>Change tous les CTA pour utiliser le fond gradient</li>
+        </ul>
+      </div>
+      <p class="text-sm text-gray-500">Donnez le contenu de <code class="bg-gray-100 px-1 rounded text-xs">site.ts</code> à l'IA et décrivez ce que vous voulez. L'IA modifie uniquement ce fichier — le design reste intact.</p>
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- DÉPLOIEMENT -->
+    <section id="deploiement" class="mb-20 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">Déploiement</h2>
+      <p class="text-gray-500 mb-8">
+        <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">npm run build</code> génère un dossier <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">dist/</code> statique compatible avec tous les hébergeurs.
+      </p>
+
+      <!-- GitHub Pages -->
+      <div class="mb-10">
+        <h3 class="text-lg font-semibold text-gray-900 mb-3 flex items-center gap-2">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          GitHub Pages
+        </h3>
+        <p class="text-sm text-gray-500 mb-4">Hébergement gratuit depuis votre repo. URL : <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">username.github.io/nom-du-repo</code></p>
+        <div class="space-y-4">
+          <div>
+            <p class="text-sm font-semibold text-gray-700 mb-2">1 — Configurer <code class="font-normal font-mono text-blue-600">astro.config.mjs</code></p>
+            <Code code={`export default defineConfig({\n  site: 'https://votre-username.github.io',\n  base: '/nom-du-repo',   // le nom exact de votre repo GitHub\n  vite: { plugins: [tailwindcss()] }\n});`} lang="js" theme="github-dark" class="rounded-xl overflow-hidden" />
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-700 mb-2">2 — Activer GitHub Pages</p>
+            <p class="text-sm text-gray-500">Dans votre repo → <strong>Settings → Pages → Source → GitHub Actions</strong>. Le workflow est déjà inclus dans <code class="bg-gray-100 px-1.5 py-0.5 rounded text-xs">.github/workflows/deploy.yml</code>.</p>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-gray-700 mb-2">3 — Pousser sur main</p>
+            <Code code={`git add .\ngit commit -m "Mon site"\ngit push origin main   # le déploiement se lance automatiquement`} lang="bash" theme="github-dark" class="rounded-xl overflow-hidden" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Vercel -->
+      <div class="mb-10">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Vercel / Netlify</h3>
+        <p class="text-sm text-gray-500 mb-3">Déploiement zéro-config — connectez votre repo et c'est tout. Chaque push déclenche un déploiement.</p>
+        <div class="bg-amber-50 border border-amber-100 rounded-xl p-4 text-sm text-amber-800 mb-3">
+          <strong>Important :</strong> retirez <code class="bg-white/60 px-1 rounded">base</code> de <code class="bg-white/60 px-1 rounded">astro.config.mjs</code> — Vercel/Netlify déploient à la racine, pas dans un sous-chemin.
+        </div>
+        <Code code={`// astro.config.mjs pour Vercel ou Netlify\nexport default defineConfig({\n  site: 'https://www.monsite.fr',  // votre domaine\n  // base: retirer cette ligne\n  vite: { plugins: [tailwindcss()] }\n});\n\n// Pour Netlify, configurez aussi :\n// Build command : npm run build\n// Publish dir   : dist`} lang="js" theme="github-dark" class="rounded-xl overflow-hidden" />
+      </div>
+
+      <!-- Hébergement statique -->
+      <div>
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Hébergement statique (FTP, etc.)</h3>
+        <Code code={`npm run build   # génère dist/\n# uploadez dist/ sur votre hébergeur via FTP ou scp`} lang="bash" theme="github-dark" class="rounded-xl overflow-hidden" />
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <div class="border-t border-gray-100 pt-8 pb-16 flex items-center justify-between text-sm text-gray-400">
+      <span>Astro Showcase Template</span>
+      <a href="https://github.com/G0nni/astro-showcase-template" target="_blank" class="hover:text-gray-600 transition-colors">GitHub →</a>
+    </div>
+
+  </div>
+</DocsLayout>

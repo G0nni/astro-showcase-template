@@ -1,0 +1,45 @@
+---
+import type { ImageTextBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = ImageTextBlock['props'] & { style?: SectionStyle };
+
+const { title, paragraphs, imageUrl, imageAlt, imagePosition = 'right', cta, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass = isDark ? 'text-white' : 'text-gray-900';
+const paraClass = isDark ? 'text-white/70' : 'text-gray-600';
+const btnClass = isDark
+  ? 'inline-flex items-center px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-100 transition-colors text-sm'
+  : 'inline-flex items-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-700 transition-colors text-sm';
+
+const textOrder = imagePosition === 'left' ? 'md:order-2' : 'md:order-1';
+const imgOrder = imagePosition === 'left' ? 'md:order-1' : 'md:order-2';
+---
+
+<SectionWrapper style={style}>
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div class={textOrder}>
+      <h2 class={`text-3xl md:text-4xl font-bold ${headingClass} mb-6 leading-tight`}>
+        {title}
+      </h2>
+      <div class="space-y-4 mb-8">
+        {paragraphs.map((p: string) => (
+          <p class={`text-lg ${paraClass} leading-relaxed`}>{p}</p>
+        ))}
+      </div>
+      {cta && (
+        <a href={cta.href} class={btnClass}>{cta.label}</a>
+      )}
+    </div>
+
+    <div class={imgOrder}>
+      <img
+        src={imageUrl}
+        alt={imageAlt}
+        class="w-full h-80 object-cover rounded-2xl shadow-lg"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</SectionWrapper>
