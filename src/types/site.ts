@@ -13,6 +13,8 @@ export type SectionStyle = {
   padding?: 'sm' | 'md' | 'lg';
   align?: 'left' | 'center';
   backgroundImage?: string;
+  animation?: 'none' | 'fade';
+  className?: string;
 };
 
 // ── Existing section types ──────────────────────────────────────────────────
@@ -225,6 +227,65 @@ export type NewsletterBlock = {
   };
 };
 
+export type ComparisonRow = {
+  feature: string;
+  values: (boolean | string)[];
+};
+
+export type ComparisonBlock = {
+  type: 'comparison';
+  style?: SectionStyle;
+  props: {
+    title?: string;
+    options: string[];
+    rows: ComparisonRow[];
+  };
+};
+
+export type DownloadBlock = {
+  type: 'download';
+  style?: SectionStyle;
+  props: {
+    title: string;
+    subtitle?: string;
+    fileUrl: string;
+    fileName: string;
+    fileSize?: string;
+    buttonLabel?: string;
+    icon?: 'pdf' | 'zip' | 'doc' | 'generic';
+  };
+};
+
+export type MapBlock = {
+  type: 'map';
+  style?: SectionStyle;
+  props: {
+    title?: string;
+    embedUrl: string;
+    height?: 'sm' | 'md' | 'lg';
+    address?: string;
+    addressLink?: string;
+  };
+};
+
+export type ReviewSourceItem = {
+  source: string;
+  rating: number;
+  maxRating?: number;
+  reviewCount?: number;
+  logoUrl?: string;
+  link?: string;
+};
+
+export type ReviewsBlock = {
+  type: 'reviews';
+  style?: SectionStyle;
+  props: {
+    title?: string;
+    items: ReviewSourceItem[];
+  };
+};
+
 // ── Union ───────────────────────────────────────────────────────────────────
 
 export type SectionBlock =
@@ -244,7 +305,11 @@ export type SectionBlock =
   | TimelineBlock
   | VideoBlock
   | GalleryBlock
-  | NewsletterBlock;
+  | NewsletterBlock
+  | ComparisonBlock
+  | DownloadBlock
+  | MapBlock
+  | ReviewsBlock;
 
 // ── Config ──────────────────────────────────────────────────────────────────
 
@@ -281,6 +346,15 @@ export type SiteConfig = {
     description: string;
     brandColor?: string;
     font?: string;
+    roundedCards?: 'none' | 'sm' | 'md' | 'lg' | 'full';
+    banner?: {
+      text: string;
+      link?: CtaLink;
+      closeable?: boolean;
+    };
+  };
+  header?: {
+    variant?: 'sticky' | 'transparent' | 'minimal';
   };
   seo: {
     defaultTitle: string;

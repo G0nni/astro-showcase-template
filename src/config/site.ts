@@ -5,8 +5,18 @@ export const siteConfig: SiteConfig = {
     name: "Mon Site Pro",
     url: "https://monsite.fr",
     description: "Site vitrine moderne, rapide et facile à personnaliser.",
-    brandColor: "#2563eb", // ← Couleur primaire (boutons, accents, sections "primary")
-    font: "Inter",         // ← Nom d'une Google Font — supprimez pour utiliser la police système
+    brandColor: "#2563eb",  // ← Couleur primaire (boutons, accents, sections "primary")
+    font: "Inter",           // ← Google Font — supprimez pour utiliser la police système
+    roundedCards: "lg",      // ← Coins des cartes : "none" | "sm" | "md" | "lg" | "full"
+    // banner: {             // ← Bandeau d'annonce en haut de page (supprimez // pour activer)
+    //   text: "🎉 Nouveau : 17 sections disponibles !",
+    //   link: { label: "Voir la démo", href: "/demo" },
+    //   closeable: true,
+    // },
+  },
+
+  header: {
+    variant: "sticky",       // ← "sticky" | "transparent" | "minimal"
   },
 
   seo: {
@@ -442,6 +452,57 @@ export const siteConfig: SiteConfig = {
             placeholder: "votre@email.fr",
             buttonLabel: "S'inscrire",
             formAction: "https://moncompte.us1.list-manage.com/subscribe/post?u=XXXX&id=XXXX",
+          },
+        },
+        {
+          type: "comparison",
+          style: { background: "white", padding: "lg" },
+          props: {
+            title: "Nous vs la concurrence",
+            options: ["Concurrents", "Notre template", "Agence sur mesure"],
+            rows: [
+              { feature: "Délai de livraison", values: ["4-8 semaines", "Immédiat", "2-6 mois"] },
+              { feature: "Modifiable sans dev", values: [false, true, false] },
+              { feature: "SEO intégré", values: ["Partiel", true, true] },
+              { feature: "17 sections disponibles", values: [false, true, true] },
+              { feature: "Prix", values: ["Abonnement mensuel", "Gratuit (open source)", "3 000€+"] },
+              { feature: "Performance Lighthouse", values: ["Variable", "+95", "+90"] },
+            ],
+          },
+        },
+        {
+          type: "download",
+          style: { background: "light", padding: "md" },
+          props: {
+            title: "Documentation complète",
+            subtitle: "Téléchargez le guide PDF pour une référence hors-ligne.",
+            fileUrl: "/guide-astro-showcase.pdf",
+            fileName: "guide-astro-showcase-template.pdf",
+            fileSize: "1.2 Mo",
+            icon: "pdf",
+          },
+        },
+        {
+          type: "reviews",
+          style: { background: "white", padding: "md" },
+          props: {
+            title: "Noté 5 étoiles",
+            items: [
+              { source: "GitHub", rating: 5, maxRating: 5, reviewCount: 87, link: "https://github.com/G0nni/astro-showcase-template/stargazers" },
+              { source: "Google", rating: 4.9, maxRating: 5, reviewCount: 42 },
+              { source: "Product Hunt", rating: 4.8, maxRating: 5, reviewCount: 23 },
+            ],
+          },
+        },
+        {
+          type: "map",
+          style: { background: "light", padding: "md" },
+          props: {
+            title: "Où nous trouver",
+            embedUrl: "https://www.openstreetmap.org/export/embed.html?bbox=2.3387%2C48.8600%2C2.3700%2C48.8780&layer=mapnik",
+            height: "md",
+            address: "Paris, France",
+            addressLink: "https://www.openstreetmap.org/#map=14/48.869/2.354",
           },
         },
       ],

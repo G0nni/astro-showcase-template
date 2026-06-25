@@ -4,6 +4,7 @@ import type {
   HeroBlock, FeaturesBlock, CtaBlock, TextBlock, ContactInfoBlock,
   StatsBlock, TestimonialsBlock, ImageTextBlock, FaqBlock, LogosBlock,
   PricingBlock, StepsBlock, TeamBlock, TimelineBlock, VideoBlock, GalleryBlock, NewsletterBlock,
+  ComparisonBlock, DownloadBlock, MapBlock, ReviewsBlock,
 } from '../types/site';
 import Hero         from './sections/Hero.astro';
 import Features     from './sections/Features.astro';
@@ -22,6 +23,10 @@ import Timeline     from './sections/Timeline.astro';
 import Video        from './sections/Video.astro';
 import Gallery      from './sections/Gallery.astro';
 import Newsletter   from './sections/Newsletter.astro';
+import Comparison   from './sections/Comparison.astro';
+import Download     from './sections/Download.astro';
+import Map          from './sections/Map.astro';
+import Reviews      from './sections/Reviews.astro';
 
 interface Props {
   block: SectionBlock;
@@ -47,3 +52,7 @@ const { block } = Astro.props;
 {block.type === 'video'        && <Video        {...(block as VideoBlock).props}        style={(block as VideoBlock).style} />}
 {block.type === 'gallery'      && <Gallery      {...(block as GalleryBlock).props}      style={(block as GalleryBlock).style} />}
 {block.type === 'newsletter'   && <Newsletter   {...(block as NewsletterBlock).props}   style={(block as NewsletterBlock).style} />}
+{block.type === 'comparison'   && <Comparison   {...(block as ComparisonBlock).props}   style={(block as ComparisonBlock).style} />}
+{block.type === 'download'     && <Download     {...(block as DownloadBlock).props}     style={(block as DownloadBlock).style} />}
+{block.type === 'map'          && <Map          {...(block as MapBlock).props}          style={(block as MapBlock).style} />}
+{block.type === 'reviews'      && <Reviews      {...(block as ReviewsBlock).props}      style={(block as ReviewsBlock).style} />}

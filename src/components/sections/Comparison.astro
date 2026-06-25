@@ -1,0 +1,65 @@
+---
+import type { ComparisonBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = ComparisonBlock['props'] & { style?: SectionStyle };
+
+const { title, options, rows, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass  = isDark ? 'text-white' : 'text-gray-900';
+const thClass       = isDark ? 'text-white/70 border-white/10' : 'text-gray-500 border-gray-200';
+const tdClass       = isDark ? 'border-white/10 text-white/80' : 'border-gray-100 text-gray-600';
+const featureClass  = isDark ? 'text-white font-medium' : 'text-gray-900 font-medium';
+const highlightCol  = 1; // index of the highlighted column (middle)
+---
+
+<SectionWrapper style={style}>
+  {title && (
+    <h2 class={`text-3xl md:text-4xl font-bold text-center ${headingClass} mb-12`}>{title}</h2>
+  )}
+
+  <div class="max-w-4xl mx-auto overflow-x-auto">
+    <table class="w-full border-collapse text-sm">
+      <thead>
+        <tr>
+          <th class={`text-left py-3 px-4 border-b ${thClass} w-1/2`}></th>
+          {options.map((opt: string, i: number) => (
+            <th class={`text-center py-3 px-4 border-b font-semibold ${
+              i === highlightCol
+                ? 'text-[var(--color-brand,#2563eb)] border-[var(--color-brand,#2563eb)]'
+                : thClass
+            }`}>
+              {i === highlightCol && (
+                <span class="block text-xs font-bold uppercase tracking-widest text-[var(--color-brand,#2563eb)] mb-1">Recommandé</span>
+              )}
+              {opt}
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row: import('../../types/site').ComparisonRow) => (
+          <tr class={`hover:${isDark ? 'bg-white/5' : 'bg-gray-50'} transition-colors`}>
+            <td class={`py-3.5 px-4 border-b ${tdClass} ${featureClass}`}>{row.feature}</td>
+            {row.values.map((val: boolean | string, i: number) => (
+              <td class={`text-center py-3.5 px-4 border-b ${tdClass}`}>
+                {val === true ? (
+                  <svg class="w-5 h-5 text-green-500 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : val === false ? (
+                  <svg class="w-5 h-5 text-red-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <span>{val}</span>
+                )}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</SectionWrapper>

@@ -1,0 +1,53 @@
+---
+import type { DownloadBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = DownloadBlock['props'] & { style?: SectionStyle };
+
+const { title, subtitle, fileUrl, fileName, fileSize, buttonLabel = 'Télécharger', icon = 'generic', style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass  = isDark ? 'text-white' : 'text-gray-900';
+const subtitleClass = isDark ? 'text-white/70' : 'text-gray-500';
+const cardClass     = isDark ? 'bg-white/5 border border-white/10' : 'bg-gray-50 border border-gray-200';
+const fileNameClass = isDark ? 'text-white' : 'text-gray-900';
+const fileSizeClass = isDark ? 'text-white/50' : 'text-gray-400';
+
+const iconPaths: Record<string, string> = {
+  pdf: 'M7 2a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V8.414A2 2 0 0018.414 7L13 1.586A2 2 0 0011.586 1H7zm5 1.5V8h4.5L12 3.5zM9 13h6v2H9v-2zm0-4h6v2H9V9z',
+  zip: 'M7 2a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V8l-6-6H7zm5 7V3l5 5h-5zM9 10h2v2H9v-2zm2 2h2v2h-2v-2zm-2 2h2v2H9v-2zm2 2h2v2h-2v-2z',
+  doc: 'M7 2a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V8l-6-6H7zm5 7V3l5 5h-5zM9 12h6v1.5H9V12zm0 3h6v1.5H9V15zm0 3h4v1.5H9V18z',
+  generic: 'M7 2a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V8l-6-6H7zm5 7V3l5 5h-5z',
+};
+---
+
+<SectionWrapper style={style}>
+  <div class="max-w-2xl mx-auto">
+    {title && <h2 class={`text-2xl md:text-3xl font-bold ${headingClass} mb-2`}>{title}</h2>}
+    {subtitle && <p class={`${subtitleClass} mb-8`}>{subtitle}</p>}
+
+    <div class={`flex flex-col sm:flex-row items-center gap-5 p-6 rounded-card ${cardClass}`}>
+      <div class="shrink-0 w-14 h-14 bg-[var(--color-brand,#2563eb)]/10 rounded-xl flex items-center justify-center">
+        <svg class="w-7 h-7 text-[var(--color-brand,#2563eb)]" viewBox="0 0 24 24" fill="currentColor">
+          <path d={iconPaths[icon] ?? iconPaths.generic} />
+        </svg>
+      </div>
+
+      <div class="flex-1 min-w-0 text-center sm:text-left">
+        <p class={`font-semibold truncate ${fileNameClass}`}>{fileName}</p>
+        {fileSize && <p class={`text-sm mt-0.5 ${fileSizeClass}`}>{fileSize}</p>}
+      </div>
+
+      <a
+        href={fileUrl}
+        download
+        class="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 bg-[var(--color-brand,#2563eb)] text-white font-semibold rounded-card hover:opacity-90 transition-opacity text-sm"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+        {buttonLabel}
+      </a>
+    </div>
+  </div>
+</SectionWrapper>

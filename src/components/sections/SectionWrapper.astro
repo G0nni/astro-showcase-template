@@ -36,10 +36,13 @@ const bgClass = hasBackgroundImage ? '' : (bgMap[bg] ?? 'bg-white');
 const textClass = hasBackgroundImage ? 'text-white' : (textMap[bg] ?? 'text-gray-900');
 const paddingClass = paddingMap[style.padding ?? 'md'] ?? 'py-16';
 const alignClass = style.align === 'left' ? 'text-left' : 'text-center';
+const animateAttr = style.animation === 'fade' ? 'fade' : undefined;
+const extraClass = style.className ?? '';
 ---
 
 <section
-  class={`relative ${bgClass} ${textClass} ${paddingClass}`}
+  class={`relative ${bgClass} ${textClass} ${paddingClass} ${extraClass}`}
+  data-animate={animateAttr}
   style={hasBackgroundImage ? `background-image: url('${style.backgroundImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ''}
 >
   {hasBackgroundImage && (

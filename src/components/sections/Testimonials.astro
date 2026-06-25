@@ -9,8 +9,8 @@ const { title, items, style } = Astro.props;
 const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
 const headingClass = isDark ? 'text-white' : 'text-gray-900';
 const cardClass = isDark
-  ? 'p-8 rounded-2xl bg-white/5 border border-white/10'
-  : 'p-8 rounded-2xl bg-white border border-gray-100 shadow-sm';
+  ? 'p-8 rounded-card bg-white/5 border border-white/10'
+  : 'p-8 rounded-card bg-white border border-gray-100 shadow-sm';
 const quoteClass = isDark ? 'text-white/80' : 'text-gray-600';
 const authorClass = isDark ? 'text-white' : 'text-gray-900';
 const roleClass = isDark ? 'text-white/50' : 'text-gray-400';

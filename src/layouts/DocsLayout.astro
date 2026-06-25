@@ -3,6 +3,8 @@ import '../styles/global.css';
 import { siteConfig } from '../config/site';
 
 const brandColor = siteConfig.global.brandColor ?? '#2563eb';
+const radiusMap: Record<string, string> = { none: '0', sm: '4px', md: '8px', lg: '16px', full: '9999px' };
+const radiusCard = radiusMap[siteConfig.global.roundedCards ?? 'lg'] ?? '16px';
 
 interface NavItem {
   label: string;
@@ -28,7 +30,7 @@ const { title = 'Documentation', nav } = Astro.props;
   <meta name="viewport" content="width=device-width" />
   <title>{title} — Astro Showcase Template</title>
   <link rel="icon" href="/favicon.svg" />
-  <style set:html={`:root{--color-brand:${brandColor}}`}></style>
+  <style set:html={`:root{--color-brand:${brandColor};--radius-card:${radiusCard}}`}></style>
   {siteConfig.global.font && (
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

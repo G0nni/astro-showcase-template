@@ -8,9 +8,17 @@ export const agenceConfig: SiteConfig = {
     name: "Studio Créatif",
     url: "https://studio-creatif.fr",
     description: "Agence web spécialisée en design et développement sur mesure.",
-    brandColor: "#6d28d9", // violet
+    brandColor: "#6d28d9",
     font: "Plus Jakarta Sans",
+    roundedCards: "lg",
+    banner: {
+      text: "Nouvelle offre : site vitrine livré en 10 jours.",
+      link: { label: "En savoir plus", href: "/services" },
+      closeable: true,
+    },
   },
+
+  header: { variant: "sticky" },
 
   seo: {
     defaultTitle: "Studio Créatif — Agence Web",
@@ -149,6 +157,33 @@ export const agenceConfig: SiteConfig = {
                 features: ["Pages illimitées", "E-commerce", "Intégrations API", "Support dédié", "SLA garanti"],
                 cta: { label: "Nous contacter", href: "/contact" },
               },
+            ],
+          },
+        },
+        {
+          type: "reviews",
+          style: { background: "white", padding: "md" },
+          props: {
+            title: "Ce que pensent nos clients",
+            items: [
+              { source: "Google", rating: 4.9, maxRating: 5, reviewCount: 68 },
+              { source: "Trustpilot", rating: 4.8, maxRating: 5, reviewCount: 34 },
+              { source: "Clutch", rating: 4.9, maxRating: 5, reviewCount: 19 },
+            ],
+          },
+        },
+        {
+          type: "comparison",
+          style: { background: "light", padding: "lg" },
+          props: {
+            title: "Pourquoi choisir Studio Créatif",
+            options: ["Agences classiques", "Studio Créatif", "Freelances solo"],
+            rows: [
+              { feature: "Délai de livraison", values: ["6-12 semaines", "2-4 semaines", "4-8 semaines"] },
+              { feature: "Design sur mesure", values: [true, true, "Variable"] },
+              { feature: "Interlocuteur dédié", values: ["Rarement", true, true] },
+              { feature: "Accompagnement post-livraison", values: ["Payant", "3 mois inclus", false] },
+              { feature: "SEO intégré", values: ["Option", true, "Variable"] },
             ],
           },
         },

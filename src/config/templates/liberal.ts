@@ -8,9 +8,12 @@ export const liberalConfig: SiteConfig = {
     name: "Cabinet Rousseau",
     url: "https://cabinet-rousseau.fr",
     description: "Cabinet d'avocats spécialisé en droit des affaires et droit du travail.",
-    brandColor: "#1e40af", // bleu marine
+    brandColor: "#1e40af",
     font: "Lora",
+    roundedCards: "sm",
   },
+
+  header: { variant: "sticky" },
 
   seo: {
     defaultTitle: "Cabinet Rousseau — Avocats en droit des affaires",
@@ -120,6 +123,17 @@ export const liberalConfig: SiteConfig = {
           },
         },
         {
+          type: "reviews",
+          style: { background: "white", padding: "md" },
+          props: {
+            title: "Recommandé par nos clients",
+            items: [
+              { source: "Google", rating: 4.9, maxRating: 5, reviewCount: 47 },
+              { source: "Avosial", rating: 5, maxRating: 5, reviewCount: 12 },
+            ],
+          },
+        },
+        {
           type: "logos",
           style: { background: "white", padding: "sm" },
           props: {
@@ -185,6 +199,18 @@ export const liberalConfig: SiteConfig = {
       seo: { title: "Contact", description: "Prendre rendez-vous avec le cabinet" },
       sections: [
         {
+          type: "download",
+          style: { background: "light", padding: "md" },
+          props: {
+            title: "Brochure du cabinet",
+            subtitle: "Présentation complète de nos expertises et de nos honoraires.",
+            fileUrl: "/brochure-cabinet-rousseau.pdf",
+            fileName: "Cabinet Rousseau — Présentation.pdf",
+            fileSize: "1.4 Mo",
+            icon: "pdf",
+          },
+        },
+        {
           type: "contactInfo",
           style: { background: "white", padding: "lg" },
           props: {
@@ -193,6 +219,16 @@ export const liberalConfig: SiteConfig = {
             email: "contact@cabinet-rousseau.fr",
             linkedin: { label: "Notre page LinkedIn", href: "https://linkedin.com/company/" },
             location: "14 rue du Faubourg Saint-Honoré, 75008 Paris",
+          },
+        },
+        {
+          type: "map",
+          style: { background: "white", padding: "sm" },
+          props: {
+            embedUrl: "https://www.openstreetmap.org/export/embed.html?bbox=2.3040%2C48.8700%2C2.3200%2C48.8780&layer=mapnik",
+            height: "md",
+            address: "14 rue du Faubourg Saint-Honoré, 75008 Paris",
+            addressLink: "https://maps.google.com/?q=14+rue+du+Faubourg+Saint-Honoré+75008+Paris",
           },
         },
       ],

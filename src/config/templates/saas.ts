@@ -8,9 +8,17 @@ export const saasConfig: SiteConfig = {
     name: "FlowDesk",
     url: "https://flowdesk.app",
     description: "L'outil de gestion de projet pensé pour les équipes modernes.",
-    brandColor: "#7c3aed", // violet
+    brandColor: "#7c3aed",
     font: "Inter",
+    roundedCards: "lg",
+    banner: {
+      text: "🎉 Essai gratuit étendu à 30 jours — offre limitée.",
+      link: { label: "En profiter", href: "/signup" },
+      closeable: true,
+    },
   },
+
+  header: { variant: "transparent" },
 
   seo: {
     defaultTitle: "FlowDesk — Gestion de projet simple",
@@ -158,6 +166,34 @@ export const saasConfig: SiteConfig = {
                 features: ["SSO / SAML", "Audit log", "SLA garanti", "Onboarding dédié", "Contrat personnalisé"],
                 cta: { label: "Contacter les ventes", href: "/contact" },
               },
+            ],
+          },
+        },
+        {
+          type: "reviews",
+          style: { background: "light", padding: "md" },
+          props: {
+            title: "Plébiscité par ses utilisateurs",
+            items: [
+              { source: "Capterra", rating: 4.8, maxRating: 5, reviewCount: 156 },
+              { source: "G2", rating: 4.7, maxRating: 5, reviewCount: 89 },
+              { source: "Product Hunt", rating: 4.9, maxRating: 5, reviewCount: 203 },
+            ],
+          },
+        },
+        {
+          type: "comparison",
+          style: { background: "white", padding: "lg" },
+          props: {
+            title: "FlowDesk vs les alternatives",
+            options: ["Jira", "FlowDesk", "Notion"],
+            rows: [
+              { feature: "Prise en main", values: ["Complexe", "Très simple", "Modérée"] },
+              { feature: "Idéal pour startups", values: [false, true, true] },
+              { feature: "Tableaux Kanban natifs", values: [true, true, "Plugin requis"] },
+              { feature: "Notifications intelligentes", values: ["Basiques", true, false] },
+              { feature: "Prix équipe de 10", values: ["~80€/mois", "~120€/mois", "~80€/mois"] },
+              { feature: "Intégrations incluses", values: ["50+", "20+", "10+"] },
             ],
           },
         },

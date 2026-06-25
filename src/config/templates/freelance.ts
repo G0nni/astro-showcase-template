@@ -8,9 +8,12 @@ export const freelanceConfig: SiteConfig = {
     name: "Alex Moreau",
     url: "https://alexmoreau.dev",
     description: "Développeur freelance spécialisé en applications web React & Node.js.",
-    brandColor: "#0ea5e9", // sky blue
+    brandColor: "#0ea5e9",
     font: "Geist",
+    roundedCards: "md",
   },
+
+  header: { variant: "sticky" },
 
   seo: {
     defaultTitle: "Alex Moreau — Développeur Freelance",
@@ -102,6 +105,30 @@ export const freelanceConfig: SiteConfig = {
           },
         },
         {
+          type: "reviews",
+          style: { background: "light", padding: "sm" },
+          props: {
+            items: [
+              { source: "Google", rating: 5, maxRating: 5, reviewCount: 18 },
+              { source: "Malt", rating: 4.9, maxRating: 5, reviewCount: 31 },
+              { source: "LinkedIn", rating: 5, maxRating: 5, reviewCount: 12 },
+            ],
+          },
+        },
+        {
+          type: "download",
+          style: { background: "white", padding: "md" },
+          props: {
+            title: "Mon CV et portfolio",
+            subtitle: "Toutes mes réalisations et expériences en un document.",
+            fileUrl: "/alex-moreau-cv.pdf",
+            fileName: "Alex Moreau — Développeur Freelance.pdf",
+            fileSize: "890 Ko",
+            icon: "pdf",
+            buttonLabel: "Télécharger le CV",
+          },
+        },
+        {
           type: "newsletter",
           style: { background: "dark" },
           props: {
@@ -166,6 +193,15 @@ export const freelanceConfig: SiteConfig = {
             email: "alex@alexmoreau.dev",
             linkedin: { label: "Mon LinkedIn", href: "https://linkedin.com/in/" },
             location: "Paris / Remote",
+          },
+        },
+        {
+          type: "map",
+          style: { background: "light", padding: "sm" },
+          props: {
+            embedUrl: "https://www.openstreetmap.org/export/embed.html?bbox=2.3387%2C48.8600%2C2.3700%2C48.8780&layer=mapnik",
+            height: "sm",
+            address: "Paris, France — Missions remote disponibles partout en France",
           },
         },
       ],

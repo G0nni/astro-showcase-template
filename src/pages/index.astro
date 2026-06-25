@@ -42,6 +42,20 @@ const nav = [
       { label: 'video', href: '#section-video', code: true },
       { label: 'gallery', href: '#section-gallery', code: true },
       { label: 'newsletter', href: '#section-newsletter', code: true },
+      { label: 'comparison', href: '#section-comparison', code: true },
+      { label: 'download', href: '#section-download', code: true },
+      { label: 'map', href: '#section-map', code: true },
+      { label: 'reviews', href: '#section-reviews', code: true },
+    ],
+  },
+  {
+    title: 'Options globales',
+    items: [
+      { label: 'banner', href: '#option-banner' },
+      { label: 'header.variant', href: '#option-header' },
+      { label: 'roundedCards', href: '#option-rounded' },
+      { label: 'animation: fade', href: '#option-animation' },
+      { label: 'className', href: '#option-classname' },
     ],
   },
   {
@@ -267,6 +281,54 @@ const newsletterDemo: SectionBlock = {
     title: 'Restez informé',
     subtitle: 'Recevez nos conseils directement dans votre boîte mail.',
     formAction: '#',
+  },
+};
+const comparisonDemo: SectionBlock = {
+  type: 'comparison',
+  style: { background: 'white', padding: 'md' },
+  props: {
+    title: 'Comparatif',
+    options: ['Concurrent', 'Notre solution', 'DIY'],
+    rows: [
+      { feature: 'Délai de livraison', values: ['6 semaines', '2 semaines', '∞'] },
+      { feature: 'SEO intégré', values: [false, true, 'Variable'] },
+      { feature: 'Support inclus', values: [false, true, false] },
+      { feature: 'Prix', values: ['Abonnement', 'Forfait', 'Temps'] },
+    ],
+  },
+};
+const downloadDemo: SectionBlock = {
+  type: 'download',
+  style: { background: 'light', padding: 'md' },
+  props: {
+    title: 'Téléchargez notre brochure',
+    subtitle: 'Toutes nos prestations en un document PDF.',
+    fileUrl: '/brochure.pdf',
+    fileName: 'brochure-mon-site.pdf',
+    fileSize: '1.2 Mo',
+    icon: 'pdf',
+  },
+};
+const mapDemo: SectionBlock = {
+  type: 'map',
+  style: { background: 'white', padding: 'md' },
+  props: {
+    title: 'Où nous trouver',
+    embedUrl: 'https://www.openstreetmap.org/export/embed.html?bbox=2.3387%2C48.8600%2C2.3700%2C48.8780&layer=mapnik',
+    height: 'md',
+    address: 'Paris, France',
+  },
+};
+const reviewsDemo: SectionBlock = {
+  type: 'reviews',
+  style: { background: 'light', padding: 'md' },
+  props: {
+    title: 'Noté 5 étoiles',
+    items: [
+      { source: 'Google', rating: 4.9, maxRating: 5, reviewCount: 68 },
+      { source: 'Trustpilot', rating: 4.8, maxRating: 5, reviewCount: 34 },
+      { source: 'Capterra', rating: 4.9, maxRating: 5, reviewCount: 19 },
+    ],
   },
 };
 ---
@@ -593,6 +655,74 @@ const newsletterDemo: SectionBlock = {
       <p class="text-gray-500 text-sm mb-4">Formulaire d'inscription email. Pointez <code class="bg-gray-100 px-1 rounded text-xs">formAction</code> vers votre URL Mailchimp ou ConvertKit. Zéro JavaScript.</p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={newsletterDemo} /></div>
       <Code code={`{\n  type: "newsletter",\n  style: { background: "dark" },\n  props: {\n    title: "Restez informé",\n    subtitle: "Recevez nos conseils par email.",  // optionnel\n    placeholder: "votre@email.fr",               // optionnel\n    buttonLabel: "S'inscrire",                   // optionnel\n    // Mailchimp : Dashboard → Audience → Signup forms → URL du formulaire\n    formAction: "https://moncompte.us1.list-manage.com/subscribe/post?u=XXX&id=XXX",\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- comparison -->
+    <section id="section-comparison" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">comparison</code>
+      <p class="text-gray-500 text-sm mb-4">Tableau comparatif "Nous vs Concurrents". <code class="bg-gray-100 px-1 rounded text-xs">true</code> → ✓ vert, <code class="bg-gray-100 px-1 rounded text-xs">false</code> → ✗ rouge, chaîne → texte libre. La colonne centrale est mise en avant.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={comparisonDemo} /></div>
+      <Code code={`{\n  type: "comparison",\n  style: { background: "white" },\n  props: {\n    title: "Nous vs la concurrence",\n    options: ["Concurrent", "Notre solution", "DIY"], // colonnes\n    rows: [\n      { feature: "Délai", values: ["6 semaines", "2 semaines", "∞"] },\n      { feature: "SEO intégré", values: [false, true, "Variable"] },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- download -->
+    <section id="section-download" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">download</code>
+      <p class="text-gray-500 text-sm mb-4">Carte de téléchargement avec icône de type de fichier. L'attribut <code class="bg-gray-100 px-1 rounded text-xs">download</code> natif déclenche le téléchargement directement.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={downloadDemo} /></div>
+      <Code code={`{\n  type: "download",\n  style: { background: "light" },\n  props: {\n    title: "Téléchargez notre brochure",\n    subtitle: "Toutes nos prestations en PDF.",  // optionnel\n    fileUrl: "/brochure.pdf",\n    fileName: "brochure-mon-site.pdf",\n    fileSize: "1.2 Mo",                         // optionnel\n    icon: "pdf",    // "pdf" | "zip" | "doc" | "generic"\n    buttonLabel: "Télécharger",                 // optionnel\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- map -->
+    <section id="section-map" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">map</code>
+      <p class="text-gray-500 text-sm mb-4">Carte embarquée Google Maps ou OpenStreetMap. Copiez l'URL d'embed depuis <strong>Google Maps → Partager → Intégrer</strong>.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={mapDemo} /></div>
+      <Code code={`{\n  type: "map",\n  style: { background: "white" },\n  props: {\n    title: "Où nous trouver",    // optionnel\n    // Google Maps : Partager → Intégrer → copier le src de l'iframe\n    embedUrl: "https://www.google.com/maps/embed?pb=...",\n    height: "md",               // "sm" | "md" | "lg"\n    address: "Paris, France",   // affiché sous la carte (optionnel)\n    addressLink: "https://maps.google.com/?q=...", // optionnel\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- reviews -->
+    <section id="section-reviews" class="mb-16 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">reviews</code>
+      <p class="text-gray-500 text-sm mb-4">Badges de notation (Google, Trustpilot, Capterra…). Différent de <code class="bg-gray-100 px-1 rounded text-xs">testimonials</code> : ici c'est de la preuve sociale chiffrée, pas des citations.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={reviewsDemo} /></div>
+      <Code code={`{\n  type: "reviews",\n  style: { background: "light" },\n  props: {\n    title: "Noté 5 étoiles", // optionnel\n    items: [\n      {\n        source: "Google",\n        rating: 4.9,\n        maxRating: 5,          // défaut: 5\n        reviewCount: 68,       // optionnel\n        logoUrl: "https://...", // optionnel — sinon nom texte\n        link: "https://g.page/...", // optionnel\n      },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- OPTIONS GLOBALES -->
+    <h2 class="text-2xl font-bold text-gray-900 mb-2">Options globales</h2>
+    <p class="text-gray-500 mb-12">Ces options se configurent dans le champ <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">global</code> ou à la racine de <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">siteConfig</code>.</p>
+
+    <section id="option-banner" class="mb-10 scroll-mt-20">
+      <h3 class="font-semibold text-gray-900 mb-2">Bandeau d'annonce <code class="font-mono text-sm text-blue-600">global.banner</code></h3>
+      <p class="text-gray-500 text-sm mb-3">Barre colorée en haut de page, avant le header. Idéal pour les annonces, promos ou nouveautés.</p>
+      <Code code={`global: {\n  banner: {\n    text: "🎉 Nouveauté : 21 sections disponibles !",\n    link: { label: "Voir la démo", href: "/demo" }, // optionnel\n    closeable: true, // affiche un bouton × pour fermer\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <section id="option-header" class="mb-10 scroll-mt-20">
+      <h3 class="font-semibold text-gray-900 mb-2">Variant du header <code class="font-mono text-sm text-blue-600">header.variant</code></h3>
+      <p class="text-gray-500 text-sm mb-3">Contrôle le style du header. <code class="bg-gray-100 px-1 rounded text-xs">transparent</code> est idéal avec un hero plein écran ou <code class="bg-gray-100 px-1 rounded text-xs">backgroundImage</code>.</p>
+      <Code code={`header: {\n  variant: "sticky",       // défaut — fond blanc, collé en haut\n  // variant: "transparent", // transparent → blanc au scroll\n  // variant: "minimal",     // logo seulement, pas de nav desktop\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <section id="option-rounded" class="mb-10 scroll-mt-20">
+      <h3 class="font-semibold text-gray-900 mb-2">Coins des cartes <code class="font-mono text-sm text-blue-600">global.roundedCards</code></h3>
+      <p class="text-gray-500 text-sm mb-3">Contrôle le rayon de toutes les cartes du site en un seul endroit.</p>
+      <Code code={`global: {\n  roundedCards: "lg",  // défaut (1rem)\n  // "none"  → coins carrés (look corporate)\n  // "sm"    → 4px (sobre)\n  // "md"    → 8px\n  // "lg"    → 16px\n  // "full"  → pills (look très arrondi)\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <section id="option-animation" class="mb-10 scroll-mt-20">
+      <h3 class="font-semibold text-gray-900 mb-2">Entrée en fondu <code class="font-mono text-sm text-blue-600">style.animation</code></h3>
+      <p class="text-gray-500 text-sm mb-3">Ajoutez un effet d'apparition au scroll sur n'importe quelle section. Utilise <code class="bg-gray-100 px-1 rounded text-xs">IntersectionObserver</code>, zéro dépendance.</p>
+      <Code code={`{\n  type: "features",\n  style: {\n    background: "white",\n    animation: "fade",  // ← section invisible puis apparaît en glissant\n  },\n  props: { ... },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <section id="option-classname" class="mb-16 scroll-mt-20">
+      <h3 class="font-semibold text-gray-900 mb-2">Classes arbitraires <code class="font-mono text-sm text-blue-600">style.className</code></h3>
+      <p class="text-gray-500 text-sm mb-3">Escape hatch — ajoutez des classes Tailwind arbitraires quand les options prédéfinies ne suffisent pas.</p>
+      <Code code={`{\n  type: "cta",\n  style: {\n    background: "white",\n    className: "border-t-4 border-blue-500", // classes appliquées sur <section>\n  },\n  props: { ... },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
 
     <hr class="border-gray-100 mb-16" />
