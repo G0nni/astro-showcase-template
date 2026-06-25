@@ -1,2 +1,10 @@
-# astro-showcase-template
-Astro boilerplate focused on simplicity, SEO and AI-assisted content creation. Ideal for portfolios, business websites and showcase pages.
+# Astro Showcase Template
+
+Boilerplate Astro simple destiné aux personnes qui ne souhaitent pas coder.
+
+Objectifs :
+
+- Créer un site vitrine rapidement
+- Utiliser l'IA pour générer du contenu
+- Obtenir un excellent SEO
+- Déployer facilement
