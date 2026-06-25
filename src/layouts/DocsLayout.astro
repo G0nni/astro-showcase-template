@@ -29,8 +29,13 @@ const { title = 'Documentation', nav } = Astro.props;
   <title>{title} — Astro Showcase Template</title>
   <link rel="icon" href="/favicon.svg" />
   <style set:html={`:root{--color-brand:${brandColor}}`}></style>
+  {siteConfig.global.font && (
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href={`https://fonts.googleapis.com/css2?family=${siteConfig.global.font.replace(/ /g,'+')}:wght@400;500;600;700&display=swap`} rel="stylesheet" />
+  )}
 </head>
-<body class="bg-white text-gray-900 antialiased">
+<body class="bg-white text-gray-900 antialiased" style={siteConfig.global.font ? `font-family:'${siteConfig.global.font}',system-ui,sans-serif` : ''}>
 
   <!-- Header -->
   <header class="fixed top-0 left-0 right-0 z-50 h-14 flex items-center border-b border-gray-100 bg-white/95 backdrop-blur-md px-4 gap-3">

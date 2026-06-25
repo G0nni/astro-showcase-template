@@ -148,6 +148,37 @@ Pour d'autres hébergeurs : `npm run build` génère un dossier `dist/` statique
 
 ---
 
+## Templates de départ
+
+Des configurations complètes prêtes à l'emploi dans [`src/config/templates/`](src/config/templates/) :
+
+| Template | Usage |
+|---|---|
+| [`agence.ts`](src/config/templates/agence.ts) | Agence web / studio créatif |
+| [`freelance.ts`](src/config/templates/freelance.ts) | Freelance / portfolio |
+| [`saas.ts`](src/config/templates/saas.ts) | SaaS / produit digital |
+| [`liberal.ts`](src/config/templates/liberal.ts) | Profession libérale (avocat, médecin…) |
+
+Copiez le contenu du template choisi dans `src/config/site.ts` et personnalisez.
+
+---
+
+## Contributing
+
+Les contributions sont les bienvenues ! Voir [CONTRIBUTING.md](CONTRIBUTING.md) pour les instructions.
+
+- **Ajouter une section** : type → composant → SectionRenderer → docs (4 étapes guidées)
+- **Signaler un bug** : [ouvrir une issue](https://github.com/G0nni/astro-showcase-template/issues)
+- **Proposer une feature** : ouvrez une issue avant de coder pour aligner sur la direction du projet
+
+---
+
+## Licence
+
+[MIT](LICENSE) — libre d'utilisation, modification et distribution.
+
+---
+
 ## Stack
 
 - [Astro](https://astro.build) — génération de pages statiques

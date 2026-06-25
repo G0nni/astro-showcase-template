@@ -4,8 +4,9 @@ export const siteConfig: SiteConfig = {
   global: {
     name: "Mon Site Pro",
     url: "https://monsite.fr",
-    description: "Site vitrine moderne",
-    brandColor: "#2563eb", // ← Changez cette couleur pour personnaliser tout le site
+    description: "Site vitrine moderne, rapide et facile à personnaliser.",
+    brandColor: "#2563eb", // ← Couleur primaire (boutons, accents, sections "primary")
+    font: "Inter",         // ← Nom d'une Google Font — supprimez pour utiliser la police système
   },
 
   seo: {
@@ -22,6 +23,32 @@ export const siteConfig: SiteConfig = {
 
   footer: {
     text: "© 2026 Mon Site Pro — Tous droits réservés",
+    columns: [
+      {
+        title: "Services",
+        links: [
+          { label: "Site vitrine", href: "/services" },
+          { label: "E-commerce", href: "/services" },
+          { label: "Application web", href: "/services" },
+        ],
+      },
+      {
+        title: "Entreprise",
+        links: [
+          { label: "À propos", href: "/about" },
+          { label: "Contact", href: "/contact" },
+        ],
+      },
+    ],
+    social: {
+      github: "https://github.com/G0nni/astro-showcase-template",
+      linkedin: "https://linkedin.com/in/",
+      twitter: "https://twitter.com/",
+    },
+    legal: [
+      { label: "Mentions légales", href: "#" },
+      { label: "Politique de confidentialité", href: "#" },
+    ],
   },
 
   pages: {

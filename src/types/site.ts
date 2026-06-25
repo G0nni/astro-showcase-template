@@ -261,12 +261,26 @@ export type NavigationItem = {
   href: string;
 };
 
+export type FooterColumn = {
+  title: string;
+  links: CtaLink[];
+};
+
+export type FooterSocial = {
+  twitter?: string;
+  github?: string;
+  linkedin?: string;
+  instagram?: string;
+  youtube?: string;
+};
+
 export type SiteConfig = {
   global: {
     name: string;
     url: string;
     description: string;
     brandColor?: string;
+    font?: string;
   };
   seo: {
     defaultTitle: string;
@@ -275,6 +289,9 @@ export type SiteConfig = {
   navigation: NavigationItem[];
   footer: {
     text: string;
+    columns?: FooterColumn[];
+    social?: FooterSocial;
+    legal?: CtaLink[];
   };
   pages: {
     home: PageConfig;

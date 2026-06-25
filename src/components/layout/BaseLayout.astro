@@ -43,6 +43,13 @@ const url = global.url + pathname;
     <!-- BRAND COLOR -->
     <style set:html={`:root{--color-brand:${global.brandColor ?? '#2563eb'}}`}></style>
 
+    <!-- GOOGLE FONT -->
+    {global.font && (
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href={`https://fonts.googleapis.com/css2?family=${global.font.replace(/ /g,'+')}:wght@400;500;600;700&display=swap`} rel="stylesheet" />
+    )}
+
     <!-- OPEN GRAPH -->
     <meta property="og:title" content={finalTitle} />
     <meta property="og:description" content={finalDescription} />
@@ -57,7 +64,7 @@ const url = global.url + pathname;
     <meta name="twitter:image" content={global.url + image} />
   </head>
 
-  <body class="bg-white text-gray-900 antialiased">
+  <body class="bg-white text-gray-900 antialiased" style={global.font ? `font-family:'${global.font}',system-ui,sans-serif` : ''}>
     <Header />
 
     <main>
