@@ -40,6 +40,9 @@ const url = global.url + pathname;
     <!-- FAVICON -->
     <link rel="icon" href="/favicon.svg" />
 
+    <!-- BRAND COLOR -->
+    <style set:html={`:root{--color-brand:${global.brandColor ?? '#2563eb'}}`}></style>
+
     <!-- OPEN GRAPH -->
     <meta property="og:title" content={finalTitle} />
     <meta property="og:description" content={finalDescription} />

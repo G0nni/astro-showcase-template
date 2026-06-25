@@ -3,14 +3,14 @@ import type { HeroBlock, SectionStyle } from '../../types/site';
 
 type Props = HeroBlock['props'] & { style?: SectionStyle };
 
-const { title, subtitle, ctaPrimary, ctaSecondary, style } = Astro.props;
+const { title, subtitle, ctaPrimary, ctaSecondary, variant = 'centered', splitImage, style } = Astro.props;
 
 const bgMap: Record<string, string> = {
   white: 'bg-white',
   light: 'bg-gray-50',
   dark: 'bg-gray-900',
-  primary: 'bg-blue-600',
-  gradient: 'bg-gradient-to-br from-blue-600 to-purple-700',
+  primary: 'bg-[var(--color-brand,#2563eb)]',
+  gradient: 'bg-gradient-to-br from-[var(--color-brand,#2563eb)] to-purple-700',
 };
 const textMap: Record<string, string> = {
   white: '',
@@ -25,45 +25,66 @@ const sectionClass = bg
   ? `${bgMap[bg] ?? 'bg-white'} ${textMap[bg] ?? ''}`
   : 'bg-gradient-to-b from-slate-50 to-white';
 
-const titleClass = bg && ['dark', 'primary', 'gradient'].includes(bg)
-  ? 'text-white'
-  : 'text-gray-900';
-const subtitleClass = bg && ['dark', 'primary', 'gradient'].includes(bg)
-  ? 'text-white/70'
-  : 'text-gray-500';
-const btnSecondaryClass = bg && ['dark', 'primary', 'gradient'].includes(bg)
+const isDark = bg && ['dark', 'primary', 'gradient'].includes(bg);
+const titleClass   = isDark ? 'text-white' : 'text-gray-900';
+const subtitleClass = isDark ? 'text-white/70' : 'text-gray-500';
+const btnSecondaryClass = isDark
   ? 'border border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors text-sm'
   : 'border border-gray-200 text-gray-700 font-semibold rounded-xl hover:border-gray-300 hover:bg-gray-50 transition-colors text-sm';
 ---
 
-<section class={`relative ${sectionClass} overflow-hidden`}>
-  <div class="max-w-5xl mx-auto px-6 py-28 md:py-40 text-center">
-
-    <h1 class={`text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight ${titleClass} leading-tight mb-6`}>
-      {title}
-    </h1>
-
-    <p class={`text-lg md:text-xl ${subtitleClass} leading-relaxed max-w-2xl mx-auto mb-10`}>
-      {subtitle}
-    </p>
-
-    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a
-        href={ctaPrimary.href}
-        class="inline-flex items-center justify-center px-7 py-3.5 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-700 transition-colors text-sm"
-      >
-        {ctaPrimary.label}
-      </a>
-
-      {ctaSecondary && (
-        <a
-          href={ctaSecondary.href}
-          class={`inline-flex items-center justify-center px-7 py-3.5 ${btnSecondaryClass}`}
-        >
-          {ctaSecondary.label}
+{variant === 'centered' ? (
+  <section class={`relative ${sectionClass} overflow-hidden`}>
+    <div class="max-w-5xl mx-auto px-6 py-28 md:py-40 text-center">
+      <h1 class={`text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight ${titleClass} leading-tight mb-6`}>
+        {title}
+      </h1>
+      <p class={`text-lg md:text-xl ${subtitleClass} leading-relaxed max-w-2xl mx-auto mb-10`}>
+        {subtitle}
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href={ctaPrimary.href} class="inline-flex items-center justify-center px-7 py-3.5 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-700 transition-colors text-sm">
+          {ctaPrimary.label}
         </a>
+        {ctaSecondary && (
+          <a href={ctaSecondary.href} class={`inline-flex items-center justify-center px-7 py-3.5 ${btnSecondaryClass}`}>
+            {ctaSecondary.label}
+          </a>
+        )}
+      </div>
+    </div>
+  </section>
+) : (
+  <section class={`relative ${sectionClass} overflow-hidden`}>
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class={`text-4xl md:text-5xl font-extrabold tracking-tight ${titleClass} leading-tight mb-6`}>
+          {title}
+        </h1>
+        <p class={`text-lg ${subtitleClass} leading-relaxed mb-10`}>
+          {subtitle}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href={ctaPrimary.href} class="inline-flex items-center justify-center px-7 py-3.5 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-700 transition-colors text-sm">
+            {ctaPrimary.label}
+          </a>
+          {ctaSecondary && (
+            <a href={ctaSecondary.href} class={`inline-flex items-center justify-center px-7 py-3.5 ${btnSecondaryClass}`}>
+              {ctaSecondary.label}
+            </a>
+          )}
+        </div>
+      </div>
+      {splitImage && (
+        <div class="order-first md:order-last">
+          <img
+            src={splitImage.url}
+            alt={splitImage.alt}
+            class="w-full h-80 md:h-96 object-cover rounded-2xl shadow-xl"
+            loading="eager"
+          />
+        </div>
       )}
     </div>
-
-  </div>
-</section>
+  </section>
+)}

@@ -5,6 +5,7 @@ export const siteConfig: SiteConfig = {
     name: "Mon Site Pro",
     url: "https://monsite.fr",
     description: "Site vitrine moderne",
+    brandColor: "#2563eb", // ← Changez cette couleur pour personnaliser tout le site
   },
 
   seo: {
@@ -16,6 +17,7 @@ export const siteConfig: SiteConfig = {
     { label: "Services", href: "/services" },
     { label: "À propos", href: "/about" },
     { label: "Contact", href: "/contact" },
+    { label: "Démo →", href: "/demo" },
   ],
 
   footer: {
@@ -285,6 +287,134 @@ export const siteConfig: SiteConfig = {
             email: "contact@monsite.fr",
             linkedin: { label: "Voir le profil LinkedIn", href: "#" },
             location: "France",
+          },
+        },
+      ],
+    },
+
+    // ─── PAGE DEMO (toutes les nouvelles sections) ─────────────────────────────
+    demo: {
+      seo: {
+        title: "Démo des sections",
+        description: "Démonstration de toutes les sections disponibles",
+      },
+      sections: [
+        {
+          type: "hero",
+          props: {
+            title: "Variant Split — texte à gauche, image à droite",
+            subtitle: "Ajoutez variant: 'split' et splitImage pour ce layout deux colonnes.",
+            ctaPrimary: { label: "Commencer", href: "/contact" },
+            ctaSecondary: { label: "En savoir plus", href: "/about" },
+            variant: "split",
+            splitImage: {
+              url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format",
+              alt: "Équipe de travail",
+            },
+          },
+        },
+        {
+          type: "steps",
+          style: { background: "white", padding: "lg" },
+          props: {
+            title: "Comment ça marche",
+            items: [
+              { title: "Clonez le repo", description: "git clone puis npm install pour démarrer en local en quelques secondes." },
+              { title: "Éditez site.ts", description: "Modifiez les textes, ajoutez des sections, configurez les pages depuis un seul fichier." },
+              { title: "Déployez", description: "Un push sur main déclenche automatiquement le déploiement via GitHub Actions." },
+            ],
+          },
+        },
+        {
+          type: "pricing",
+          style: { background: "light", padding: "lg" },
+          props: {
+            title: "Nos tarifs",
+            plans: [
+              {
+                name: "Starter",
+                price: "490€",
+                description: "Idéal pour se lancer",
+                features: ["1 page", "Design responsive", "SEO de base", "Livraison 1 semaine"],
+                cta: { label: "Choisir Starter", href: "/contact" },
+              },
+              {
+                name: "Pro",
+                price: "990€",
+                description: "Pour les projets ambitieux",
+                features: ["Jusqu'à 5 pages", "Design premium", "SEO avancé", "Analytics", "Maintenance 1 mois"],
+                cta: { label: "Choisir Pro", href: "/contact" },
+                highlighted: true,
+              },
+              {
+                name: "Sur mesure",
+                price: "Sur devis",
+                description: "Projets complexes",
+                features: ["Pages illimitées", "Fonctionnalités custom", "Intégrations", "Support dédié"],
+                cta: { label: "Nous contacter", href: "/contact" },
+              },
+            ],
+          },
+        },
+        {
+          type: "team",
+          style: { background: "white", padding: "lg" },
+          props: {
+            title: "Notre équipe",
+            items: [
+              { name: "Alice Martin", role: "Directrice", imageUrl: "https://i.pravatar.cc/150?img=1" },
+              { name: "Baptiste Roy", role: "Développeur", imageUrl: "https://i.pravatar.cc/150?img=3" },
+              { name: "Chloé Dupont", role: "Designer", imageUrl: "https://i.pravatar.cc/150?img=5" },
+            ],
+          },
+        },
+        {
+          type: "timeline",
+          style: { background: "light", padding: "lg" },
+          props: {
+            title: "Notre histoire",
+            items: [
+              { date: "2020", title: "Création", description: "Lancement de l'agence avec une première équipe de 2 personnes." },
+              { date: "2021", title: "10 clients", description: "Franchissement du cap des 10 clients satisfaits." },
+              { date: "2023", title: "Expansion", description: "Ouverture d'un second bureau et recrutement de 5 nouveaux collaborateurs." },
+              { date: "2024", title: "50 projets", description: "Plus de 50 sites livrés avec une satisfaction client de 4.9/5." },
+            ],
+          },
+        },
+        {
+          type: "video",
+          style: { background: "white", padding: "lg" },
+          props: {
+            title: "Présentation en vidéo",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            caption: "Découvrez notre méthode en 2 minutes",
+          },
+        },
+        {
+          type: "gallery",
+          style: { background: "light", padding: "lg" },
+          props: {
+            title: "Nos réalisations",
+            columns: 3,
+            items: [
+              { imageUrl: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&auto=format", alt: "Site e-commerce", caption: "Site e-commerce" },
+              { imageUrl: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&auto=format", alt: "Site vitrine", caption: "Site vitrine" },
+              { imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format", alt: "Dashboard", caption: "Dashboard" },
+              { imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format", alt: "Application web", caption: "Application web" },
+              { imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format", alt: "Collaboration", caption: "Collaboration" },
+              { imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&auto=format", alt: "Réunion", caption: "Réunion client" },
+            ],
+          },
+        },
+        {
+          type: "newsletter",
+          style: { background: "dark" },
+          props: {
+            title: "Restez informé",
+            subtitle: "Recevez nos conseils et actualités directement dans votre boîte mail.",
+            placeholder: "votre@email.fr",
+            buttonLabel: "S'inscrire",
+            formAction: "https://moncompte.us1.list-manage.com/subscribe/post?u=XXXX&id=XXXX",
           },
         },
       ],

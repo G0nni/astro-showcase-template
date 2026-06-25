@@ -1,0 +1,50 @@
+---
+import type { TeamBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = TeamBlock['props'] & { style?: SectionStyle };
+
+const { title, items, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass = isDark ? 'text-white' : 'text-gray-900';
+const nameClass    = isDark ? 'text-white' : 'text-gray-900';
+const roleClass    = isDark ? 'text-white/60' : 'text-gray-400';
+const cardClass    = isDark ? '' : '';
+const avatarBg     = isDark ? 'bg-white/10 text-white' : 'bg-gray-100 text-gray-400';
+const cols = items.length <= 2 ? 'md:grid-cols-2 max-w-lg mx-auto'
+           : items.length === 3 ? 'md:grid-cols-3'
+           : 'md:grid-cols-4';
+---
+
+<SectionWrapper style={style}>
+  {title && (
+    <h2 class={`text-3xl md:text-4xl font-bold text-center ${headingClass} mb-16`}>{title}</h2>
+  )}
+
+  <div class={`grid gap-8 ${cols}`}>
+    {items.map((member: import('../../types/site').TeamMember) => (
+      <div class={`text-center ${cardClass}`}>
+        {member.imageUrl ? (
+          <img
+            src={member.imageUrl}
+            alt={member.name}
+            class="w-20 h-20 rounded-full object-cover mx-auto mb-4 ring-2 ring-gray-100"
+            loading="lazy"
+          />
+        ) : (
+          <div class={`w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold ${avatarBg}`}>
+            {member.name.charAt(0).toUpperCase()}
+          </div>
+        )}
+        <p class={`font-semibold ${nameClass}`}>{member.name}</p>
+        <p class={`text-sm mt-0.5 ${roleClass}`}>{member.role}</p>
+        {member.link && (
+          <a href={member.link} class="inline-block mt-2 text-xs text-[var(--color-brand,#2563eb)] hover:underline" target="_blank" rel="noopener">
+            Voir le profil →
+          </a>
+        )}
+      </div>
+    ))}
+  </div>
+</SectionWrapper>

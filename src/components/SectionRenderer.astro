@@ -3,17 +3,25 @@ import type {
   SectionBlock,
   HeroBlock, FeaturesBlock, CtaBlock, TextBlock, ContactInfoBlock,
   StatsBlock, TestimonialsBlock, ImageTextBlock, FaqBlock, LogosBlock,
+  PricingBlock, StepsBlock, TeamBlock, TimelineBlock, VideoBlock, GalleryBlock, NewsletterBlock,
 } from '../types/site';
-import Hero from './sections/Hero.astro';
-import Features from './sections/Features.astro';
-import CTA from './sections/CTA.astro';
-import TextSection from './sections/TextSection.astro';
-import ContactInfo from './sections/ContactInfo.astro';
-import Stats from './sections/Stats.astro';
+import Hero         from './sections/Hero.astro';
+import Features     from './sections/Features.astro';
+import CTA          from './sections/CTA.astro';
+import TextSection  from './sections/TextSection.astro';
+import ContactInfo  from './sections/ContactInfo.astro';
+import Stats        from './sections/Stats.astro';
 import Testimonials from './sections/Testimonials.astro';
-import ImageText from './sections/ImageText.astro';
-import FAQ from './sections/FAQ.astro';
-import Logos from './sections/Logos.astro';
+import ImageText    from './sections/ImageText.astro';
+import FAQ          from './sections/FAQ.astro';
+import Logos        from './sections/Logos.astro';
+import Pricing      from './sections/Pricing.astro';
+import Steps        from './sections/Steps.astro';
+import Team         from './sections/Team.astro';
+import Timeline     from './sections/Timeline.astro';
+import Video        from './sections/Video.astro';
+import Gallery      from './sections/Gallery.astro';
+import Newsletter   from './sections/Newsletter.astro';
 
 interface Props {
   block: SectionBlock;
@@ -32,3 +40,10 @@ const { block } = Astro.props;
 {block.type === 'imageText'    && <ImageText    {...(block as ImageTextBlock).props}    style={(block as ImageTextBlock).style} />}
 {block.type === 'faq'          && <FAQ          {...(block as FaqBlock).props}          style={(block as FaqBlock).style} />}
 {block.type === 'logos'        && <Logos        {...(block as LogosBlock).props}        style={(block as LogosBlock).style} />}
+{block.type === 'pricing'      && <Pricing      {...(block as PricingBlock).props}      style={(block as PricingBlock).style} />}
+{block.type === 'steps'        && <Steps        {...(block as StepsBlock).props}        style={(block as StepsBlock).style} />}
+{block.type === 'team'         && <Team         {...(block as TeamBlock).props}         style={(block as TeamBlock).style} />}
+{block.type === 'timeline'     && <Timeline     {...(block as TimelineBlock).props}     style={(block as TimelineBlock).style} />}
+{block.type === 'video'        && <Video        {...(block as VideoBlock).props}        style={(block as VideoBlock).style} />}
+{block.type === 'gallery'      && <Gallery      {...(block as GalleryBlock).props}      style={(block as GalleryBlock).style} />}
+{block.type === 'newsletter'   && <Newsletter   {...(block as NewsletterBlock).props}   style={(block as NewsletterBlock).style} />}

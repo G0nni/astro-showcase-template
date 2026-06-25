@@ -12,7 +12,10 @@ export type SectionStyle = {
   background?: 'white' | 'light' | 'dark' | 'primary' | 'gradient';
   padding?: 'sm' | 'md' | 'lg';
   align?: 'left' | 'center';
+  backgroundImage?: string;
 };
+
+// ── Existing section types ──────────────────────────────────────────────────
 
 export type HeroBlock = {
   type: 'hero';
@@ -22,6 +25,8 @@ export type HeroBlock = {
     subtitle: string;
     ctaPrimary: CtaLink;
     ctaSecondary?: CtaLink;
+    variant?: 'centered' | 'split';
+    splitImage?: { url: string; alt: string };
   };
 };
 
@@ -31,6 +36,7 @@ export type FeaturesBlock = {
   props: {
     title: string;
     items: FeatureItem[];
+    layout?: 'grid' | 'list';
   };
 };
 
@@ -114,6 +120,113 @@ export type LogosBlock = {
   };
 };
 
+// ── New section types ───────────────────────────────────────────────────────
+
+export type PricingPlan = {
+  name: string;
+  price: string;
+  period?: string;
+  description?: string;
+  features: string[];
+  cta: CtaLink;
+  highlighted?: boolean;
+};
+
+export type PricingBlock = {
+  type: 'pricing';
+  style?: SectionStyle;
+  props: {
+    title?: string;
+    plans: PricingPlan[];
+  };
+};
+
+export type StepItem = {
+  number?: string;
+  title: string;
+  description: string;
+};
+
+export type StepsBlock = {
+  type: 'steps';
+  style?: SectionStyle;
+  props: {
+    title?: string;
+    items: StepItem[];
+  };
+};
+
+export type TeamMember = {
+  name: string;
+  role: string;
+  imageUrl?: string;
+  link?: string;
+};
+
+export type TeamBlock = {
+  type: 'team';
+  style?: SectionStyle;
+  props: {
+    title?: string;
+    items: TeamMember[];
+  };
+};
+
+export type TimelineItem = {
+  date: string;
+  title: string;
+  description: string;
+};
+
+export type TimelineBlock = {
+  type: 'timeline';
+  style?: SectionStyle;
+  props: {
+    title?: string;
+    items: TimelineItem[];
+  };
+};
+
+export type VideoBlock = {
+  type: 'video';
+  style?: SectionStyle;
+  props: {
+    title?: string;
+    videoUrl: string;
+    caption?: string;
+  };
+};
+
+export type GalleryItem = {
+  imageUrl: string;
+  alt: string;
+  caption?: string;
+};
+
+export type GalleryBlock = {
+  type: 'gallery';
+  style?: SectionStyle;
+  props: {
+    title?: string;
+    items: GalleryItem[];
+    columns?: 2 | 3 | 4;
+  };
+};
+
+export type NewsletterBlock = {
+  type: 'newsletter';
+  style?: SectionStyle;
+  props: {
+    title?: string;
+    subtitle?: string;
+    placeholder?: string;
+    buttonLabel?: string;
+    formAction: string;
+  };
+};
+
+// ── Union ───────────────────────────────────────────────────────────────────
+
 export type SectionBlock =
   | HeroBlock
   | FeaturesBlock
@@ -124,7 +237,16 @@ export type SectionBlock =
   | TestimonialsBlock
   | ImageTextBlock
   | FaqBlock
-  | LogosBlock;
+  | LogosBlock
+  | PricingBlock
+  | StepsBlock
+  | TeamBlock
+  | TimelineBlock
+  | VideoBlock
+  | GalleryBlock
+  | NewsletterBlock;
+
+// ── Config ──────────────────────────────────────────────────────────────────
 
 export type PageConfig = {
   seo: {
@@ -144,6 +266,7 @@ export type SiteConfig = {
     name: string;
     url: string;
     description: string;
+    brandColor?: string;
   };
   seo: {
     defaultTitle: string;

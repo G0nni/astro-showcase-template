@@ -35,6 +35,13 @@ const nav = [
       { label: 'faq', href: '#section-faq', code: true },
       { label: 'contactInfo', href: '#section-contactinfo', code: true },
       { label: 'logos', href: '#section-logos', code: true },
+      { label: 'pricing', href: '#section-pricing', code: true },
+      { label: 'steps', href: '#section-steps', code: true },
+      { label: 'team', href: '#section-team', code: true },
+      { label: 'timeline', href: '#section-timeline', code: true },
+      { label: 'video', href: '#section-video', code: true },
+      { label: 'gallery', href: '#section-gallery', code: true },
+      { label: 'newsletter', href: '#section-newsletter', code: true },
     ],
   },
   {
@@ -180,6 +187,85 @@ const logosDemo: SectionBlock = {
       { name: 'Astro', imageUrl: 'https://astro.build/favicon.svg' },
       { name: 'Tailwind', imageUrl: 'https://tailwindcss.com/favicons/favicon-32x32.png' },
     ],
+  },
+};
+const pricingDemo: SectionBlock = {
+  type: 'pricing',
+  style: { background: 'light', padding: 'md' },
+  props: {
+    title: 'Nos tarifs',
+    plans: [
+      { name: 'Starter', price: '490€', features: ['1 page', 'Design responsive', 'SEO de base'], cta: { label: 'Choisir', href: '#' } },
+      { name: 'Pro', price: '990€', features: ["Jusqu'à 5 pages", 'Design premium', 'SEO avancé', 'Maintenance'], cta: { label: 'Choisir Pro', href: '#' }, highlighted: true },
+      { name: 'Sur mesure', price: 'Devis', features: ['Pages illimitées', 'Custom', 'Support dédié'], cta: { label: 'Nous contacter', href: '#' } },
+    ],
+  },
+};
+const stepsDemo: SectionBlock = {
+  type: 'steps',
+  style: { background: 'white', padding: 'md' },
+  props: {
+    title: 'Comment ça marche',
+    items: [
+      { title: 'Clonez le repo', description: 'git clone puis npm install pour démarrer en local.' },
+      { title: 'Éditez site.ts', description: 'Modifiez les textes et sections depuis un seul fichier.' },
+      { title: 'Déployez', description: 'Un push sur main lance automatiquement le déploiement.' },
+    ],
+  },
+};
+const teamDemo: SectionBlock = {
+  type: 'team',
+  style: { background: 'light', padding: 'md' },
+  props: {
+    title: 'Notre équipe',
+    items: [
+      { name: 'Alice Martin', role: 'Directrice', imageUrl: 'https://i.pravatar.cc/150?img=1' },
+      { name: 'Baptiste Roy', role: 'Développeur', imageUrl: 'https://i.pravatar.cc/150?img=3' },
+      { name: 'Chloé Dupont', role: 'Designer', imageUrl: 'https://i.pravatar.cc/150?img=5' },
+    ],
+  },
+};
+const timelineDemo: SectionBlock = {
+  type: 'timeline',
+  style: { background: 'white', padding: 'md' },
+  props: {
+    title: 'Notre histoire',
+    items: [
+      { date: '2020', title: 'Création', description: 'Lancement de l\'agence.' },
+      { date: '2022', title: '10 clients', description: 'Premier cap franchi.' },
+      { date: '2024', title: '50 projets', description: 'Satisfaction 4.9/5.' },
+    ],
+  },
+};
+const videoDemo: SectionBlock = {
+  type: 'video',
+  style: { background: 'light', padding: 'md' },
+  props: {
+    title: 'Présentation en vidéo',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    caption: 'Découvrez notre méthode en 2 minutes',
+  },
+};
+const galleryDemo: SectionBlock = {
+  type: 'gallery',
+  style: { background: 'white', padding: 'md' },
+  props: {
+    title: 'Nos réalisations',
+    columns: 3,
+    items: [
+      { imageUrl: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&auto=format', alt: 'Site 1', caption: 'E-commerce' },
+      { imageUrl: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&auto=format', alt: 'Site 2', caption: 'Site vitrine' },
+      { imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format', alt: 'Dashboard', caption: 'Dashboard' },
+    ],
+  },
+};
+const newsletterDemo: SectionBlock = {
+  type: 'newsletter',
+  style: { background: 'dark', padding: 'md' },
+  props: {
+    title: 'Restez informé',
+    subtitle: 'Recevez nos conseils directement dans votre boîte mail.',
+    formAction: '#',
   },
 };
 ---
@@ -340,11 +426,15 @@ const logosDemo: SectionBlock = {
       <h2 class="text-2xl font-bold text-gray-900 mb-2">Personnaliser les styles</h2>
       <p class="text-gray-500 mb-5">Chaque section accepte un champ <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">style</code> optionnel. Les couleurs internes s'adaptent automatiquement.</p>
       <Code
-        code={`{\n  type: "features",\n  style: {\n    background: "dark",  // "white" | "light" | "dark" | "primary" | "gradient"\n    padding: "lg",       // "sm" | "md" | "lg" — défaut: "md"\n  },\n  props: { ... },\n}`}
+        code={`{\n  type: "features",\n  style: {\n    background: "dark",         // "white" | "light" | "dark" | "primary" | "gradient"\n    padding: "lg",              // "sm" | "md" | "lg" — défaut: "md"\n    align: "left",              // "left" | "center" — défaut: "center"\n    backgroundImage: "https://example.com/photo.jpg", // image de fond (overlay sombre auto)\n  },\n  props: { ... },\n}`}
         lang="ts"
         theme="github-dark"
         class="rounded-xl overflow-hidden mb-5"
       />
+      <div class="bg-amber-50 border border-amber-100 rounded-xl p-4 text-sm text-amber-800 mb-5">
+        <strong>Couleur primaire globale :</strong> changez <code class="bg-white/60 px-1 rounded">global.brandColor</code> dans <code class="bg-white/60 px-1 rounded">site.ts</code> pour personnaliser la couleur de toutes les sections <code class="bg-white/60 px-1 rounded">primary</code>, les boutons et les accents d'un seul coup.
+        <Code code={`global: {\n  name: "Mon Site",\n  brandColor: "#7c3aed", // ← violet au lieu du bleu par défaut\n}`} lang="ts" theme="github-light" class="rounded-lg overflow-hidden mt-3 text-xs" />
+      </div>
       <div class="grid grid-cols-5 gap-2 text-center text-xs">
         {[
           { name: 'white', bg: 'bg-white border border-gray-200', text: 'text-gray-700' },
@@ -446,6 +536,62 @@ const logosDemo: SectionBlock = {
       <p class="text-gray-500 text-sm mb-4">Rangée de logos clients ou partenaires. Discret avec un effet hover couleur.</p>
       <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={logosDemo} /></div>
       <Code code={`{\n  type: "logos",\n  style: { background: "light", padding: "sm" },\n  props: {\n    title: "Ils nous font confiance", // optionnel\n    items: [\n      { name: "Partenaire A", imageUrl: "https://..." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- pricing -->
+    <section id="section-pricing" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">pricing</code>
+      <p class="text-gray-500 text-sm mb-4">Tableau de tarifs. Marquez un plan avec <code class="bg-gray-100 px-1 rounded text-xs">highlighted: true</code> pour le mettre en avant.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={pricingDemo} /></div>
+      <Code code={`{\n  type: "pricing",\n  style: { background: "light" },\n  props: {\n    title: "Nos tarifs",\n    plans: [\n      {\n        name: "Starter",\n        price: "490€",\n        features: ["1 page", "Design responsive", "SEO"],\n        cta: { label: "Choisir", href: "/contact" },\n      },\n      {\n        name: "Pro",\n        price: "990€",\n        features: ["5 pages", "Premium", "Maintenance"],\n        cta: { label: "Choisir Pro", href: "/contact" },\n        highlighted: true, // ← badge "Recommandé"\n      },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- steps -->
+    <section id="section-steps" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">steps</code>
+      <p class="text-gray-500 text-sm mb-4">Processus en étapes numérotées. Idéal pour expliquer "Comment ça marche".</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={stepsDemo} /></div>
+      <Code code={`{\n  type: "steps",\n  style: { background: "white" },\n  props: {\n    title: "Comment ça marche",\n    items: [\n      { title: "Étape 1", description: "Description..." },\n      { title: "Étape 2", description: "Description...", number: "02" }, // numéro personnalisable\n      { title: "Étape 3", description: "Description..." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- team -->
+    <section id="section-team" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">team</code>
+      <p class="text-gray-500 text-sm mb-4">Grille de membres avec photo ronde (optionnelle), nom, rôle et lien. Idéal sur une page À propos.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={teamDemo} /></div>
+      <Code code={`{\n  type: "team",\n  style: { background: "light" },\n  props: {\n    title: "Notre équipe", // optionnel\n    items: [\n      {\n        name: "Alice Martin",\n        role: "Directrice",\n        imageUrl: "https://example.com/photo.jpg", // optionnel — initiale affichée si absent\n        link: "https://linkedin.com/in/...",        // optionnel\n      },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- timeline -->
+    <section id="section-timeline" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">timeline</code>
+      <p class="text-gray-500 text-sm mb-4">Historique en frise chronologique. Items alternés gauche/droite sur desktop.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={timelineDemo} /></div>
+      <Code code={`{\n  type: "timeline",\n  style: { background: "white" },\n  props: {\n    title: "Notre histoire", // optionnel\n    items: [\n      { date: "2020", title: "Création", description: "Lancement de l'agence." },\n      { date: "2022", title: "10 clients", description: "Premier cap." },\n      { date: "2024", title: "50 projets", description: "Satisfaction 4.9/5." },\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- video -->
+    <section id="section-video" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">video</code>
+      <p class="text-gray-500 text-sm mb-4">Embed YouTube ou Vimeo en 16/9, chargement lazy. Utilisez l'URL d'embed (pas l'URL de la page).</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={videoDemo} /></div>
+      <Code code={`{\n  type: "video",\n  style: { background: "light" },\n  props: {\n    title: "Présentation", // optionnel\n    videoUrl: "https://www.youtube.com/embed/ID_VIDEO",\n    // YouTube : remplacez watch?v=XXX par embed/XXX\n    // Vimeo   : https://player.vimeo.com/video/ID_VIDEO\n    caption: "Légende optionnelle sous la vidéo",\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- gallery -->
+    <section id="section-gallery" class="mb-14 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">gallery</code>
+      <p class="text-gray-500 text-sm mb-4">Grille d'images avec hover. Configurable en 2, 3 ou 4 colonnes. Idéal pour un portfolio ou des réalisations.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={galleryDemo} /></div>
+      <Code code={`{\n  type: "gallery",\n  style: { background: "white" },\n  props: {\n    title: "Nos réalisations", // optionnel\n    columns: 3,               // 2 | 3 | 4 — défaut: 3\n    items: [\n      { imageUrl: "https://...", alt: "Description", caption: "Légende" }, // caption optionnel\n    ],\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
+    </section>
+
+    <!-- newsletter -->
+    <section id="section-newsletter" class="mb-16 scroll-mt-20">
+      <code class="text-lg font-mono font-bold text-blue-600 block mb-1">newsletter</code>
+      <p class="text-gray-500 text-sm mb-4">Formulaire d'inscription email. Pointez <code class="bg-gray-100 px-1 rounded text-xs">formAction</code> vers votre URL Mailchimp ou ConvertKit. Zéro JavaScript.</p>
+      <div class="rounded-xl overflow-hidden border border-gray-200 mb-4"><SectionRenderer block={newsletterDemo} /></div>
+      <Code code={`{\n  type: "newsletter",\n  style: { background: "dark" },\n  props: {\n    title: "Restez informé",\n    subtitle: "Recevez nos conseils par email.",  // optionnel\n    placeholder: "votre@email.fr",               // optionnel\n    buttonLabel: "S'inscrire",                   // optionnel\n    // Mailchimp : Dashboard → Audience → Signup forms → URL du formulaire\n    formAction: "https://moncompte.us1.list-manage.com/subscribe/post?u=XXX&id=XXX",\n  },\n}`} lang="ts" theme="github-dark" class="rounded-xl overflow-hidden" />
     </section>
 
     <hr class="border-gray-100 mb-16" />

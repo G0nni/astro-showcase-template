@@ -7,12 +7,14 @@ interface Props {
 
 const { style = {} } = Astro.props;
 
+const hasBackgroundImage = !!style.backgroundImage;
+
 const bgMap: Record<string, string> = {
   white: 'bg-white',
   light: 'bg-gray-50',
   dark: 'bg-gray-900',
-  primary: 'bg-blue-600',
-  gradient: 'bg-gradient-to-br from-blue-600 to-purple-700',
+  primary: 'bg-[var(--color-brand,#2563eb)]',
+  gradient: 'bg-gradient-to-br from-[var(--color-brand,#2563eb)] to-purple-700',
 };
 
 const paddingMap: Record<string, string> = {
@@ -30,13 +32,20 @@ const textMap: Record<string, string> = {
 };
 
 const bg = style.background ?? 'white';
-const bgClass = bgMap[bg] ?? 'bg-white';
-const textClass = textMap[bg] ?? 'text-gray-900';
+const bgClass = hasBackgroundImage ? '' : (bgMap[bg] ?? 'bg-white');
+const textClass = hasBackgroundImage ? 'text-white' : (textMap[bg] ?? 'text-gray-900');
 const paddingClass = paddingMap[style.padding ?? 'md'] ?? 'py-16';
+const alignClass = style.align === 'left' ? 'text-left' : 'text-center';
 ---
 
-<section class={`${bgClass} ${textClass} ${paddingClass}`}>
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
+<section
+  class={`relative ${bgClass} ${textClass} ${paddingClass}`}
+  style={hasBackgroundImage ? `background-image: url('${style.backgroundImage}'); background-size: cover; background-position: center; background-repeat: no-repeat;` : ''}
+>
+  {hasBackgroundImage && (
+    <div class="absolute inset-0 bg-black/55" aria-hidden="true" />
+  )}
+  <div class={`relative max-w-6xl mx-auto px-4 sm:px-6 ${alignClass}`}>
     <slot />
   </div>
 </section>

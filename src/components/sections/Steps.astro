@@ -1,0 +1,42 @@
+---
+import type { StepsBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = StepsBlock['props'] & { style?: SectionStyle };
+
+const { title, items, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass = isDark ? 'text-white' : 'text-gray-900';
+const stepTitleClass = isDark ? 'text-white' : 'text-gray-900';
+const stepDescClass  = isDark ? 'text-white/70' : 'text-gray-500';
+const lineClass      = isDark ? 'border-white/20' : 'border-gray-200';
+---
+
+<SectionWrapper style={style}>
+  {title && (
+    <h2 class={`text-3xl md:text-4xl font-bold text-center ${headingClass} mb-16`}>{title}</h2>
+  )}
+
+  <div class="max-w-2xl mx-auto">
+    {items.map((item: import('../../types/site').StepItem, i: number) => (
+      <div class="flex gap-6">
+        <!-- Step indicator + line -->
+        <div class="flex flex-col items-center">
+          <div class={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-bold text-sm bg-[var(--color-brand,#2563eb)] text-white`}>
+            {item.number ?? (i + 1)}
+          </div>
+          {i < items.length - 1 && (
+            <div class={`w-px flex-1 my-2 border-l-2 border-dashed ${lineClass}`}></div>
+          )}
+        </div>
+
+        <!-- Content -->
+        <div class={`pb-10 ${i === items.length - 1 ? 'pb-0' : ''}`}>
+          <h3 class={`font-semibold text-lg ${stepTitleClass} mb-2`}>{item.title}</h3>
+          <p class={`${stepDescClass} leading-relaxed`}>{item.description}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</SectionWrapper>

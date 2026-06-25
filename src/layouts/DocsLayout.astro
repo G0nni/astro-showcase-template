@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+import { siteConfig } from '../config/site';
+
+const brandColor = siteConfig.global.brandColor ?? '#2563eb';
 
 interface NavItem {
   label: string;
@@ -25,6 +28,7 @@ const { title = 'Documentation', nav } = Astro.props;
   <meta name="viewport" content="width=device-width" />
   <title>{title} — Astro Showcase Template</title>
   <link rel="icon" href="/favicon.svg" />
+  <style set:html={`:root{--color-brand:${brandColor}}`}></style>
 </head>
 <body class="bg-white text-gray-900 antialiased">
 

@@ -8,11 +8,11 @@ const { title, paragraphs, style } = Astro.props;
 
 const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
 const headingClass = isDark ? 'text-white' : 'text-gray-900';
-const paraClass = isDark ? 'text-white/70' : 'text-gray-600';
+const paraClass    = isDark ? 'text-white/70' : 'text-gray-600';
 ---
 
 <SectionWrapper style={style}>
-  <div class="max-w-3xl mx-auto">
+  <div class="max-w-3xl">
     <h1 class={`text-4xl md:text-5xl font-bold ${headingClass} mb-12 leading-tight`}>
       {title}
     </h1>

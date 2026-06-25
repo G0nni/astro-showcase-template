@@ -1,0 +1,50 @@
+---
+import type { NewsletterBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = NewsletterBlock['props'] & { style?: SectionStyle };
+
+const {
+  title = 'Restez informé',
+  subtitle,
+  placeholder = 'votre@email.fr',
+  buttonLabel = "S'inscrire",
+  formAction,
+  style,
+} = Astro.props;
+
+const effectiveStyle: SectionStyle = { background: 'light', ...style };
+const isDark = ['dark', 'primary', 'gradient'].includes(effectiveStyle.background ?? 'light');
+const headingClass   = isDark ? 'text-white' : 'text-gray-900';
+const subtitleClass  = isDark ? 'text-white/70' : 'text-gray-500';
+const inputClass     = isDark
+  ? 'flex-1 min-w-0 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-white/40 text-sm'
+  : 'flex-1 min-w-0 px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[var(--color-brand,#2563eb)] text-sm';
+const btnClass = isDark
+  ? 'shrink-0 px-6 py-3 bg-white text-gray-900 font-semibold rounded-xl hover:bg-gray-100 transition-colors text-sm'
+  : 'shrink-0 px-6 py-3 bg-[var(--color-brand,#2563eb)] text-white font-semibold rounded-xl hover:opacity-90 transition-opacity text-sm';
+---
+
+<SectionWrapper style={effectiveStyle}>
+  <div class="max-w-xl mx-auto text-center">
+    <h2 class={`text-2xl md:text-3xl font-bold ${headingClass} mb-3`}>{title}</h2>
+    {subtitle && <p class={`${subtitleClass} mb-8`}>{subtitle}</p>}
+
+    <form action={formAction} method="post" class="flex flex-col sm:flex-row gap-3">
+      <input
+        type="email"
+        name="EMAIL"
+        placeholder={placeholder}
+        required
+        class={inputClass}
+      />
+      <button type="submit" class={btnClass}>
+        {buttonLabel}
+      </button>
+    </form>
+
+    <p class={`text-xs mt-3 ${isDark ? 'text-white/40' : 'text-gray-400'}`}>
+      Pas de spam. Désabonnement en un clic.
+    </p>
+  </div>
+</SectionWrapper>

@@ -1,0 +1,47 @@
+---
+import type { TimelineBlock, SectionStyle } from '../../types/site';
+import SectionWrapper from './SectionWrapper.astro';
+
+type Props = TimelineBlock['props'] & { style?: SectionStyle };
+
+const { title, items, style } = Astro.props;
+
+const isDark = style?.background && ['dark', 'primary', 'gradient'].includes(style.background);
+const headingClass = isDark ? 'text-white' : 'text-gray-900';
+const dateClass    = isDark ? 'text-[var(--color-brand,#2563eb)]' : 'text-[var(--color-brand,#2563eb)]';
+const titleClass   = isDark ? 'text-white' : 'text-gray-900';
+const descClass    = isDark ? 'text-white/70' : 'text-gray-500';
+const lineClass    = isDark ? 'bg-white/20' : 'bg-gray-200';
+const dotClass     = 'bg-[var(--color-brand,#2563eb)]';
+---
+
+<SectionWrapper style={style}>
+  {title && (
+    <h2 class={`text-3xl md:text-4xl font-bold text-center ${headingClass} mb-16`}>{title}</h2>
+  )}
+
+  <div class="relative max-w-3xl mx-auto">
+    <!-- Vertical line -->
+    <div class={`absolute left-4 md:left-1/2 top-0 bottom-0 w-px ${lineClass} md:-translate-x-px`}></div>
+
+    <div class="space-y-10">
+      {items.map((item: import('../../types/site').TimelineItem, i: number) => (
+        <div class={`relative flex gap-6 md:gap-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+          <!-- Dot (mobile: left, desktop: center) -->
+          <div class="relative z-10 shrink-0 md:absolute md:left-1/2 md:-translate-x-1/2 md:top-2">
+            <div class={`w-8 h-8 rounded-full ${dotClass} flex items-center justify-center`}>
+              <div class="w-3 h-3 rounded-full bg-white"></div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class={`md:w-[45%] ${i % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12 md:ml-auto'}`}>
+            <p class={`text-xs font-bold uppercase tracking-widest mb-1 ${dateClass}`}>{item.date}</p>
+            <h3 class={`font-semibold text-lg ${titleClass} mb-2`}>{item.title}</h3>
+            <p class={`${descClass} leading-relaxed text-sm`}>{item.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</SectionWrapper>
