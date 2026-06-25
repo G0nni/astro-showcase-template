@@ -1,18 +1,26 @@
 ---
-import { siteConfig } from "../../config/site";
+import type { FeaturesBlock } from '../../types/site';
+
+type Props = FeaturesBlock['props'];
+
+const { title, items } = Astro.props;
 ---
 
-<section class="py-20 max-w-5xl mx-auto">
-  <h2 class="text-3xl font-bold text-center mb-12">
-    Pourquoi nous choisir
-  </h2>
+<section class="py-24 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
 
-  <div class="grid md:grid-cols-3 gap-8">
-    {siteConfig.features.map((f) => (
-      <div class="p-6 border rounded-xl hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2">{f.title}</h3>
-        <p class="text-gray-600">{f.description}</p>
-      </div>
-    ))}
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-16">
+      {title}
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      {items.map((item) => (
+        <div class="p-8 border border-gray-100 rounded-2xl hover:shadow-lg hover:border-gray-200 transition-all duration-200 bg-white">
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
+          <p class="text-gray-500 leading-relaxed">{item.description}</p>
+        </div>
+      ))}
+    </div>
+
   </div>
 </section>

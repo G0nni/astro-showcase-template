@@ -1,12 +1,17 @@
 ---
-import BaseLayout from "../components/layout/BaseLayout.astro";
-import AboutSection from "../components/sections/AboutSection.astro";
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import SectionRenderer from '../components/SectionRenderer.astro';
+import { siteConfig } from '../config/site';
+
+const page = siteConfig.pages.about;
 ---
 
 <BaseLayout
-  title="À propos"
-  description="Présentation du projet"
+  title={page.seo.title}
+  description={page.seo.description}
   pathname="/about"
 >
-  <AboutSection />
+  {page.sections.map((block) => (
+    <SectionRenderer block={block} />
+  ))}
 </BaseLayout>

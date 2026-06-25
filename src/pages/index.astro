@@ -1,18 +1,17 @@
 ---
-import BaseLayout from "../components/layout/BaseLayout.astro";
-import Hero from "../components/sections/Hero.astro";
-import Features from "../components/sections/Features.astro";
-import CTA from "../components/sections/CTA.astro";
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import SectionRenderer from '../components/SectionRenderer.astro';
+import { siteConfig } from '../config/site';
 
-import { siteConfig } from "../config/site";
+const page = siteConfig.pages.home;
 ---
 
 <BaseLayout
-  title={siteConfig.seo.defaultTitle}
-  description={siteConfig.seo.defaultDescription}
+  title={page.seo.title}
+  description={page.seo.description}
   pathname="/"
 >
-  <Hero />
-  <Features />
-  <CTA />
+  {page.sections.map((block) => (
+    <SectionRenderer block={block} />
+  ))}
 </BaseLayout>

@@ -1,0 +1,20 @@
+---
+import type { SectionBlock, HeroBlock, FeaturesBlock, CtaBlock, TextBlock, ContactInfoBlock } from '../types/site';
+import Hero from './sections/Hero.astro';
+import Features from './sections/Features.astro';
+import CTA from './sections/CTA.astro';
+import TextSection from './sections/TextSection.astro';
+import ContactInfo from './sections/ContactInfo.astro';
+
+interface Props {
+  block: SectionBlock;
+}
+
+const { block } = Astro.props;
+---
+
+{block.type === 'hero' && <Hero {...(block as HeroBlock).props} />}
+{block.type === 'features' && <Features {...(block as FeaturesBlock).props} />}
+{block.type === 'cta' && <CTA {...(block as CtaBlock).props} />}
+{block.type === 'text' && <TextSection {...(block as TextBlock).props} />}
+{block.type === 'contactInfo' && <ContactInfo {...(block as ContactInfoBlock).props} />}

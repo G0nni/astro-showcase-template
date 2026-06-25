@@ -1,12 +1,17 @@
 ---
-import BaseLayout from "../components/layout/BaseLayout.astro";
-import ContactSection from "../components/sections/ContactSection.astro";
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import SectionRenderer from '../components/SectionRenderer.astro';
+import { siteConfig } from '../config/site';
+
+const page = siteConfig.pages.contact;
 ---
 
 <BaseLayout
-  title="Contact"
-  description="Contactez-nous"
+  title={page.seo.title}
+  description={page.seo.description}
   pathname="/contact"
 >
-  <ContactSection />
+  {page.sections.map((block) => (
+    <SectionRenderer block={block} />
+  ))}
 </BaseLayout>

@@ -1,9 +1,21 @@
 ---
-import { siteConfig } from "../../config/site";
+import { siteConfig } from '../../config/site';
 ---
 
-<footer class="border-t mt-20">
-  <div class="max-w-6xl mx-auto p-6 text-center text-sm text-gray-500">
-    {siteConfig.footer.text}
+<footer class="border-t border-gray-100 bg-white">
+  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+
+    <p class="text-sm text-gray-400">
+      {siteConfig.footer.text}
+    </p>
+
+    <nav class="flex gap-6">
+      {siteConfig.navigation.map((item) => (
+        <a href={item.href} class="text-sm text-gray-400 hover:text-gray-600 transition-colors">
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
   </div>
 </footer>

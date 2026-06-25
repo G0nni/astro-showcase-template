@@ -1,0 +1,52 @@
+---
+import type { ContactInfoBlock } from '../../types/site';
+
+type Props = ContactInfoBlock['props'];
+
+const { title, subtitle, email, linkedin, location } = Astro.props;
+---
+
+<section class="py-24 bg-white">
+  <div class="max-w-2xl mx-auto px-6 text-center">
+
+    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      {title}
+    </h1>
+
+    {subtitle && (
+      <p class="text-gray-500 text-lg leading-relaxed mb-12">
+        {subtitle}
+      </p>
+    )}
+
+    <div class="space-y-4 text-left">
+
+      {email && (
+        <div class="p-6 border border-gray-100 rounded-2xl hover:shadow-md transition-all duration-200">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Email</p>
+          <a href={`mailto:${email}`} class="text-lg font-semibold text-gray-900 hover:underline">
+            {email}
+          </a>
+        </div>
+      )}
+
+      {linkedin && (
+        <div class="p-6 border border-gray-100 rounded-2xl hover:shadow-md transition-all duration-200">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">LinkedIn</p>
+          <a href={linkedin.href} class="text-lg font-semibold text-gray-900 hover:underline">
+            {linkedin.label}
+          </a>
+        </div>
+      )}
+
+      {location && (
+        <div class="p-6 border border-gray-100 rounded-2xl">
+          <p class="text-xs text-gray-400 uppercase tracking-widest mb-2">Localisation</p>
+          <p class="text-lg font-semibold text-gray-900">{location}</p>
+        </div>
+      )}
+
+    </div>
+
+  </div>
+</section>
