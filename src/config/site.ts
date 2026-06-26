@@ -1,334 +1,173 @@
-// Template : SaaS / Produit digital
+// Template : Freelance / Portfolio
 // Copiez ce contenu dans src/config/site.ts pour démarrer avec ce template.
 
 import type { SiteConfig } from "../types/site";
 
 export const siteConfig: SiteConfig = {
   global: {
-    name: "FlowDesk",
-    url: "https://flowdesk.app",
+    name: "Alex Moreau",
+    url: "https://alexmoreau.dev",
     description:
-      "L'outil de gestion de projet pensé pour les équipes modernes.",
-    brandColor: "#7c3aed",
-    font: "Inter",
-    roundedCards: "lg",
-    banner: {
-      text: "🎉 Essai gratuit étendu à 30 jours — offre limitée.",
-      link: { label: "En profiter", href: "/signup" },
-      closeable: true,
-    },
+      "Développeur freelance spécialisé en applications web React & Node.js.",
+    brandColor: "#0ea5e9",
+    font: "Geist",
+    roundedCards: "md",
   },
 
-  header: { variant: "transparent" },
+  header: { variant: "sticky" },
 
   seo: {
-    defaultTitle: "FlowDesk — Gestion de projet simple",
+    defaultTitle: "Alex Moreau — Développeur Freelance",
     defaultDescription:
-      "Organisez vos projets, synchronisez votre équipe, livrez plus vite. Essai gratuit 14 jours.",
+      "Développeur freelance React & Node.js. Je crée des applications web rapides, accessibles et bien conçues.",
   },
 
   navigation: [
-    { label: "Fonctionnalités", href: "/features" },
-    { label: "Tarifs", href: "/pricing" },
+    { label: "Projets", href: "/portfolio" },
+    { label: "Services", href: "/services" },
     { label: "À propos", href: "/about" },
-    { label: "Essai gratuit →", href: "/signup" },
+    { label: "Contact", href: "/contact" },
   ],
 
   footer: {
-    text: "© 2026 FlowDesk, Inc.",
-    columns: [
-      {
-        title: "Produit",
-        links: [
-          { label: "Fonctionnalités", href: "/features" },
-          { label: "Tarifs", href: "/pricing" },
-          { label: "Nouveautés", href: "/changelog" },
-          { label: "Roadmap", href: "/roadmap" },
-        ],
-      },
-      {
-        title: "Ressources",
-        links: [
-          { label: "Documentation", href: "/docs" },
-          { label: "Blog", href: "/blog" },
-          { label: "Support", href: "/contact" },
-        ],
-      },
-      {
-        title: "Entreprise",
-        links: [
-          { label: "À propos", href: "/about" },
-          { label: "Carrières", href: "/jobs" },
-        ],
-      },
-    ],
+    text: "© 2026 Alex Moreau",
     social: {
-      twitter: "https://twitter.com/",
       github: "https://github.com/",
-      linkedin: "https://linkedin.com/company/",
+      linkedin: "https://linkedin.com/in/",
+      twitter: "https://twitter.com/",
     },
-    legal: [
-      { label: "Conditions d'utilisation", href: "#" },
-      { label: "Politique de confidentialité", href: "#" },
-      { label: "Cookies", href: "#" },
-    ],
+    legal: [{ label: "Mentions légales", href: "#" }],
   },
 
   pages: {
     home: {
       seo: {
         title: "Accueil",
-        description: "Gestion de projet simple pour équipes modernes",
+        description: "Développeur freelance React & Node.js",
       },
       sections: [
         {
           type: "hero",
-          style: {
-            backgroundImage:
-              "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format",
-          },
+          style: { background: "dark" },
           props: {
-            title: "Votre équipe mérite de meilleurs outils",
+            title: "Je construis des apps web que les utilisateurs adorent",
             subtitle:
-              "FlowDesk réunit tout ce dont votre équipe a besoin pour travailler en sync. Projets, tâches, fichiers — au même endroit.",
-            ctaPrimary: { label: "Essai gratuit 14 jours", href: "/signup" },
-            ctaSecondary: { label: "Voir une démo", href: "#demo" },
-          },
-        },
-        {
-          type: "logos",
-          style: { background: "light", padding: "sm" },
-          props: {
-            title: "Déjà adoptés par +500 équipes",
-            items: [
-              {
-                name: "Entreprise A",
-                imageUrl:
-                  "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
-              },
-              {
-                name: "Entreprise B",
-                imageUrl: "https://astro.build/favicon.svg",
-              },
-              {
-                name: "Entreprise C",
-                imageUrl: "https://tailwindcss.com/favicons/favicon-32x32.png",
-              },
-            ],
-          },
-        },
-        {
-          type: "features",
-          style: { background: "white", padding: "lg" },
-          props: {
-            title: "Tout ce dont votre équipe a besoin",
-            layout: "list",
-            items: [
-              {
-                title: "Tableaux Kanban en temps réel",
-                description:
-                  "Visualisez l'avancement de chaque projet en un coup d'œil. Mise à jour instantanée pour toute l'équipe.",
-              },
-              {
-                title: "Gestion des priorités",
-                description:
-                  "Étiquetez, triez et filtrez les tâches par urgence, assigné ou statut.",
-              },
-              {
-                title: "Notifications intelligentes",
-                description:
-                  "Soyez alerté uniquement de ce qui vous concerne. Fini le bruit inutile.",
-              },
-              {
-                title: "Rapports automatiques",
-                description:
-                  "Partagez l'avancement avec vos clients ou votre direction en un clic.",
-              },
-              {
-                title: "Intégrations natives",
-                description:
-                  "Slack, GitHub, Figma, Google Drive — tous vos outils connectés sans configuration.",
-              },
-            ],
+              "Développeur freelance senior avec 7 ans d'expérience. React, Node.js, TypeScript. Disponible pour vos projets.",
+            ctaPrimary: { label: "Voir mes projets", href: "/portfolio" },
+            ctaSecondary: { label: "Me contacter", href: "/contact" },
           },
         },
         {
           type: "stats",
-          style: { background: "primary", padding: "md" },
+          style: { background: "light", padding: "sm" },
           props: {
             items: [
-              { value: "500+", label: "Équipes actives" },
-              { value: "-40%", label: "De réunions de suivi" },
-              { value: "2×", label: "Plus de projets livrés" },
-              { value: "4.8★", label: "Sur Capterra" },
+              { value: "7 ans", label: "D'expérience" },
+              { value: "40+", label: "Projets livrés" },
+              { value: "98%", label: "Clients satisfaits" },
+              { value: "< 1j", label: "Temps de réponse" },
             ],
           },
         },
         {
-          type: "video",
+          type: "imageText",
           style: { background: "white", padding: "lg" },
           props: {
-            title: "Voyez FlowDesk en action",
-            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-            caption: "Présentation complète — 3 minutes",
+            title: "Des apps qui performent",
+            paragraphs: [
+              "Je me spécialise dans les applications web complexes : SPA React, APIs REST, intégrations tierces.",
+              "Mon objectif : livrer du code propre, maintenable et documenté, dans les délais convenus.",
+            ],
+            imageUrl:
+              "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format",
+            imageAlt: "Développement web",
+            imagePosition: "right",
+            cta: { label: "Voir mes services", href: "/services" },
           },
         },
         {
-          type: "pricing",
+          type: "gallery",
           style: { background: "light", padding: "lg" },
           props: {
-            title: "Simple et transparent",
-            plans: [
+            title: "Quelques réalisations",
+            columns: 3,
+            items: [
               {
-                name: "Free",
-                price: "0€",
-                period: "mois",
-                description: "Pour les petites équipes qui démarrent",
-                features: [
-                  "Jusqu'à 3 projets",
-                  "5 utilisateurs",
-                  "1 Go de stockage",
-                  "Support communautaire",
-                ],
-                cta: { label: "Commencer gratuitement", href: "/signup" },
+                imageUrl:
+                  "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&auto=format",
+                alt: "Dashboard SaaS",
+                caption: "Dashboard SaaS",
               },
               {
-                name: "Team",
-                price: "12€",
-                period: "utilisateur/mois",
-                description: "Pour les équipes en croissance",
-                features: [
-                  "Projets illimités",
-                  "Utilisateurs illimités",
-                  "50 Go de stockage",
-                  "Intégrations avancées",
-                  "Support prioritaire",
-                ],
-                cta: { label: "Essai gratuit 14j", href: "/signup" },
-                highlighted: true,
+                imageUrl:
+                  "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format",
+                alt: "App Analytics",
+                caption: "App Analytics",
               },
               {
-                name: "Enterprise",
-                price: "Sur devis",
-                description: "Pour les grandes organisations",
-                features: [
-                  "SSO / SAML",
-                  "Audit log",
-                  "SLA garanti",
-                  "Onboarding dédié",
-                  "Contrat personnalisé",
-                ],
-                cta: { label: "Contacter les ventes", href: "/contact" },
+                imageUrl:
+                  "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&auto=format",
+                alt: "Site e-commerce",
+                caption: "E-commerce",
+              },
+            ],
+          },
+        },
+        {
+          type: "testimonials",
+          style: { background: "white", padding: "lg" },
+          props: {
+            title: "Ce que disent mes clients",
+            items: [
+              {
+                quote:
+                  "Alex a livré notre app en 6 semaines, dans le budget. Code impeccable et très bon communicant.",
+                author: "Thomas B.",
+                role: "CTO, Startup Wave",
+              },
+              {
+                quote:
+                  "Rare de trouver quelqu'un d'aussi à l'écoute et technique. On retravaille avec lui à chaque projet.",
+                author: "Claire M.",
+                role: "Product Manager, Scale Tech",
               },
             ],
           },
         },
         {
           type: "reviews",
-          style: { background: "light", padding: "md" },
+          style: { background: "light", padding: "sm" },
           props: {
-            title: "Plébiscité par ses utilisateurs",
             items: [
-              {
-                source: "Capterra",
-                rating: 4.8,
-                maxRating: 5,
-                reviewCount: 156,
-              },
-              { source: "G2", rating: 4.7, maxRating: 5, reviewCount: 89 },
-              {
-                source: "Product Hunt",
-                rating: 4.9,
-                maxRating: 5,
-                reviewCount: 203,
-              },
+              { source: "Google", rating: 5, maxRating: 5, reviewCount: 18 },
+              { source: "Malt", rating: 4.9, maxRating: 5, reviewCount: 31 },
+              { source: "LinkedIn", rating: 5, maxRating: 5, reviewCount: 12 },
             ],
           },
         },
         {
-          type: "comparison",
-          style: { background: "white", padding: "lg" },
+          type: "download",
+          style: { background: "white", padding: "md" },
           props: {
-            title: "FlowDesk vs les alternatives",
-            options: ["Jira", "FlowDesk", "Notion"],
-            rows: [
-              {
-                feature: "Prise en main",
-                values: ["Complexe", "Très simple", "Modérée"],
-              },
-              { feature: "Idéal pour startups", values: [false, true, true] },
-              {
-                feature: "Tableaux Kanban natifs",
-                values: [true, true, "Plugin requis"],
-              },
-              {
-                feature: "Notifications intelligentes",
-                values: ["Basiques", true, false],
-              },
-              {
-                feature: "Prix équipe de 10",
-                values: ["~80€/mois", "~120€/mois", "~80€/mois"],
-              },
-              {
-                feature: "Intégrations incluses",
-                values: ["50+", "20+", "10+"],
-              },
-            ],
-          },
-        },
-        {
-          type: "faq",
-          style: { background: "white", padding: "lg" },
-          props: {
-            title: "Questions fréquentes",
-            items: [
-              {
-                question: "Puis-je migrer depuis Trello ou Notion ?",
-                answer:
-                  "Oui, nous proposons un outil d'import en un clic depuis les principaux outils du marché.",
-              },
-              {
-                question: "Mes données sont-elles en sécurité ?",
-                answer:
-                  "Toutes les données sont chiffrées en transit et au repos. Nos serveurs sont en Europe (RGPD).",
-              },
-              {
-                question: "Puis-je annuler à tout moment ?",
-                answer:
-                  "Oui, sans engagement. Vous gardez accès à vos données 30 jours après résiliation.",
-              },
-              {
-                question:
-                  "Y a-t-il une limite d'utilisateurs sur le plan Free ?",
-                answer:
-                  "Le plan Free est limité à 5 utilisateurs. Les plans payants sont illimités.",
-              },
-            ],
+            title: "Mon CV et portfolio",
+            subtitle: "Toutes mes réalisations et expériences en un document.",
+            fileUrl: "/alex-moreau-cv.pdf",
+            fileName: "Alex Moreau — Développeur Freelance.pdf",
+            fileSize: "890 Ko",
+            icon: "pdf",
+            buttonLabel: "Télécharger le CV",
           },
         },
         {
           type: "newsletter",
           style: { background: "dark" },
           props: {
-            title: "Restez informé",
+            title: "Ma newsletter dev",
             subtitle:
-              "Nouveautés produit, conseils de productivité — une fois par mois.",
+              "Conseils, outils et retours d'expérience — un email par semaine, pas de spam.",
             buttonLabel: "S'abonner",
             formAction:
               "https://moncompte.us1.list-manage.com/subscribe/post?u=XXXX&id=XXXX",
-          },
-        },
-        {
-          type: "cta",
-          style: { background: "gradient" },
-          props: {
-            title: "Prêt à transformer votre façon de travailler ?",
-            subtitle:
-              "Rejoignez +500 équipes qui livrent plus vite avec FlowDesk.",
-            cta: {
-              label: "Essai gratuit — aucune CB requise",
-              href: "/signup",
-            },
           },
         },
       ],
@@ -337,17 +176,18 @@ export const siteConfig: SiteConfig = {
     about: {
       seo: {
         title: "À propos",
-        description: "Notre mission et notre histoire",
+        description: "Mon parcours et mes compétences",
       },
       sections: [
         {
           type: "text",
           style: { background: "white", padding: "lg" },
           props: {
-            title: "Notre mission",
+            title: "Bonjour, je suis Alex",
             paragraphs: [
-              "Nous croyons que la gestion de projet ne devrait pas être une corvée. FlowDesk est né de la frustration de ses fondateurs face à des outils trop complexes ou trop limités.",
-              "Notre objectif : créer l'outil le plus simple possible qui couvre vraiment les besoins des équipes modernes.",
+              "Développeur freelance depuis 2017, je travaille principalement avec des startups et PME qui ont besoin d'un développeur senior sans embaucher en CDI.",
+              "Je maîtrise React, Next.js, Node.js, TypeScript et PostgreSQL. J'ai une vraie sensibilité pour le design et l'UX.",
+              "En dehors du code : trail running, photographie et café de spécialité.",
             ],
           },
         },
@@ -355,63 +195,74 @@ export const siteConfig: SiteConfig = {
           type: "timeline",
           style: { background: "light", padding: "lg" },
           props: {
-            title: "Notre histoire",
+            title: "Parcours",
             items: [
               {
+                date: "2017",
+                title: "Début en freelance",
+                description:
+                  "Premier client trouvé via LinkedIn, jamais regardé en arrière.",
+              },
+              {
+                date: "2019",
+                title: "Spécialisation React",
+                description:
+                  "Transition vers le frontend moderne et les architectures SPA.",
+              },
+              {
                 date: "2021",
-                title: "Idée",
+                title: "Full-stack",
                 description:
-                  "Lassés de Jira et Trello, les fondateurs commencent à coder le premier prototype.",
-              },
-              {
-                date: "2022",
-                title: "Lancement bêta",
-                description:
-                  "100 premières équipes invitées. Retours enthousiastes, product-market fit confirmé.",
-              },
-              {
-                date: "2023",
-                title: "Levée de fonds",
-                description:
-                  "1.2M€ levés pour accélérer le développement produit et l'équipe.",
+                  "Ajout de Node.js et PostgreSQL pour des missions plus complètes.",
               },
               {
                 date: "2024",
-                title: "500+ équipes",
+                title: "Aujourd'hui",
                 description:
-                  "Expansion en Europe, lancement de l'offre Enterprise.",
+                  "40+ projets, équipes de 2 à 50 personnes, partout en France.",
               },
             ],
           },
         },
         {
           type: "cta",
-          style: { background: "dark" },
+          style: { background: "gradient" },
           props: {
-            title: "Rejoignez l'aventure",
-            subtitle:
-              "On recrute ! Développeurs, designers, CS — venez construire l'avenir du travail en équipe.",
-            cta: { label: "Voir les offres d'emploi", href: "#" },
+            title: "Discutons de votre projet",
+            subtitle: "Disponibilités et tarifs sur demande.",
+            cta: { label: "Prendre contact", href: "/contact" },
           },
         },
       ],
     },
 
     contact: {
-      seo: { title: "Contact", description: "Contactez notre équipe" },
+      seo: { title: "Contact", description: "Travaillons ensemble" },
       sections: [
         {
           type: "contactInfo",
           style: { background: "white", padding: "lg" },
           props: {
-            title: "On est là pour vous aider",
-            subtitle: "Support, ventes, presse — on répond à tout.",
-            email: "hello@flowdesk.app",
+            title: "Parlons-en",
+            subtitle:
+              "Je réponds sous 24h. Disponible pour des missions en remote ou Paris.",
+            email: "alex@alexmoreau.dev",
             linkedin: {
-              label: "Suivez-nous sur LinkedIn",
-              href: "https://linkedin.com/company/",
+              label: "Mon LinkedIn",
+              href: "https://linkedin.com/in/",
             },
-            location: "Paris, France 🇫🇷",
+            location: "Paris / Remote",
+          },
+        },
+        {
+          type: "map",
+          style: { background: "light", padding: "sm" },
+          props: {
+            embedUrl:
+              "https://www.openstreetmap.org/export/embed.html?bbox=2.3387%2C48.8600%2C2.3700%2C48.8780&layer=mapnik",
+            height: "sm",
+            address:
+              "Paris, France — Missions remote disponibles partout en France",
           },
         },
       ],
