@@ -4,6 +4,8 @@ import { Code } from 'astro:components';
 import SectionRenderer from '../components/SectionRenderer.astro';
 import type { SectionBlock } from '../types/site';
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const nav = [
   {
     title: 'Démarrage',
@@ -62,8 +64,16 @@ const nav = [
     title: 'Avancé',
     items: [
       { label: 'Templates de départ', href: '#templates' },
+      { label: 'Activer votre site', href: '#activer' },
       { label: 'Utiliser avec une IA', href: '#ia' },
       { label: 'Déploiement', href: '#deploiement' },
+    ],
+  },
+  {
+    title: 'Liens rapides',
+    items: [
+      { label: '→ Prévisualiser le site', href: `${base}/preview` },
+      { label: '→ Showcase sections', href: `${base}/showcase` },
     ],
   },
 ];
@@ -761,10 +771,23 @@ const reviewsDemo: SectionBlock = {
       <h2 class="text-2xl font-bold text-gray-900 mb-2">
         <span lang="fr">Templates de départ</span><span lang="en">Starter templates</span>
       </h2>
-      <p class="text-gray-500 mb-6">
+      <p class="text-gray-500 mb-4">
         <span lang="fr">Des configurations complètes prêtes à l'emploi dans <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">src/config/templates/</code>. Copiez le contenu du template choisi dans votre <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code> et personnalisez.</span>
         <span lang="en">Complete ready-to-use configurations in <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">src/config/templates/</code>. Copy the chosen template into your <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code> and customize.</span>
       </p>
+      <div class="flex items-start gap-3 bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6 text-sm">
+        <span class="text-amber-500 mt-0.5 shrink-0">⚠️</span>
+        <div>
+          <span lang="fr">
+            <strong class="text-amber-800">Renommez l'export en <code class="font-mono">siteConfig</code></strong> après le copier-coller, sinon le site ne démarre pas.
+            <br />Chaque template exporte une variable avec son propre nom (<code class="bg-amber-100 px-1 rounded font-mono text-xs">agenceConfig</code>, <code class="bg-amber-100 px-1 rounded font-mono text-xs">saasConfig</code>…) — remplacez-le par <code class="bg-amber-100 px-1 rounded font-mono text-xs">siteConfig</code>.
+          </span>
+          <span lang="en">
+            <strong class="text-amber-800">Rename the export to <code class="font-mono">siteConfig</code></strong> after pasting, otherwise the site won't start.
+            <br />Each template exports its own variable name (<code class="bg-amber-100 px-1 rounded font-mono text-xs">agenceConfig</code>, <code class="bg-amber-100 px-1 rounded font-mono text-xs">saasConfig</code>…) — replace it with <code class="bg-amber-100 px-1 rounded font-mono text-xs">siteConfig</code>.
+          </span>
+        </div>
+      </div>
       <div class="grid sm:grid-cols-2 gap-4">
         {[
           { file: 'agence.ts', label: 'Agence web', desc: 'Hero split, pricing, team, testimonials, gallery, CTA gradient. Couleur : violet.', color: 'bg-purple-50 border-purple-200', badge: 'bg-purple-100 text-purple-700' },
@@ -785,6 +808,102 @@ const reviewsDemo: SectionBlock = {
             <p class="text-sm text-gray-600">{t.desc}</p>
           </a>
         ))}
+      </div>
+
+      <div class="mt-6 p-4 bg-gray-50 border border-gray-200 rounded-xl flex items-center justify-between gap-4">
+        <p class="text-sm text-gray-600">
+          <span lang="fr">Après avoir collé un template dans <code class="bg-gray-100 px-1 rounded text-xs">site.ts</code>, visualisez le résultat ici :</span>
+          <span lang="en">After pasting a template into <code class="bg-gray-100 px-1 rounded text-xs">site.ts</code>, preview the result here:</span>
+        </p>
+        <a
+          href={`${base}/preview`}
+          target="_blank"
+          class="shrink-0 inline-flex items-center gap-1.5 px-4 py-2 bg-gray-900 text-white text-sm font-medium rounded-lg hover:bg-gray-700 transition-colors"
+        >
+          <span lang="fr">Prévisualiser →</span>
+          <span lang="en">Preview →</span>
+        </a>
+      </div>
+    </section>
+
+    <hr class="border-gray-100 mb-16" />
+
+    <!-- ACTIVER LE SITE -->
+    <section id="activer" class="mb-16 scroll-mt-20">
+      <h2 class="text-2xl font-bold text-gray-900 mb-2">
+        <span lang="fr">Activer votre site</span>
+        <span lang="en">Activate your site</span>
+      </h2>
+      <p class="text-gray-500 mb-6">
+        <span lang="fr">
+          Cette page est la documentation du template. Pour déployer votre vrai site, il faut remplacer
+          <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">src/pages/index.astro</code>
+          par une page normale qui lit votre <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code>.
+        </span>
+        <span lang="en">
+          This page is the template documentation. To deploy your real site, replace
+          <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">src/pages/index.astro</code>
+          with a standard page that reads your <code class="bg-gray-100 px-1.5 py-0.5 rounded text-sm">site.ts</code>.
+        </span>
+      </p>
+
+      <div class="space-y-6">
+
+        <!-- Étape 1 -->
+        <div>
+          <p class="text-sm font-semibold text-gray-700 mb-2">
+            <span lang="fr">Étape 1 — Remplacez le contenu de <code class="font-mono font-normal bg-gray-100 px-1 rounded">src/pages/index.astro</code> par :</span>
+            <span lang="en">Step 1 — Replace the content of <code class="font-mono font-normal bg-gray-100 px-1 rounded">src/pages/index.astro</code> with:</span>
+          </p>
+          <Code code={`---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import SectionRenderer from '../components/SectionRenderer.astro';
+import { siteConfig } from '../config/site';
+
+const page = siteConfig.pages.home;
+---
+
+<BaseLayout
+  title={page.seo.title}
+  description={page.seo.description}
+  pathname="/"
+>
+  {page.sections.map((block) => (
+    <SectionRenderer block={block} />
+  ))}
+</BaseLayout>`} lang="astro" theme="github-dark" class="rounded-xl overflow-hidden text-sm" />
+        </div>
+
+        <!-- Étape 2 -->
+        <div>
+          <p class="text-sm font-semibold text-gray-700 mb-2">
+            <span lang="fr">Étape 2 — Supprimez (ou gardez) les pages de doc inutiles pour votre site final :</span>
+            <span lang="en">Step 2 — Delete (or keep) the doc pages you don't need in your final site:</span>
+          </p>
+          <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 font-mono text-xs text-gray-600 space-y-1">
+            <p><span class="text-red-400">─ src/pages/showcase.astro</span> <span class="text-gray-400 font-sans ml-2">← catalogue des sections</span></p>
+            <p><span class="text-red-400">─ src/layouts/DocsLayout.astro</span> <span class="text-gray-400 font-sans ml-2">← layout de cette doc</span></p>
+            <p><span class="text-red-400">─ src/pages/preview.astro</span> <span class="text-gray-400 font-sans ml-2">← page de prévisualisation</span></p>
+            <p class="pt-1 text-gray-400 font-sans text-xs">
+              <span lang="fr">Ces fichiers ne génèrent aucun coût de performance — vous pouvez les laisser.</span>
+              <span lang="en">These files add no performance cost — you can leave them in.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Note -->
+        <div class="flex items-start gap-3 bg-blue-50 border border-blue-100 rounded-xl p-4 text-sm">
+          <span class="text-blue-400 mt-0.5 shrink-0">ℹ</span>
+          <p class="text-blue-700">
+            <span lang="fr">
+              En attendant, <a href={`${base}/preview`} target="_blank" class="underline font-medium">prévisualisez votre site ici</a> sans toucher à cette page.
+            </span>
+            <span lang="en">
+              In the meantime, <a href={`${base}/preview`} target="_blank" class="underline font-medium">preview your site here</a> without touching this page.
+            </span>
+          </p>
+        </div>
+
       </div>
     </section>
 

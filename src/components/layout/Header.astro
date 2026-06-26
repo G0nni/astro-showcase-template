@@ -1,61 +1,74 @@
 ---
 import { siteConfig } from '../../config/site';
+import Banner from './Banner.astro';
 
 const currentPath = Astro.url.pathname;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const variant = siteConfig.header?.variant ?? 'sticky';
 const isTransparent = variant === 'transparent';
 const isMinimal = variant === 'minimal';
+const banner = siteConfig.global.banner;
+
+// sticky → dans le flux normal, colle au top quand on scroll
+// transparent/fixed → sorti du flux, hero passe dessous
+const wrapperClass = isTransparent
+  ? 'fixed top-0 left-0 right-0 z-50'
+  : 'sticky top-0 z-50 w-full';
 ---
 
-<header
-  id="site-header"
-  class={`fixed top-0 left-0 right-0 z-50 h-16 transition-colors duration-300 ${
-    isTransparent
-      ? 'bg-transparent'
-      : 'bg-white/80 backdrop-blur-md border-b border-gray-100'
-  }`}
->
-  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-full">
+<div id="site-header-wrapper" class={wrapperClass}>
 
-    <a
-      href={base + '/'}
-      class={`font-bold text-lg tracking-tight transition-colors ${isTransparent ? 'text-white' : 'text-gray-900'}`}
-      id="header-logo"
-    >
-      {siteConfig.global.name}
-    </a>
+  {banner && <Banner banner={banner} />}
 
-    {!isMinimal && (
-      <nav class="hidden md:flex items-center gap-8" id="header-nav">
-        {siteConfig.navigation.map((item) => (
-          <a
-            href={base + item.href}
-            class={`text-sm font-medium transition-colors ${
-              isTransparent
-                ? 'text-white/80 hover:text-white'
-                : currentPath === base + item.href
-                  ? 'text-gray-900'
-                  : 'text-gray-500 hover:text-gray-900'
-            }`}
-          >
-            {item.label}
-          </a>
-        ))}
-      </nav>
-    )}
+  <header
+    id="site-header"
+    class={`h-16 w-full transition-colors duration-300 ${
+      isTransparent
+        ? 'bg-transparent'
+        : 'bg-white/80 backdrop-blur-md border-b border-gray-100'
+    }`}
+  >
+    <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-full">
 
-    <button
-      class={`${isMinimal ? '' : 'md:hidden'} p-2 rounded-lg hover:bg-black/10 transition-colors`}
-      aria-label="Ouvrir le menu"
-      onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
-    >
-      <svg class={`w-5 h-5 ${isTransparent ? 'text-white' : 'text-gray-700'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
+      <a
+        href={base + '/'}
+        class={`font-bold text-lg tracking-tight transition-colors ${isTransparent ? 'text-white' : 'text-gray-900'}`}
+        id="header-logo"
+      >
+        {siteConfig.global.name}
+      </a>
 
-  </div>
+      {!isMinimal && (
+        <nav class="hidden md:flex items-center gap-8" id="header-nav">
+          {siteConfig.navigation.map((item) => (
+            <a
+              href={base + item.href}
+              class={`text-sm font-medium transition-colors ${
+                isTransparent
+                  ? 'text-white/80 hover:text-white'
+                  : currentPath === base + item.href
+                    ? 'text-gray-900'
+                    : 'text-gray-500 hover:text-gray-900'
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      )}
+
+      <button
+        class={`${isMinimal ? '' : 'md:hidden'} p-2 rounded-lg hover:bg-black/10 transition-colors`}
+        aria-label="Ouvrir le menu"
+        onclick="document.getElementById('mobile-menu').classList.toggle('hidden')"
+      >
+        <svg class={`w-5 h-5 ${isTransparent ? 'text-white' : 'text-gray-700'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+    </div>
+  </header>
 
   <div id="mobile-menu" class="hidden border-t border-gray-100 bg-white">
     <nav class="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-4">
@@ -66,7 +79,8 @@ const isMinimal = variant === 'minimal';
       ))}
     </nav>
   </div>
-</header>
+
+</div>
 
 {isTransparent && (
   <script>

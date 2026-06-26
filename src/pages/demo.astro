@@ -7,11 +7,18 @@ const page = siteConfig.pages.demo;
 ---
 
 <BaseLayout
-  title={page.seo.title}
-  description={page.seo.description}
+  title={page?.seo.title ?? 'Démo'}
+  description={page?.seo.description ?? ''}
   pathname="/demo"
 >
-  {page.sections.map((block) => (
-    <SectionRenderer block={block} />
-  ))}
+  {page
+    ? page.sections.map((block) => <SectionRenderer block={block} />)
+    : (
+      <div class="max-w-2xl mx-auto px-6 py-32 text-center">
+        <p class="text-gray-400 text-sm">
+          Aucune page <code class="bg-gray-100 px-1.5 py-0.5 rounded">demo</code> définie dans <code class="bg-gray-100 px-1.5 py-0.5 rounded">site.ts</code>.
+        </p>
+      </div>
+    )
+  }
 </BaseLayout>

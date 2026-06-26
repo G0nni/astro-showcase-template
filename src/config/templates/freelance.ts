@@ -1,9 +1,9 @@
 // Template : Freelance / Portfolio
 // Copiez ce contenu dans src/config/site.ts pour démarrer avec ce template.
 
-import type { SiteConfig } from '../../types/site';
+import type { SiteConfig } from '../types/site';
 
-export const freelanceConfig: SiteConfig = {
+export const siteConfig: SiteConfig = {
   global: {
     name: "Alex Moreau",
     url: "https://alexmoreau.dev",

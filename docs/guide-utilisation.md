@@ -22,6 +22,22 @@ Chaque modification que vous sauvegardez dans `site.ts` est visible immédiateme
 
 ---
 
+## Utiliser un template de départ
+
+Si vous partez d'un template (dossier `src/config/templates/`), copiez son contenu dans `src/config/site.ts` et **renommez l'export en `siteConfig`** :
+
+```ts
+// ❌ Tel quel dans le template
+export const agenceConfig: SiteConfig = { ... }
+
+// ✅ Ce que doit contenir votre site.ts
+export const siteConfig: SiteConfig = { ... }
+```
+
+Sans ce renommage, le site ne démarrera pas.
+
+---
+
 ## L'unique fichier à modifier : `src/config/site.ts`
 
 **Vous n'avez besoin de toucher qu'à ce fichier.**

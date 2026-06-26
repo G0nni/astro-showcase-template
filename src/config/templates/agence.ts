@@ -1,9 +1,9 @@
 // Template : Agence web / Studio créatif
 // Copiez ce contenu dans src/config/site.ts pour démarrer avec ce template.
 
-import type { SiteConfig } from '../../types/site';
+import type { SiteConfig } from '../types/site';
 
-export const agenceConfig: SiteConfig = {
+export const siteConfig: SiteConfig = {
   global: {
     name: "Studio Créatif",
     url: "https://studio-creatif.fr",

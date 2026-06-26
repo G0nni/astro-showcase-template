@@ -1,9 +1,9 @@
 // Template : SaaS / Produit digital
 // Copiez ce contenu dans src/config/site.ts pour démarrer avec ce template.
 
-import type { SiteConfig } from '../../types/site';
+import type { SiteConfig } from '../types/site';
 
-export const saasConfig: SiteConfig = {
+export const siteConfig: SiteConfig = {
   global: {
     name: "FlowDesk",
     url: "https://flowdesk.app",

@@ -3,20 +3,20 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
 import SectionRenderer from '../components/SectionRenderer.astro';
 import { siteConfig } from '../config/site';
 
-const page = siteConfig.pages.services;
+const page = siteConfig.pages.home;
 ---
 
 <BaseLayout
-  title={page?.seo.title ?? 'Services'}
+  title={page?.seo.title ?? 'Prévisualisation'}
   description={page?.seo.description ?? ''}
-  pathname="/services"
+  pathname="/"
 >
   {page
     ? page.sections.map((block) => <SectionRenderer block={block} />)
     : (
       <div class="max-w-2xl mx-auto px-6 py-32 text-center">
         <p class="text-gray-400 text-sm">
-          Aucune page <code class="bg-gray-100 px-1.5 py-0.5 rounded">services</code> définie dans <code class="bg-gray-100 px-1.5 py-0.5 rounded">site.ts</code>.
+          Aucune page <code class="bg-gray-100 px-1.5 py-0.5 rounded">home</code> définie dans <code class="bg-gray-100 px-1.5 py-0.5 rounded">site.ts</code>.
         </p>
       </div>
     )

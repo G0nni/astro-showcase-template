@@ -1,7 +1,6 @@
 ---
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
-import Banner from "./Banner.astro";
 import "../../styles/global.css";
 import { siteConfig } from "../../config/site";
 
@@ -71,7 +70,6 @@ const radiusCard = radiusMap[global.roundedCards ?? 'lg'] ?? '16px';
   </head>
 
   <body class="bg-white text-gray-900 antialiased" style={global.font ? `font-family:'${global.font}',system-ui,sans-serif` : ''}>
-    {global.banner && <Banner banner={global.banner} />}
     <Header />
 
     <main>

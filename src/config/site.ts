@@ -1,93 +1,119 @@
-import type { SiteConfig } from '../types/site';
+// Template : SaaS / Produit digital
+// Copiez ce contenu dans src/config/site.ts pour démarrer avec ce template.
+
+import type { SiteConfig } from "../types/site";
 
 export const siteConfig: SiteConfig = {
   global: {
-    name: "Mon Site Pro",
-    url: "https://monsite.fr",
-    description: "Site vitrine moderne, rapide et facile à personnaliser.",
-    brandColor: "#2563eb",  // ← Couleur primaire (boutons, accents, sections "primary")
-    font: "Inter",           // ← Google Font — supprimez pour utiliser la police système
-    roundedCards: "lg",      // ← Coins des cartes : "none" | "sm" | "md" | "lg" | "full"
-    // banner: {             // ← Bandeau d'annonce en haut de page (supprimez // pour activer)
-    //   text: "🎉 Nouveau : 17 sections disponibles !",
-    //   link: { label: "Voir la démo", href: "/demo" },
-    //   closeable: true,
-    // },
+    name: "FlowDesk",
+    url: "https://flowdesk.app",
+    description:
+      "L'outil de gestion de projet pensé pour les équipes modernes.",
+    brandColor: "#7c3aed",
+    font: "Inter",
+    roundedCards: "lg",
+    banner: {
+      text: "🎉 Essai gratuit étendu à 30 jours — offre limitée.",
+      link: { label: "En profiter", href: "/signup" },
+      closeable: true,
+    },
   },
 
-  header: {
-    variant: "sticky",       // ← "sticky" | "transparent" | "minimal"
-  },
+  header: { variant: "transparent" },
 
   seo: {
-    defaultTitle: "Mon Site Pro",
-    defaultDescription: "Site vitrine rapide, moderne et optimisé SEO",
+    defaultTitle: "FlowDesk — Gestion de projet simple",
+    defaultDescription:
+      "Organisez vos projets, synchronisez votre équipe, livrez plus vite. Essai gratuit 14 jours.",
   },
 
   navigation: [
-    { label: "Services", href: "/services" },
+    { label: "Fonctionnalités", href: "/features" },
+    { label: "Tarifs", href: "/pricing" },
     { label: "À propos", href: "/about" },
-    { label: "Contact", href: "/contact" },
-    { label: "Démo →", href: "/demo" },
+    { label: "Essai gratuit →", href: "/signup" },
   ],
 
   footer: {
-    text: "© 2026 Mon Site Pro — Tous droits réservés",
+    text: "© 2026 FlowDesk, Inc.",
     columns: [
       {
-        title: "Services",
+        title: "Produit",
         links: [
-          { label: "Site vitrine", href: "/services" },
-          { label: "E-commerce", href: "/services" },
-          { label: "Application web", href: "/services" },
+          { label: "Fonctionnalités", href: "/features" },
+          { label: "Tarifs", href: "/pricing" },
+          { label: "Nouveautés", href: "/changelog" },
+          { label: "Roadmap", href: "/roadmap" },
+        ],
+      },
+      {
+        title: "Ressources",
+        links: [
+          { label: "Documentation", href: "/docs" },
+          { label: "Blog", href: "/blog" },
+          { label: "Support", href: "/contact" },
         ],
       },
       {
         title: "Entreprise",
         links: [
           { label: "À propos", href: "/about" },
-          { label: "Contact", href: "/contact" },
+          { label: "Carrières", href: "/jobs" },
         ],
       },
     ],
     social: {
-      github: "https://github.com/G0nni/astro-showcase-template",
-      linkedin: "https://linkedin.com/in/",
       twitter: "https://twitter.com/",
+      github: "https://github.com/",
+      linkedin: "https://linkedin.com/company/",
     },
     legal: [
-      { label: "Mentions légales", href: "#" },
+      { label: "Conditions d'utilisation", href: "#" },
       { label: "Politique de confidentialité", href: "#" },
+      { label: "Cookies", href: "#" },
     ],
   },
 
   pages: {
-
-    // ─── PAGE ACCUEIL ──────────────────────────────────────────────────────────
     home: {
       seo: {
         title: "Accueil",
-        description: "Bienvenue sur Mon Site Pro — site vitrine moderne et rapide",
+        description: "Gestion de projet simple pour équipes modernes",
       },
       sections: [
         {
           type: "hero",
+          style: {
+            backgroundImage:
+              "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format",
+          },
           props: {
-            title: "Un site moderne pour développer votre activité",
-            subtitle: "Rapide, SEO-friendly et simple à modifier. Tout se contrôle depuis un seul fichier.",
-            ctaPrimary: { label: "Nous contacter", href: "/contact" },
-            ctaSecondary: { label: "En savoir plus", href: "/about" },
+            title: "Votre équipe mérite de meilleurs outils",
+            subtitle:
+              "FlowDesk réunit tout ce dont votre équipe a besoin pour travailler en sync. Projets, tâches, fichiers — au même endroit.",
+            ctaPrimary: { label: "Essai gratuit 14 jours", href: "/signup" },
+            ctaSecondary: { label: "Voir une démo", href: "#demo" },
           },
         },
         {
-          type: "stats",
-          style: { background: "light", padding: "md" },
+          type: "logos",
+          style: { background: "light", padding: "sm" },
           props: {
+            title: "Déjà adoptés par +500 équipes",
             items: [
-              { value: "98", label: "Score Lighthouse" },
-              { value: "< 1s", label: "Temps de chargement" },
-              { value: "100%", label: "Responsive" },
-              { value: "0", label: "Dépendances inutiles" },
+              {
+                name: "Entreprise A",
+                imageUrl:
+                  "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
+              },
+              {
+                name: "Entreprise B",
+                imageUrl: "https://astro.build/favicon.svg",
+              },
+              {
+                name: "Entreprise C",
+                imageUrl: "https://tailwindcss.com/favicons/favicon-32x32.png",
+              },
             ],
           },
         },
@@ -95,313 +121,233 @@ export const siteConfig: SiteConfig = {
           type: "features",
           style: { background: "white", padding: "lg" },
           props: {
-            title: "Pourquoi nous choisir",
+            title: "Tout ce dont votre équipe a besoin",
+            layout: "list",
             items: [
               {
-                title: "Rapide",
-                description: "Performances optimales, score Google Lighthouse élevé, chargement instantané.",
+                title: "Tableaux Kanban en temps réel",
+                description:
+                  "Visualisez l'avancement de chaque projet en un coup d'œil. Mise à jour instantanée pour toute l'équipe.",
               },
               {
-                title: "Simple",
-                description: "Tout le contenu se modifie dans un seul fichier : site.ts. Aucun développement requis.",
+                title: "Gestion des priorités",
+                description:
+                  "Étiquetez, triez et filtrez les tâches par urgence, assigné ou statut.",
               },
               {
-                title: "Moderne",
-                description: "Design SaaS premium, composants réutilisables, pleinement responsive.",
+                title: "Notifications intelligentes",
+                description:
+                  "Soyez alerté uniquement de ce qui vous concerne. Fini le bruit inutile.",
+              },
+              {
+                title: "Rapports automatiques",
+                description:
+                  "Partagez l'avancement avec vos clients ou votre direction en un clic.",
+              },
+              {
+                title: "Intégrations natives",
+                description:
+                  "Slack, GitHub, Figma, Google Drive — tous vos outils connectés sans configuration.",
               },
             ],
-          },
-        },
-        {
-          type: "testimonials",
-          style: { background: "light", padding: "lg" },
-          props: {
-            title: "Ce que disent nos clients",
-            items: [
-              {
-                quote: "Un site livré en temps record, exactement ce que je voulais. Très simple à modifier.",
-                author: "Sophie Martin",
-                role: "Directrice, Cabinet Martin",
-              },
-              {
-                quote: "La performance est impressionnante. Mon ancien site mettait 5 secondes à charger, celui-ci c'est instantané.",
-                author: "Thomas Leclerc",
-                role: "Fondateur, TL Consulting",
-              },
-              {
-                quote: "J'ai pu modifier tout le contenu moi-même depuis le fichier de config. Vraiment intuitif.",
-                author: "Camille Roux",
-                role: "Avocate indépendante",
-              },
-            ],
-          },
-        },
-        {
-          type: "cta",
-          style: { background: "gradient" },
-          props: {
-            title: "Prêt à lancer votre projet ?",
-            subtitle: "Contactez-nous dès aujourd'hui pour créer votre site vitrine professionnel.",
-            cta: { label: "Démarrer maintenant", href: "/contact" },
-          },
-        },
-      ],
-    },
-
-    // ─── PAGE SERVICES ─────────────────────────────────────────────────────────
-    services: {
-      seo: {
-        title: "Services",
-        description: "Découvrez nos prestations de création de sites web",
-      },
-      sections: [
-        {
-          type: "text",
-          style: { background: "white", padding: "lg" },
-          props: {
-            title: "Nos services",
-            paragraphs: [
-              "Nous proposons des solutions complètes pour votre présence en ligne : du site vitrine au site e-commerce, en passant par les applications web sur mesure.",
-              "Chaque projet est traité avec soin, de la conception à la mise en ligne, avec un accompagnement personnalisé.",
-            ],
-          },
-        },
-        {
-          type: "features",
-          style: { background: "light" },
-          props: {
-            title: "Ce que nous faisons",
-            items: [
-              {
-                title: "Site vitrine",
-                description: "Présence en ligne soignée, rapide et optimisée SEO. Idéal pour les indépendants et PME.",
-              },
-              {
-                title: "Site e-commerce",
-                description: "Boutique en ligne performante avec gestion des produits, paiements et stocks.",
-              },
-              {
-                title: "Application web",
-                description: "Développement sur mesure pour vos besoins métier spécifiques.",
-              },
-              {
-                title: "Refonte",
-                description: "Modernisation de votre site existant avec gain de performance et de design.",
-              },
-              {
-                title: "SEO & Performance",
-                description: "Audit et optimisation pour améliorer votre positionnement sur Google.",
-              },
-              {
-                title: "Maintenance",
-                description: "Suivi technique, mises à jour et support réactif pour votre site.",
-              },
-            ],
-          },
-        },
-        {
-          type: "imageText",
-          style: { background: "white", padding: "lg" },
-          props: {
-            title: "Une méthode simple et efficace",
-            paragraphs: [
-              "Nous démarrons chaque projet par un échange approfondi pour comprendre vos besoins et vos objectifs.",
-              "Puis nous concevons, développons et livrons votre site dans des délais courts, sans mauvaise surprise.",
-            ],
-            imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format",
-            imageAlt: "Équipe de travail collaboratif",
-            imagePosition: "right",
-            cta: { label: "Nous contacter", href: "/contact" },
-          },
-        },
-        {
-          type: "faq",
-          style: { background: "light", padding: "lg" },
-          props: {
-            title: "Questions fréquentes",
-            items: [
-              {
-                question: "Combien de temps prend la création d'un site ?",
-                answer: "Un site vitrine standard est livré en 1 à 3 semaines selon la complexité. Un projet e-commerce ou sur mesure demande généralement 4 à 8 semaines.",
-              },
-              {
-                question: "Puis-je modifier le contenu moi-même ?",
-                answer: "Oui, absolument. Notre template est conçu pour être modifié sans développeur — tout le contenu se gère depuis un seul fichier de configuration.",
-              },
-              {
-                question: "Le site sera-t-il bien référencé sur Google ?",
-                answer: "Nos sites sont optimisés SEO dès la base : balises meta, performance, structure sémantique. Nous pouvons aussi vous accompagner sur une stratégie de contenu.",
-              },
-              {
-                question: "Quel est le coût d'un site vitrine ?",
-                answer: "Les tarifs varient selon vos besoins. Contactez-nous pour un devis personnalisé et gratuit.",
-              },
-            ],
-          },
-        },
-        {
-          type: "cta",
-          style: { background: "dark" },
-          props: {
-            title: "Un projet en tête ?",
-            subtitle: "Parlons-en. Un premier échange est toujours gratuit et sans engagement.",
-            cta: { label: "Prendre contact", href: "/contact" },
-          },
-        },
-      ],
-    },
-
-    // ─── PAGE À PROPOS ─────────────────────────────────────────────────────────
-    about: {
-      seo: {
-        title: "À propos",
-        description: "Découvrez notre approche et notre mission",
-      },
-      sections: [
-        {
-          type: "text",
-          style: { background: "white", padding: "lg" },
-          props: {
-            title: "À propos de nous",
-            paragraphs: [
-              "Nous créons des sites web modernes, rapides et optimisés pour les moteurs de recherche.",
-              "Notre approche repose sur la simplicité : tout le contenu est géré depuis un seul fichier de configuration, sans base de données, sans CMS complexe.",
-              "Résultat : un site performant, facile à maintenir, et que vous pouvez modifier vous-même en quelques minutes.",
-            ],
-          },
-        },
-        {
-          type: "imageText",
-          style: { background: "light", padding: "lg" },
-          props: {
-            title: "Notre philosophie",
-            paragraphs: [
-              "Moins de complexité, plus de valeur. Nous croyons que les meilleurs outils sont ceux qu'on n'a pas besoin d'expliquer.",
-              "C'est pourquoi nous construisons des sites qui se pilotent depuis un fichier texte — aucune interface à apprendre, aucune formation requise.",
-            ],
-            imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format",
-            imageAlt: "Code sur un écran",
-            imagePosition: "left",
           },
         },
         {
           type: "stats",
-          style: { background: "primary", padding: "lg" },
+          style: { background: "primary", padding: "md" },
           props: {
-            title: "En quelques chiffres",
             items: [
-              { value: "50+", label: "Sites livrés" },
-              { value: "4.9/5", label: "Satisfaction client" },
-              { value: "3 ans", label: "D'expérience" },
+              { value: "500+", label: "Équipes actives" },
+              { value: "-40%", label: "De réunions de suivi" },
+              { value: "2×", label: "Plus de projets livrés" },
+              { value: "4.8★", label: "Sur Capterra" },
             ],
           },
         },
         {
-          type: "cta",
-          style: { background: "dark" },
-          props: {
-            title: "Travaillons ensemble",
-            subtitle: "Vous avez un projet en tête ? Prenons contact et construisons quelque chose d'exceptionnel.",
-            cta: { label: "Nous contacter", href: "/contact" },
-          },
-        },
-      ],
-    },
-
-    // ─── PAGE CONTACT ──────────────────────────────────────────────────────────
-    contact: {
-      seo: {
-        title: "Contact",
-        description: "Contactez-nous pour votre projet",
-      },
-      sections: [
-        {
-          type: "contactInfo",
+          type: "video",
           style: { background: "white", padding: "lg" },
           props: {
-            title: "Contactez-nous",
-            subtitle: "Pour toute demande de projet, collaboration ou information, n'hésitez pas à nous écrire.",
-            email: "contact@monsite.fr",
-            linkedin: { label: "Voir le profil LinkedIn", href: "#" },
-            location: "France",
-          },
-        },
-      ],
-    },
-
-    // ─── PAGE DEMO (toutes les nouvelles sections) ─────────────────────────────
-    demo: {
-      seo: {
-        title: "Démo des sections",
-        description: "Démonstration de toutes les sections disponibles",
-      },
-      sections: [
-        {
-          type: "hero",
-          props: {
-            title: "Variant Split — texte à gauche, image à droite",
-            subtitle: "Ajoutez variant: 'split' et splitImage pour ce layout deux colonnes.",
-            ctaPrimary: { label: "Commencer", href: "/contact" },
-            ctaSecondary: { label: "En savoir plus", href: "/about" },
-            variant: "split",
-            splitImage: {
-              url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format",
-              alt: "Équipe de travail",
-            },
-          },
-        },
-        {
-          type: "steps",
-          style: { background: "white", padding: "lg" },
-          props: {
-            title: "Comment ça marche",
-            items: [
-              { title: "Clonez le repo", description: "git clone puis npm install pour démarrer en local en quelques secondes." },
-              { title: "Éditez site.ts", description: "Modifiez les textes, ajoutez des sections, configurez les pages depuis un seul fichier." },
-              { title: "Déployez", description: "Un push sur main déclenche automatiquement le déploiement via GitHub Actions." },
-            ],
+            title: "Voyez FlowDesk en action",
+            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            caption: "Présentation complète — 3 minutes",
           },
         },
         {
           type: "pricing",
           style: { background: "light", padding: "lg" },
           props: {
-            title: "Nos tarifs",
+            title: "Simple et transparent",
             plans: [
               {
-                name: "Starter",
-                price: "490€",
-                description: "Idéal pour se lancer",
-                features: ["1 page", "Design responsive", "SEO de base", "Livraison 1 semaine"],
-                cta: { label: "Choisir Starter", href: "/contact" },
+                name: "Free",
+                price: "0€",
+                period: "mois",
+                description: "Pour les petites équipes qui démarrent",
+                features: [
+                  "Jusqu'à 3 projets",
+                  "5 utilisateurs",
+                  "1 Go de stockage",
+                  "Support communautaire",
+                ],
+                cta: { label: "Commencer gratuitement", href: "/signup" },
               },
               {
-                name: "Pro",
-                price: "990€",
-                description: "Pour les projets ambitieux",
-                features: ["Jusqu'à 5 pages", "Design premium", "SEO avancé", "Analytics", "Maintenance 1 mois"],
-                cta: { label: "Choisir Pro", href: "/contact" },
+                name: "Team",
+                price: "12€",
+                period: "utilisateur/mois",
+                description: "Pour les équipes en croissance",
+                features: [
+                  "Projets illimités",
+                  "Utilisateurs illimités",
+                  "50 Go de stockage",
+                  "Intégrations avancées",
+                  "Support prioritaire",
+                ],
+                cta: { label: "Essai gratuit 14j", href: "/signup" },
                 highlighted: true,
               },
               {
-                name: "Sur mesure",
+                name: "Enterprise",
                 price: "Sur devis",
-                description: "Projets complexes",
-                features: ["Pages illimitées", "Fonctionnalités custom", "Intégrations", "Support dédié"],
-                cta: { label: "Nous contacter", href: "/contact" },
+                description: "Pour les grandes organisations",
+                features: [
+                  "SSO / SAML",
+                  "Audit log",
+                  "SLA garanti",
+                  "Onboarding dédié",
+                  "Contrat personnalisé",
+                ],
+                cta: { label: "Contacter les ventes", href: "/contact" },
               },
             ],
           },
         },
         {
-          type: "team",
+          type: "reviews",
+          style: { background: "light", padding: "md" },
+          props: {
+            title: "Plébiscité par ses utilisateurs",
+            items: [
+              {
+                source: "Capterra",
+                rating: 4.8,
+                maxRating: 5,
+                reviewCount: 156,
+              },
+              { source: "G2", rating: 4.7, maxRating: 5, reviewCount: 89 },
+              {
+                source: "Product Hunt",
+                rating: 4.9,
+                maxRating: 5,
+                reviewCount: 203,
+              },
+            ],
+          },
+        },
+        {
+          type: "comparison",
           style: { background: "white", padding: "lg" },
           props: {
-            title: "Notre équipe",
+            title: "FlowDesk vs les alternatives",
+            options: ["Jira", "FlowDesk", "Notion"],
+            rows: [
+              {
+                feature: "Prise en main",
+                values: ["Complexe", "Très simple", "Modérée"],
+              },
+              { feature: "Idéal pour startups", values: [false, true, true] },
+              {
+                feature: "Tableaux Kanban natifs",
+                values: [true, true, "Plugin requis"],
+              },
+              {
+                feature: "Notifications intelligentes",
+                values: ["Basiques", true, false],
+              },
+              {
+                feature: "Prix équipe de 10",
+                values: ["~80€/mois", "~120€/mois", "~80€/mois"],
+              },
+              {
+                feature: "Intégrations incluses",
+                values: ["50+", "20+", "10+"],
+              },
+            ],
+          },
+        },
+        {
+          type: "faq",
+          style: { background: "white", padding: "lg" },
+          props: {
+            title: "Questions fréquentes",
             items: [
-              { name: "Alice Martin", role: "Directrice", imageUrl: "https://i.pravatar.cc/150?img=1" },
-              { name: "Baptiste Roy", role: "Développeur", imageUrl: "https://i.pravatar.cc/150?img=3" },
-              { name: "Chloé Dupont", role: "Designer", imageUrl: "https://i.pravatar.cc/150?img=5" },
+              {
+                question: "Puis-je migrer depuis Trello ou Notion ?",
+                answer:
+                  "Oui, nous proposons un outil d'import en un clic depuis les principaux outils du marché.",
+              },
+              {
+                question: "Mes données sont-elles en sécurité ?",
+                answer:
+                  "Toutes les données sont chiffrées en transit et au repos. Nos serveurs sont en Europe (RGPD).",
+              },
+              {
+                question: "Puis-je annuler à tout moment ?",
+                answer:
+                  "Oui, sans engagement. Vous gardez accès à vos données 30 jours après résiliation.",
+              },
+              {
+                question:
+                  "Y a-t-il une limite d'utilisateurs sur le plan Free ?",
+                answer:
+                  "Le plan Free est limité à 5 utilisateurs. Les plans payants sont illimités.",
+              },
+            ],
+          },
+        },
+        {
+          type: "newsletter",
+          style: { background: "dark" },
+          props: {
+            title: "Restez informé",
+            subtitle:
+              "Nouveautés produit, conseils de productivité — une fois par mois.",
+            buttonLabel: "S'abonner",
+            formAction:
+              "https://moncompte.us1.list-manage.com/subscribe/post?u=XXXX&id=XXXX",
+          },
+        },
+        {
+          type: "cta",
+          style: { background: "gradient" },
+          props: {
+            title: "Prêt à transformer votre façon de travailler ?",
+            subtitle:
+              "Rejoignez +500 équipes qui livrent plus vite avec FlowDesk.",
+            cta: {
+              label: "Essai gratuit — aucune CB requise",
+              href: "/signup",
+            },
+          },
+        },
+      ],
+    },
+
+    about: {
+      seo: {
+        title: "À propos",
+        description: "Notre mission et notre histoire",
+      },
+      sections: [
+        {
+          type: "text",
+          style: { background: "white", padding: "lg" },
+          props: {
+            title: "Notre mission",
+            paragraphs: [
+              "Nous croyons que la gestion de projet ne devrait pas être une corvée. FlowDesk est né de la frustration de ses fondateurs face à des outils trop complexes ou trop limités.",
+              "Notre objectif : créer l'outil le plus simple possible qui couvre vraiment les besoins des équipes modernes.",
             ],
           },
         },
@@ -411,102 +357,64 @@ export const siteConfig: SiteConfig = {
           props: {
             title: "Notre histoire",
             items: [
-              { date: "2020", title: "Création", description: "Lancement de l'agence avec une première équipe de 2 personnes." },
-              { date: "2021", title: "10 clients", description: "Franchissement du cap des 10 clients satisfaits." },
-              { date: "2023", title: "Expansion", description: "Ouverture d'un second bureau et recrutement de 5 nouveaux collaborateurs." },
-              { date: "2024", title: "50 projets", description: "Plus de 50 sites livrés avec une satisfaction client de 4.9/5." },
+              {
+                date: "2021",
+                title: "Idée",
+                description:
+                  "Lassés de Jira et Trello, les fondateurs commencent à coder le premier prototype.",
+              },
+              {
+                date: "2022",
+                title: "Lancement bêta",
+                description:
+                  "100 premières équipes invitées. Retours enthousiastes, product-market fit confirmé.",
+              },
+              {
+                date: "2023",
+                title: "Levée de fonds",
+                description:
+                  "1.2M€ levés pour accélérer le développement produit et l'équipe.",
+              },
+              {
+                date: "2024",
+                title: "500+ équipes",
+                description:
+                  "Expansion en Europe, lancement de l'offre Enterprise.",
+              },
             ],
           },
         },
         {
-          type: "video",
-          style: { background: "white", padding: "lg" },
-          props: {
-            title: "Présentation en vidéo",
-            videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-            caption: "Découvrez notre méthode en 2 minutes",
-          },
-        },
-        {
-          type: "gallery",
-          style: { background: "light", padding: "lg" },
-          props: {
-            title: "Nos réalisations",
-            columns: 3,
-            items: [
-              { imageUrl: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=600&auto=format", alt: "Site e-commerce", caption: "Site e-commerce" },
-              { imageUrl: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=600&auto=format", alt: "Site vitrine", caption: "Site vitrine" },
-              { imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format", alt: "Dashboard", caption: "Dashboard" },
-              { imageUrl: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&auto=format", alt: "Application web", caption: "Application web" },
-              { imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&auto=format", alt: "Collaboration", caption: "Collaboration" },
-              { imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&auto=format", alt: "Réunion", caption: "Réunion client" },
-            ],
-          },
-        },
-        {
-          type: "newsletter",
+          type: "cta",
           style: { background: "dark" },
           props: {
-            title: "Restez informé",
-            subtitle: "Recevez nos conseils et actualités directement dans votre boîte mail.",
-            placeholder: "votre@email.fr",
-            buttonLabel: "S'inscrire",
-            formAction: "https://moncompte.us1.list-manage.com/subscribe/post?u=XXXX&id=XXXX",
-          },
-        },
-        {
-          type: "comparison",
-          style: { background: "white", padding: "lg" },
-          props: {
-            title: "Nous vs la concurrence",
-            options: ["Concurrents", "Notre template", "Agence sur mesure"],
-            rows: [
-              { feature: "Délai de livraison", values: ["4-8 semaines", "Immédiat", "2-6 mois"] },
-              { feature: "Modifiable sans dev", values: [false, true, false] },
-              { feature: "SEO intégré", values: ["Partiel", true, true] },
-              { feature: "17 sections disponibles", values: [false, true, true] },
-              { feature: "Prix", values: ["Abonnement mensuel", "Gratuit (open source)", "3 000€+"] },
-              { feature: "Performance Lighthouse", values: ["Variable", "+95", "+90"] },
-            ],
-          },
-        },
-        {
-          type: "download",
-          style: { background: "light", padding: "md" },
-          props: {
-            title: "Documentation complète",
-            subtitle: "Téléchargez le guide PDF pour une référence hors-ligne.",
-            fileUrl: "/guide-astro-showcase.pdf",
-            fileName: "guide-astro-showcase-template.pdf",
-            fileSize: "1.2 Mo",
-            icon: "pdf",
-          },
-        },
-        {
-          type: "reviews",
-          style: { background: "white", padding: "md" },
-          props: {
-            title: "Noté 5 étoiles",
-            items: [
-              { source: "GitHub", rating: 5, maxRating: 5, reviewCount: 87, link: "https://github.com/G0nni/astro-showcase-template/stargazers" },
-              { source: "Google", rating: 4.9, maxRating: 5, reviewCount: 42 },
-              { source: "Product Hunt", rating: 4.8, maxRating: 5, reviewCount: 23 },
-            ],
-          },
-        },
-        {
-          type: "map",
-          style: { background: "light", padding: "md" },
-          props: {
-            title: "Où nous trouver",
-            embedUrl: "https://www.openstreetmap.org/export/embed.html?bbox=2.3387%2C48.8600%2C2.3700%2C48.8780&layer=mapnik",
-            height: "md",
-            address: "Paris, France",
-            addressLink: "https://www.openstreetmap.org/#map=14/48.869/2.354",
+            title: "Rejoignez l'aventure",
+            subtitle:
+              "On recrute ! Développeurs, designers, CS — venez construire l'avenir du travail en équipe.",
+            cta: { label: "Voir les offres d'emploi", href: "#" },
           },
         },
       ],
     },
 
+    contact: {
+      seo: { title: "Contact", description: "Contactez notre équipe" },
+      sections: [
+        {
+          type: "contactInfo",
+          style: { background: "white", padding: "lg" },
+          props: {
+            title: "On est là pour vous aider",
+            subtitle: "Support, ventes, presse — on répond à tout.",
+            email: "hello@flowdesk.app",
+            linkedin: {
+              label: "Suivez-nous sur LinkedIn",
+              href: "https://linkedin.com/company/",
+            },
+            location: "Paris, France 🇫🇷",
+          },
+        },
+      ],
+    },
   },
 };

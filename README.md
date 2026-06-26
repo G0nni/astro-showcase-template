@@ -159,7 +159,17 @@ Des configurations complètes prêtes à l'emploi dans [`src/config/templates/`]
 | [`saas.ts`](src/config/templates/saas.ts) | SaaS / produit digital |
 | [`liberal.ts`](src/config/templates/liberal.ts) | Profession libérale (avocat, médecin…) |
 
-Copiez le contenu du template choisi dans `src/config/site.ts` et personnalisez.
+Copiez le contenu du template choisi dans `src/config/site.ts`, **renommez l'export en `siteConfig`**, et personnalisez.
+
+```ts
+// Avant (dans le fichier template)
+export const agenceConfig: SiteConfig = { ... }
+
+// Après (dans votre site.ts)
+export const siteConfig: SiteConfig = { ... }
+```
+
+> Sans ce renommage, toutes les pages du site renverront une erreur au démarrage.
 
 ---
 

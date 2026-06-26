@@ -1,9 +1,9 @@
 // Template : Profession libérale (avocat, médecin, kiné, comptable…)
 // Copiez ce contenu dans src/config/site.ts pour démarrer avec ce template.
 
-import type { SiteConfig } from '../../types/site';
+import type { SiteConfig } from '../types/site';
 
-export const liberalConfig: SiteConfig = {
+export const siteConfig: SiteConfig = {
   global: {
     name: "Cabinet Rousseau",
     url: "https://cabinet-rousseau.fr",
